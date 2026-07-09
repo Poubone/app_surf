@@ -64,12 +64,14 @@ jobs:
           echo "Gradle wrapper download failed after 5 attempts"
           exit 1
 
-      - name: Build debug APK with Gradle (test app, no keystore)
-        uses: gradle/gradle-build-action@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
         with:
-          build-root-directory: apps/mobile/android
-          arguments: assembleDebug --no-daemon
-          gradle-home-cache-cleanup: true
+          cache-provider: basic
+
+      - name: Build debug APK with Gradle (test app, no keystore)
+        working-directory: apps/mobile/android
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Prepare APK artifact
         id: apk
