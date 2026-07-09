@@ -5,6 +5,7 @@ export interface OpenMeteoHourly {
   wave_direction: number[];
   wind_speed_10m: number[];
   wind_direction_10m: number[];
+  sea_level_height_msl: (number | null)[];
 }
 
 export interface MarineForecast {
@@ -22,10 +23,11 @@ export async function fetchMarineForecast(
   url.searchParams.set('longitude', String(longitude));
   url.searchParams.set(
     'hourly',
-    'wave_height,wave_period,wave_direction,wind_speed_10m,wind_direction_10m',
+    'wave_height,wave_period,wave_direction,wind_speed_10m,wind_direction_10m,sea_level_height_msl',
   );
   url.searchParams.set('timezone', 'Europe/Paris');
   url.searchParams.set('forecast_days', '1');
+  url.searchParams.set('cell_selection', 'sea');
 
   const res = await fetch(url.toString());
   if (!res.ok) throw new Error(`Open-Meteo error: ${res.status}`);
