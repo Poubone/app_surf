@@ -69,16 +69,16 @@ jobs:
         with:
           cache-provider: basic
 
-      - name: Build debug APK with Gradle (test app, no keystore)
+      - name: Build standalone APK with Gradle (JS bundle embedded)
         working-directory: apps/mobile/android
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleRelease --no-daemon
 
       - name: Prepare APK artifact
         id: apk
         run: |
           VERSION=$(node -p "require('./apps/mobile/package.json').version")
           APK_NAME="surf-pays-basque-test-v${VERSION}-build${{ github.run_number }}.apk"
-          cp apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk "$APK_NAME"
+          cp apps/mobile/android/app/build/outputs/apk/release/app-release.apk "$APK_NAME"
           echo "apk_name=$APK_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Upload workflow artifact

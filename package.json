@@ -7,7 +7,7 @@
     "test:watch": "vitest",
     "scrape": "npm run build-db --workspace=scripts-scrape",
     "copy-db": "mkdir -p apps/mobile/assets && cp data/spots.db apps/mobile/assets/spots.db",
-    "android:debug": "npm run scrape && npm run copy-db && npm run android:debug --workspace=mobile"
+    "android:apk": "npm run scrape && npm run copy-db && npm run android:apk --workspace=mobile"
   },
   "devDependencies": {
     "typescript": "^5.4.0",
