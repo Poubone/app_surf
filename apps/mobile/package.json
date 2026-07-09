@@ -23,7 +23,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "prebuild:android": "expo prebuild --platform android --no-install",
-    "android:release": "npm run prebuild:android && cd android && ./gradlew assembleRelease"
+    "android:debug": "npm run prebuild:android && cd android && ./gradlew assembleDebug"
   },
   "private": true
 }

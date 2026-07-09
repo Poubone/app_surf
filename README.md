@@ -2,14 +2,19 @@
 
 Application privée de prévision surf — Pays Basque.
 
-## Build APK en local (Gradle release)
+## Carte
+
+La carte utilise **OpenStreetMap** (tuiles gratuites, sans clé API). Google Maps n'est pas utilisé.
+
+## Build APK de test en local
+
+Appli de test (`com.poubone.surfpaysbasque.test`) — build **debug**, aucun keystore à configurer.
 
 1. Clé SHOM : https://data.shom.fr
 2. `cp apps/mobile/.env.example apps/mobile/.env` → renseigner `EXPO_PUBLIC_SHOM_API_KEY`
-3. Clé Google Maps dans `GOOGLE_MAPS_API_KEY` (ou `apps/mobile/app.json`)
-4. JDK 17 + Android SDK installés
-5. `npm run android:release`
-6. APK : `apps/mobile/android/app/build/outputs/apk/release/app-release.apk`
+3. JDK 17 + Android SDK installés
+4. `npm run android:debug`
+5. APK : `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`
 
 ## CI/CD — publication automatique sur `dev`
 
@@ -17,28 +22,16 @@ Application privée de prévision surf — Pays Basque.
 
 1. Lance les tests
 2. Scrape les spots et génère `spots.db`
-3. `expo prebuild` + `./gradlew assembleRelease`
+3. `expo prebuild` + `./gradlew assembleDebug` (APK de test, signature debug automatique)
 4. Publie l'APK en **GitHub Release** (prerelease) + artifact
 
-### Secrets GitHub requis
+### Secret GitHub
 
 | Secret | Obligatoire | Description |
 |---|---|---|
 | `EXPO_PUBLIC_SHOM_API_KEY` | Recommandé | Clé API SHOM (marées) |
-| `GOOGLE_MAPS_API_KEY` | Recommandé | Clé Google Maps Android |
-| `ANDROID_KEYSTORE_BASE64` | Optionnel | Keystore release encodé en base64 |
-| `ANDROID_KEY_ALIAS` | Si keystore | Alias de la clé |
-| `ANDROID_KEYSTORE_PASSWORD` | Si keystore | Mot de passe du keystore |
-| `ANDROID_KEY_PASSWORD` | Si keystore | Mot de passe de la clé |
 
-Sans keystore release, l'APK est signé avec le keystore debug Expo (OK pour usage perso).
-
-### Générer le keystore release (optionnel)
-
-```bash
-keytool -genkeypair -v -storetype PKCS12 -keystore release.keystore -alias surf-release -keyalg RSA -keysize 2048 -validity 10000
-base64 -w0 release.keystore   # → secret ANDROID_KEYSTORE_BASE64
-```
+Aucune clé Google Maps ni keystore Android requis.
 
 ## Build APK via EAS (alternative)
 

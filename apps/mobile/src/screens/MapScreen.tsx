@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
-import MapView from 'react-native-maps';
+import { OsmMap } from '../components/OsmMap';
 import { SpotMarker } from '../components/SpotMarker';
 import { SpotDetailSheet } from '../components/SpotDetailSheet';
 import { NetworkError } from '../components/NetworkError';
@@ -22,7 +22,7 @@ export function MapScreen() {
 
   return (
     <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={PAY_BASQUE_REGION}>
+      <OsmMap style={styles.map} initialRegion={PAY_BASQUE_REGION}>
         {spots.map((s) => (
           <SpotMarker
             key={s.spot.spotId}
@@ -33,12 +33,13 @@ export function MapScreen() {
             onPress={() => setSelected(s)}
           />
         ))}
-      </MapView>
+      </OsmMap>
       <TouchableOpacity style={styles.refresh} onPress={refresh}>
         <Text style={styles.refreshText}>Actualiser</Text>
       </TouchableOpacity>
       <View style={styles.legend}>
         <Text style={styles.legendText}>≥60 Bon · 30–59 Moyen · &lt;30 Mauvais</Text>
+        <Text style={styles.osmCredit}>© OpenStreetMap</Text>
       </View>
       {selected && <SpotDetailSheet data={selected} onClose={() => setSelected(null)} />}
     </View>
@@ -53,4 +54,5 @@ const styles = StyleSheet.create({
   refreshText: { fontWeight: '600' },
   legend: { position: 'absolute', bottom: 24, alignSelf: 'center', backgroundColor: 'rgba(255,255,255,0.9)', padding: 8, borderRadius: 8 },
   legendText: { fontSize: 12 },
+  osmCredit: { fontSize: 10, color: '#888', marginTop: 2 },
 });
