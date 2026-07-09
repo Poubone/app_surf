@@ -1,11 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-  computeSurfScore,
-  type Spot,
-  type ScoreBreakdown,
-  type TideEvent,
-  type TideStage,
-} from '@app-surf/scoring';
+import { computeSurfScore, type Spot, type ScoreBreakdown, type TideEvent, type TideStage } from '@app-surf/scoring';
 import { fetchMarineForecast, toHourlyConditions } from '../api/open-meteo';
 import { fetchTideEvents, tideStageAt } from '../api/shom';
 import { loadSpots } from '../db/spots';
