@@ -19,18 +19,20 @@ OpenStreetMap via tuiles `UrlTile` — pas de Google Maps.
 
 ## Build APK de test en local
 
-Appli de test (`com.poubone.surfpaysbasque.test`) — build **debug**, aucun keystore.
+Appli de test (`com.poubone.surfpaysbasque.test`) — APK **autonome** (JavaScript + base spots embarqués, pas de Metro / ordinateur requis).
 
 1. JDK 17 + Android SDK
-2. `npm run android:debug`
-3. APK : `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`
+2. `npm run android:apk`
+3. APK : `apps/mobile/android/app/build/outputs/apk/release/app-release.apk`
+
+À l'usage, l'app a seulement besoin d'Internet pour les prévisions Open-Meteo. Les 12 spots sont déjà dans l'APK (base SQLite générée au build CI).
 
 ## CI/CD — publication automatique sur `main`
 
 À chaque push sur **`main`** :
 
 1. Tests + scrape spots
-2. `expo prebuild` + `./gradlew assembleDebug`
+2. `expo prebuild` + `./gradlew assembleRelease` (bundle JS embarqué dans l'APK)
 3. APK publié en GitHub Release (prerelease)
 
 Aucun secret GitHub requis.
