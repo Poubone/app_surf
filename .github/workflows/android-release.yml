@@ -49,9 +49,27 @@ jobs:
         working-directory: apps/mobile
         run: npx expo prebuild --platform android --no-install
 
-      - name: Build debug APK with Gradle (test app, no keystore)
+      - name: Prefetch Gradle wrapper (retry on 504)
         working-directory: apps/mobile/android
-        run: ./gradlew assembleDebug --no-daemon
+        run: |
+          for attempt in 1 2 3 4 5; do
+            echo "Gradle download attempt ${attempt}/5..."
+            if ./gradlew --version; then
+              echo "Gradle ready."
+              exit 0
+            fi
+            echo "Download failed, waiting before retry..."
+            sleep $((attempt * 20))
+          done
+          echo "Gradle wrapper download failed after 5 attempts"
+          exit 1
+
+      - name: Build debug APK with Gradle (test app, no keystore)
+        uses: gradle/gradle-build-action@v4
+        with:
+          build-root-directory: apps/mobile/android
+          arguments: assembleDebug --no-daemon
+          gradle-home-cache-cleanup: true
 
       - name: Prepare APK artifact
         id: apk
