@@ -1,0 +1,8 @@
+node_modules/
+data/spots.db
+apps/mobile/assets/spots.db
+.env
+.env.local
+dist/
+.expo/
+*.apk
