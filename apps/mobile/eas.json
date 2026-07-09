@@ -4,9 +4,6 @@
     "preview": {
       "android": {
         "buildType": "apk"
-      },
-      "env": {
-        "EXPO_PUBLIC_SHOM_API_KEY": ""
       }
     }
   }

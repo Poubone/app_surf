@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { computeSurfScore, type Spot, type ScoreBreakdown, type TideEvent, type TideStage } from '@app-surf/scoring';
+import { computeSurfScore, type Spot, type ScoreBreakdown, type TideStage } from '@app-surf/scoring';
 import { fetchMarineForecast, toHourlyConditions } from '../api/open-meteo';
-import { fetchTideEvents, tideStageAt } from '../api/shom';
+import { hasSeaLevelData, tideStageFromSeaLevel } from '../api/tide';
 import { loadSpots } from '../db/spots';
 
 export interface HourlyScore {
@@ -35,25 +35,20 @@ export function useSurfConditions() {
     setNetworkError(false);
     try {
       const allSpots = await loadSpots();
-      let tideEvents: TideEvent[] | undefined;
-      let tideUnavailable = false;
-      try {
-        tideEvents = await fetchTideEvents(new Date());
-      } catch {
-        tideUnavailable = true;
-      }
 
       const results = await Promise.all(
         allSpots.map(async (spot) => {
           try {
             const forecast = await fetchMarineForecast(spot.latitude, spot.longitude);
             const { hourly } = forecast;
+            const tideUnavailable = !hasSeaLevelData(hourly.sea_level_height_msl);
+
             const hourlyScores: HourlyScore[] = hourly.time.map((time, i) => {
               const base = toHourlyConditions(hourly, i);
               const at = new Date(time);
-              const tideStage = tideEvents
-                ? tideStageAt(tideEvents, at)
-                : ('mid-rising' as TideStage);
+              const tideStage = tideUnavailable
+                ? ('mid-rising' as TideStage)
+                : tideStageFromSeaLevel(hourly.time, hourly.sea_level_height_msl, at);
               const conditions = { ...base, tideStage };
               const score = computeSurfScore(spot, conditions);
               if (tideUnavailable) {

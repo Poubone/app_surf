@@ -2,36 +2,38 @@
 
 Application privée de prévision surf — Pays Basque.
 
+## APIs utilisées (toutes gratuites, sans clé)
+
+| Source | Données |
+|---|---|
+| **Open-Meteo Marine** | Houle, vent, niveau mer (`sea_level_height_msl` → marée) |
+| **OpenStreetMap** | Fond de carte |
+
+> **SHOM REFMAR** ([doc](https://services.data.shom.fr/support/fr/services/refmar)) est aussi gratuit sans clé, mais ce sont des **observations** de marégraphes. Les **prédictions** SHOM (service SPM / `maree/v2`) nécessitent un abonnement payant — on ne les utilise pas.
+
+Les marées sont dérivées du niveau mer horaire Open-Meteo (min/max locaux → mi-marée, PM, BM).
+
 ## Carte
 
-La carte utilise **OpenStreetMap** (tuiles gratuites, sans clé API). Google Maps n'est pas utilisé.
+OpenStreetMap via tuiles `UrlTile` — pas de Google Maps.
 
 ## Build APK de test en local
 
-Appli de test (`com.poubone.surfpaysbasque.test`) — build **debug**, aucun keystore à configurer.
+Appli de test (`com.poubone.surfpaysbasque.test`) — build **debug**, aucun keystore.
 
-1. Clé SHOM : https://data.shom.fr
-2. `cp apps/mobile/.env.example apps/mobile/.env` → renseigner `EXPO_PUBLIC_SHOM_API_KEY`
-3. JDK 17 + Android SDK installés
-4. `npm run android:debug`
-5. APK : `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`
+1. JDK 17 + Android SDK
+2. `npm run android:debug`
+3. APK : `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`
 
 ## CI/CD — publication automatique sur `dev`
 
-À chaque push/merge sur la branche **`dev`**, le workflow `.github/workflows/android-release.yml` :
+À chaque push sur **`dev`** :
 
-1. Lance les tests
-2. Scrape les spots et génère `spots.db`
-3. `expo prebuild` + `./gradlew assembleDebug` (APK de test, signature debug automatique)
-4. Publie l'APK en **GitHub Release** (prerelease) + artifact
+1. Tests + scrape spots
+2. `expo prebuild` + `./gradlew assembleDebug`
+3. APK publié en GitHub Release (prerelease)
 
-### Secret GitHub
-
-| Secret | Obligatoire | Description |
-|---|---|---|
-| `EXPO_PUBLIC_SHOM_API_KEY` | Recommandé | Clé API SHOM (marées) |
-
-Aucune clé Google Maps ni keystore Android requis.
+Aucun secret GitHub requis.
 
 ## Build APK via EAS (alternative)
 
