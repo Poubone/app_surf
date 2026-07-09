@@ -25,9 +25,9 @@ Appli de test (`com.poubone.surfpaysbasque.test`) — build **debug**, aucun key
 2. `npm run android:debug`
 3. APK : `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`
 
-## CI/CD — publication automatique sur `dev`
+## CI/CD — publication automatique sur `main`
 
-À chaque push sur **`dev`** :
+À chaque push sur **`main`** :
 
 1. Tests + scrape spots
 2. `expo prebuild` + `./gradlew assembleDebug`
