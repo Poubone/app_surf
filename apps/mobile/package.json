@@ -5,7 +5,7 @@
   "dependencies": {
     "@app-surf/scoring": "*",
     "expo": "~57.0.4",
-    "expo-sqlite": "~15.0.0",
+    "expo-sqlite": "~57.0.0",
     "expo-status-bar": "~57.0.0",
     "react": "19.2.3",
     "react-native": "0.86.0",
