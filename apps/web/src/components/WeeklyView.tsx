@@ -1,4 +1,4 @@
-import { ArrowLeft, TrendingUp } from 'lucide-react';
+import { ArrowLeft, RefreshCw, TrendingUp } from 'lucide-react';
 import { bestSpotPerDay } from '../hooks/useSurfConditions';
 import { departmentLabel } from '../lib/departments';
 import { getScoreColor } from '../lib/display';
@@ -10,6 +10,8 @@ export function WeeklyView({
   departments,
   department,
   onDepartmentChange,
+  onRefresh,
+  refreshing = false,
   onBack,
   onSpotClick,
 }: {
@@ -17,6 +19,8 @@ export function WeeklyView({
   departments: DepartmentOption[];
   department: string;
   onDepartmentChange: (code: string) => void;
+  onRefresh: () => void;
+  refreshing?: boolean;
   onBack: () => void;
   onSpotClick: (spot: SpotView, day: number) => void;
 }) {
@@ -53,7 +57,7 @@ export function WeeklyView({
           <TrendingUp size={20} style={{ color: '#00d4a8' }} />
         </div>
 
-        <div className="mt-4 flex items-center gap-3">
+        <div className="mt-4 flex items-center gap-3 flex-wrap">
           <label htmlFor="weekly-dept" className="text-xs text-muted-foreground shrink-0" style={{ fontFamily: "'Space Mono', monospace" }}>
             Département
           </label>
@@ -61,7 +65,7 @@ export function WeeklyView({
             id="weekly-dept"
             value={department}
             onChange={(e) => onDepartmentChange(e.target.value)}
-            className="flex-1 max-w-xs rounded-xl px-3 py-2 text-sm text-foreground outline-none"
+            className="flex-1 min-w-[10rem] max-w-xs rounded-xl px-3 py-2 text-sm text-foreground outline-none"
             style={{
               backgroundColor: 'rgba(255,255,255,0.05)',
               border: '1px solid rgba(255,255,255,0.09)',
@@ -74,6 +78,22 @@ export function WeeklyView({
               </option>
             ))}
           </select>
+          <button
+            type="button"
+            onClick={onRefresh}
+            disabled={refreshing}
+            className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold shrink-0"
+            style={{
+              backgroundColor: 'rgba(0,212,168,0.12)',
+              border: '1px solid rgba(0,212,168,0.3)',
+              color: '#00d4a8',
+              fontFamily: "'Outfit', sans-serif",
+              opacity: refreshing ? 0.6 : 1,
+            }}
+          >
+            <RefreshCw size={14} className={refreshing ? 'animate-spin' : undefined} />
+            {refreshing ? 'Actualisation…' : 'Actualiser'}
+          </button>
         </div>
 
         {spots.length > 0 && (

@@ -10,6 +10,8 @@ export function WeeklyView({
   departments,
   department,
   onDepartmentChange,
+  onRefresh,
+  refreshing = false,
   onBack,
   onSpotClick,
 }: {
@@ -17,6 +19,8 @@ export function WeeklyView({
   departments: DepartmentOption[];
   department: string;
   onDepartmentChange: (code: string) => void;
+  onRefresh: () => void;
+  refreshing?: boolean;
   onBack: () => void;
   onSpotClick: (spot: SpotView, day: number) => void;
 }) {
@@ -45,6 +49,13 @@ export function WeeklyView({
             </TouchableOpacity>
           ))}
         </ScrollView>
+        <TouchableOpacity
+          onPress={onRefresh}
+          disabled={refreshing}
+          style={[styles.refreshBtn, refreshing && styles.refreshBtnDisabled]}
+        >
+          <Text style={styles.refreshBtnText}>{refreshing ? 'Actualisation…' : '↻ Actualiser'}</Text>
+        </TouchableOpacity>
         {spots.length > 0 && (
           <View style={styles.dayRow}>
             <View style={styles.nameCol} />
@@ -126,6 +137,18 @@ const styles = StyleSheet.create({
   deptChipActive: { borderColor: theme.accent, backgroundColor: 'rgba(0,212,168,0.12)' },
   deptChipText: { color: theme.muted, fontSize: 12 },
   deptChipTextActive: { color: theme.accent },
+  refreshBtn: {
+    alignSelf: 'flex-start',
+    marginTop: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(0,212,168,0.3)',
+    backgroundColor: 'rgba(0,212,168,0.12)',
+  },
+  refreshBtnDisabled: { opacity: 0.6 },
+  refreshBtnText: { color: theme.accent, fontSize: 13, fontWeight: '600' },
   dayRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8 },
   nameCol: { width: 88 },
   dayLabel: { flex: 1, textAlign: 'center', fontSize: 10, color: theme.muted, fontWeight: '700' },

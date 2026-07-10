@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { InteractionManager, Platform, View, StyleSheet, StatusBar } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { BackHandler, InteractionManager, Platform, View, StyleSheet, StatusBar } from 'react-native';
 import { MapScreen } from './src/screens/MapScreen';
 import { WeeklyView } from './src/components/WeeklyView';
 import { DetailView } from './src/components/DetailView';
@@ -97,6 +97,24 @@ function AppContent() {
     refreshDepartment(code);
   }
 
+  const goBack = useCallback(() => {
+    if (view === 'detail') {
+      setView(previousView === 'detail' ? 'map' : previousView);
+    } else if (view === 'weekly') {
+      setView('map');
+    }
+  }, [view, previousView]);
+
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (view === 'map') return false;
+      goBack();
+      return true;
+    });
+    return () => sub.remove();
+  }, [view, goBack]);
+
   if (loadingCatalog) {
     return <SplashScreen message="Chargement de la carte…" />;
   }
@@ -125,7 +143,9 @@ function AppContent() {
           departments={departments}
           department={weeklyDepartment}
           onDepartmentChange={handleRefreshDepartment}
-          onBack={() => setView('map')}
+          onRefresh={() => refreshDepartment(weeklyDepartment)}
+          refreshing={refreshingDept === weeklyDepartment}
+          onBack={goBack}
           onSpotClick={handleWeeklySpotClick}
         />
       )}
@@ -133,7 +153,7 @@ function AppContent() {
         <DetailView
           spot={detailSpot}
           initialDay={selectedDay}
-          onBack={() => setView(previousView === 'detail' ? 'map' : previousView)}
+          onBack={goBack}
         />
       )}
     </View>

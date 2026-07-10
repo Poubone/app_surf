@@ -10,6 +10,7 @@ import { dayLabelsFromDates, hourFromIso } from '../lib/days';
 import { degreesToCompass, kmhToKnots, localDateKey, weatherCodeToLabel } from '../lib/display';
 import { formatTideLabel } from '../lib/tide-label';
 import { getJsonItem, setJsonItem } from '../lib/storage';
+import { loadScoredViewsFromStorage, saveScoredViewsToStorage } from '../lib/scored-views-cache';
 import { stripHeavyFields } from '../lib/map-pins';
 import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotView } from '../types';
 
@@ -98,11 +99,12 @@ function buildHourlyBars(rows: HourlyScoreRow[], dayKey: string) {
 }
 
 function buildWeeklyScores(rows: HourlyScoreRow[], dailyTimes: string[]): number[] {
-  const times = rows.map((h) => h.time);
   return dailyTimes.map((day) => {
-    const noonIdx = pickIndexForHour(times, 12, day);
-    const entry = rows[noonIdx];
-    return entry ? entry.scoreTotal : 0;
+    const dayRows = rows.filter(
+      (r) => localDateKey(r.time) === day && isSurfDaylightTime(r.time),
+    );
+    if (dayRows.length === 0) return 0;
+    return Math.max(...dayRows.map((r) => r.scoreTotal));
   });
 }
 
@@ -421,6 +423,7 @@ export function useSurfConditions() {
         setScoredViews((prev) => {
           const next = new Map(prev);
           next.set(view.id, view);
+          void saveScoredViewsToStorage(next);
           return next;
         });
         return view;
@@ -429,6 +432,7 @@ export function useSurfConditions() {
         setScoredViews((prev) => {
           const next = new Map(prev);
           next.set(errView.id, errView);
+          void saveScoredViewsToStorage(next);
           return next;
         });
         return errView;
@@ -463,6 +467,7 @@ export function useSurfConditions() {
         setScoredViews((prev) => {
           const next = new Map(prev);
           for (const view of results) next.set(view.id, view);
+          void saveScoredViewsToStorage(next);
           return next;
         });
         const stored = await getJsonItem<string[]>(SCORED_STORAGE_KEY, []);
@@ -496,7 +501,10 @@ export function useSurfConditions() {
       void (async () => {
         try {
           const scraped = await loadSpots();
-          if (!cancelled) setScrapedSpots(scraped);
+          if (cancelled) return;
+          setScrapedSpots(scraped);
+          const cached = await loadScoredViewsFromStorage();
+          if (!cancelled && cached.size > 0) setScoredViews(cached);
         } catch {
           /* spots.json optionnel au démarrage — Actualiser le chargera */
         }
@@ -565,10 +573,7 @@ export function getScoreRowForHour(
     if (current && dayStr && localDateKey(current.time) === dayStr) return current;
   }
 
-  return (
-    dayScores.find((h) => hourFromIso(h.time) === 12) ??
-    dayScores[Math.floor(dayScores.length / 2)]
-  );
+  return dayScores.find((h) => hourFromIso(h.time) === DISPLAY_HOURS[0]) ?? dayScores[0];
 }
 
 function viewFromRow(spot: SpotView, dayIndex: number, row: HourlyScoreRow): SpotView {
