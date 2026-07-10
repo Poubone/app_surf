@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Surf Pays Basque (Test)",
+    "name": "SurfScore",
     "slug": "app-surf",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.poubone.surfpaysbasque.test",
+      "package": "com.poubone.surfscore",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
