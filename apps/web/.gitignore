@@ -1,0 +1,5 @@
+# Build output
+dist/
+
+# Dependencies handled at root
+node_modules/

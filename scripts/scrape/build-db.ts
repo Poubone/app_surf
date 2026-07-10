@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-import { readFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuid } from 'uuid';
@@ -204,6 +204,45 @@ for (const seed of seeds) {
   });
 }
 
-const count = db.prepare('SELECT COUNT(*) AS n FROM spots').get() as { n: number };
-console.log(`Wrote ${count.n} spots to data/spots.db`);
+const rows = db.prepare('SELECT * FROM spots ORDER BY name').all() as Array<{
+  spot_id: string;
+  name: string;
+  slug: string;
+  latitude: number;
+  longitude: number;
+  beach_orientation: number;
+  swell_angle_min: number;
+  swell_angle_max: number;
+  wind_offshore_min: number;
+  wind_offshore_max: number;
+  ideal_swell_height_min: number;
+  ideal_swell_height_max: number;
+  tide_optimal_stage: string;
+  bottom_type: string | null;
+  level: string | null;
+  description_fr: string | null;
+}>;
+
+const spots = rows.map((row) => ({
+  spotId: row.spot_id,
+  name: row.name,
+  slug: row.slug,
+  latitude: row.latitude,
+  longitude: row.longitude,
+  beachOrientation: row.beach_orientation,
+  swellAngleMin: row.swell_angle_min,
+  swellAngleMax: row.swell_angle_max,
+  windOffshoreMin: row.wind_offshore_min,
+  windOffshoreMax: row.wind_offshore_max,
+  idealSwellHeightMin: row.ideal_swell_height_min,
+  idealSwellHeightMax: row.ideal_swell_height_max,
+  tideOptimalStage: row.tide_optimal_stage,
+  bottomType: row.bottom_type ?? undefined,
+  level: row.level ?? undefined,
+  descriptionFr: row.description_fr ?? undefined,
+}));
+
+writeFileSync(join(dataDir, 'spots.json'), JSON.stringify(spots, null, 2));
+console.log(`Wrote ${spots.length} spots to data/spots.json`);
+console.log(`Wrote ${spots.length} spots to data/spots.db`);
 db.close();

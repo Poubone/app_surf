@@ -17,7 +17,31 @@ Les marées sont dérivées du niveau mer horaire Open-Meteo (min/max locaux →
 
 OpenStreetMap via tuiles `UrlTile` — pas de Google Maps.
 
-## Build APK de test en local
+## Site web (v1 — priorité desktop)
+
+Version principale pour valider la logique avant de reprendre l'APK Android.
+
+**En local :**
+
+```bash
+npm run scrape && npm run copy-data   # une fois (ou à chaque refresh spots)
+npm run dev:web                       # http://localhost:5173/app_surf/
+```
+
+**Build production :** `npm run build:web`
+
+**En ligne :** à chaque push sur `main`, le workflow `Deploy Web` publie sur GitHub Pages  
+→ https://poubone.github.io/app_surf/
+
+> Activer GitHub Pages une fois : *Settings → Pages → Build and deployment → Source: GitHub Actions*.
+
+Layout desktop : carte Leaflet à gauche, panneau détail à droite au clic sur un spot.
+
+## APK Android (en pause)
+
+L'APK natif crash au lancement (modules natifs `react-native-maps`, `expo-sqlite`). On reprendra le mobile une fois le web validé.
+
+### Build APK de test en local
 
 Appli de test (`com.poubone.surfpaysbasque.test`) — APK **autonome** (JavaScript + base spots embarqués, pas de Metro / ordinateur requis).
 
