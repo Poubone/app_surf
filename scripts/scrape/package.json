@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build-db": "tsx build-db.ts",
+    "discover-france": "tsx discover-france.ts",
     "test": "vitest run"
   },
   "dependencies": {

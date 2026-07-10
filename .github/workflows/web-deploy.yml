@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build spots data and web app
+      - name: Build web app (spots.json versionné dans le repo)
         run: npm run build:web
 
       - name: Upload Pages artifact

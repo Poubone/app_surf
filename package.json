@@ -6,11 +6,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "scrape": "npm run build-db --workspace=scripts-scrape",
+    "discover-france": "npm run discover-france --workspace=scripts-scrape",
     "copy-db": "mkdir -p apps/mobile/assets && cp data/spots.db apps/mobile/assets/spots.db",
-    "copy-data": "mkdir -p apps/mobile/assets apps/web/public && cp data/spots.db apps/mobile/assets/spots.db && cp data/spots.json apps/web/public/spots.json",
-    "dev:web": "npm run dev --workspace=web",
-    "build:web": "npm run scrape && npm run copy-data && npm run build --workspace=web",
-    "android:apk": "npm run scrape && npm run copy-db && npm run android:apk --workspace=mobile"
+    "copy-data": "mkdir -p apps/mobile/assets apps/web/public && cp data/spots.db apps/mobile/assets/spots.db && cp data/spots.json apps/web/public/spots.json && cp data/france-catalog.json apps/web/public/france-catalog.json",
+    "dev:web": "npm run copy-data && npm run dev --workspace=web",
+    "build:web": "npm run copy-data && npm run build --workspace=web",
+    "android:apk": "npm run copy-db && npm run android:apk --workspace=mobile"
   },
   "devDependencies": {
     "typescript": "^5.4.0",

@@ -16,11 +16,16 @@ export interface SpotScoringConfig {
 
 export interface SpotView {
   id: string;
+  slug?: string;
   name: string;
   region: string;
+  department: string;
+  departmentName: string;
   latitude: number;
   longitude: number;
-  /** Score sur 100 */
+  /** false = pin catalogue sans score météo */
+  hasScore: boolean;
+  /** Score sur 100 (0 si pas de score) */
   score: number;
   waves: { height: number; period: number; direction: string };
   wind: { speed: number; direction: string; gust: number };

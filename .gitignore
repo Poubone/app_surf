@@ -1,7 +1,6 @@
 node_modules/
 design/surf-score-app/
 data/spots.db
-data/spots.json
 apps/mobile/assets/spots.db
 apps/mobile/android/
 apps/mobile/ios/

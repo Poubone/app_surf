@@ -1,13 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { computeSurfScore, type Spot, type ScoreBreakdown, type TideStage } from '@app-surf/scoring';
 import { fetchMarineForecast, toMarineWaveConditions, type MarineForecast } from '../api/open-meteo';
 import { fetchWeatherForecast, type WeatherForecast } from '../api/weather';
 import { hasSeaLevelData, tideStageFromSeaLevel } from '../api/tide';
+import { loadCatalog, type CatalogSpot } from '../data/catalog';
 import { loadSpots } from '../data/loadSpots';
+import { buildDepartmentOptions, type DepartmentOption } from '../lib/departments';
 import { dayLabelsFromDates, hourFromIso } from '../lib/days';
 import { degreesToCompass, kmhToKnots, localDateKey, weatherCodeToLabel } from '../lib/display';
 import { formatTideLabel } from '../lib/tide-label';
 import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotView } from '../types';
+
+const DEFAULT_DEPARTMENT = '64';
+const SCORED_STORAGE_KEY = 'surfscore-scored-departments';
 
 function spotScoringConfig(spot: Spot): SpotScoringConfig {
   return {
@@ -113,6 +118,64 @@ function rowFromIndex(
   };
 }
 
+function catalogPin(catalog: CatalogSpot): SpotView {
+  return {
+    id: `catalog:${catalog.surfForecastSlug}`,
+    slug: catalog.surfForecastSlug,
+    name: catalog.name,
+    region: catalog.departmentName,
+    department: catalog.department,
+    departmentName: catalog.departmentName,
+    latitude: catalog.latitude,
+    longitude: catalog.longitude,
+    hasScore: false,
+    score: 0,
+    waves: { height: 0, period: 0, direction: '—' },
+    wind: { speed: 0, direction: '—', gust: 0 },
+    water: { temp: 0 },
+    tide: '—',
+    weather: { temp: 0, condition: '—', emoji: '—' },
+    weeklyScores: [],
+    dayLabels: [],
+    hourly: [],
+    scoringConfig: {
+      beachOrientation: 0,
+      swellAngleMin: 0,
+      swellAngleMax: 0,
+      windOffshoreMin: 0,
+      windOffshoreMax: 0,
+      idealSwellHeightMin: 0,
+      idealSwellHeightMax: 0,
+      tideOptimalStage: 'mid-rising',
+    },
+  };
+}
+
+function emptyScoredView(spot: Spot, message: string): SpotView {
+  return {
+    id: spot.spotId,
+    slug: spot.slug,
+    name: spot.name,
+    region: spot.departmentName,
+    department: spot.department,
+    departmentName: spot.departmentName,
+    latitude: spot.latitude,
+    longitude: spot.longitude,
+    hasScore: true,
+    score: 0,
+    waves: { height: 0, period: 0, direction: '—' },
+    wind: { speed: 0, direction: '—', gust: 0 },
+    water: { temp: 0 },
+    tide: '—',
+    weather: { temp: 0, condition: '—', emoji: '—' },
+    weeklyScores: [0, 0, 0, 0, 0, 0, 0],
+    dayLabels: dayLabelsFromDates([]),
+    hourly: [],
+    scoringConfig: spotScoringConfig(spot),
+    error: message,
+  };
+}
+
 async function buildSpotView(spot: Spot): Promise<SpotView> {
   const [marine, weather] = await Promise.all([
     fetchMarineForecast(spot.latitude, spot.longitude, 7),
@@ -154,10 +217,14 @@ async function buildSpotView(spot: Spot): Promise<SpotView> {
 
   return {
     id: spot.spotId,
+    slug: spot.slug,
     name: spot.name,
-    region: 'Pays Basque',
+    region: spot.departmentName,
+    department: spot.department,
+    departmentName: spot.departmentName,
     latitude: spot.latitude,
     longitude: spot.longitude,
+    hasScore: true,
     score: current.scoreTotal,
     waves: {
       height: Math.round(current.waveHeight * 10) / 10,
@@ -186,55 +253,190 @@ async function buildSpotView(spot: Spot): Promise<SpotView> {
   };
 }
 
-export function useSurfConditions() {
-  const [spots, setSpots] = useState<SpotView[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [networkError, setNetworkError] = useState(false);
-
-  const refresh = useCallback(async () => {
-    setLoading(true);
-    setNetworkError(false);
-    try {
-      const allSpots = await loadSpots();
-      const results = await Promise.all(
-        allSpots.map(async (spot) => {
-          try {
-            return await buildSpotView(spot);
-          } catch (e) {
-            return {
-              id: spot.spotId,
-              name: spot.name,
-              region: 'Pays Basque',
-              latitude: spot.latitude,
-              longitude: spot.longitude,
-              score: 0,
-              waves: { height: 0, period: 0, direction: '—' },
-              wind: { speed: 0, direction: '—', gust: 0 },
-              water: { temp: 0 },
-              tide: '—',
-              weather: { temp: 0, condition: '—', emoji: '—' },
-              weeklyScores: [0, 0, 0, 0, 0, 0, 0],
-              dayLabels: dayLabelsFromDates([]),
-              hourly: [],
-              scoringConfig: spotScoringConfig(spot),
-              error: String(e),
-            } satisfies SpotView;
-          }
-        }),
+function mergeCatalogWithScores(
+  catalog: CatalogSpot[],
+  scoredBySlug: Map<string, SpotView>,
+  scoredBySfSlug: Map<string, SpotView>,
+): SpotView[] {
+  return catalog.map((entry) => {
+    const scored =
+      scoredBySfSlug.get(entry.surfForecastSlug) ??
+      [...scoredBySlug.values()].find(
+        (s) =>
+          s.slug === entry.surfForecastSlug ||
+          Math.abs(s.latitude - entry.latitude) < 0.02 &&
+            Math.abs(s.longitude - entry.longitude) < 0.02,
       );
-      setSpots(results);
-    } catch {
-      setNetworkError(true);
-    } finally {
-      setLoading(false);
+    if (scored) return { ...scored, latitude: entry.latitude, longitude: entry.longitude };
+    return catalogPin(entry);
+  });
+}
+
+export function useSurfConditions() {
+  const [catalog, setCatalog] = useState<CatalogSpot[]>([]);
+  const [scrapedSpots, setScrapedSpots] = useState<Spot[]>([]);
+  const [scoredViews, setScoredViews] = useState<Map<string, SpotView>>(new Map());
+  const [loadingCatalog, setLoadingCatalog] = useState(true);
+  const [refreshingDept, setRefreshingDept] = useState<string | null>(null);
+  const [networkError, setNetworkError] = useState(false);
+  const [weeklyDepartment, setWeeklyDepartment] = useState(DEFAULT_DEPARTMENT);
+
+  const scrapedByDept = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const s of scrapedSpots) {
+      m.set(s.department, (m.get(s.department) ?? 0) + 1);
     }
-  }, []);
+    return m;
+  }, [scrapedSpots]);
+
+  const departments = useMemo(
+    () => buildDepartmentOptions(catalog, scrapedByDept),
+    [catalog, scrapedByDept],
+  );
+
+  const scoredBySlug = useMemo(() => {
+    const m = new Map<string, SpotView>();
+    for (const v of scoredViews.values()) {
+      if (v.slug) m.set(v.slug, v);
+    }
+    return m;
+  }, [scoredViews]);
+
+  const scoredBySfSlug = useMemo(() => {
+    const sfByOurSlug = new Map(scrapedSpots.map((s) => [s.slug, s.surfForecastSlug]));
+    const m = new Map<string, SpotView>();
+    for (const [id, view] of scoredViews) {
+      const spot = scrapedSpots.find((s) => s.spotId === id);
+      const sf = spot?.surfForecastSlug ?? (view.slug ? sfByOurSlug.get(view.slug) : undefined);
+      if (sf) m.set(sf, view);
+    }
+    return m;
+  }, [scoredViews, scrapedSpots]);
+
+  const mapSpots = useMemo(
+    () => mergeCatalogWithScores(catalog, scoredBySlug, scoredBySfSlug),
+    [catalog, scoredBySlug, scoredBySfSlug],
+  );
+
+  const weeklySpots = useMemo(
+    () =>
+      mapSpots.filter(
+        (s) => s.hasScore && s.department === weeklyDepartment && !s.error,
+      ),
+    [mapSpots, weeklyDepartment],
+  );
+
+  const refreshDepartment = useCallback(
+    async (departmentCode: string) => {
+      const deptSpots = scrapedSpots.filter((s) => s.department === departmentCode);
+      if (deptSpots.length === 0) return;
+
+      setRefreshingDept(departmentCode);
+      setNetworkError(false);
+      try {
+        const results = await Promise.all(
+          deptSpots.map(async (spot) => {
+            try {
+              return await buildSpotView(spot);
+            } catch (e) {
+              return emptyScoredView(spot, String(e));
+            }
+          }),
+        );
+        setScoredViews((prev) => {
+          const next = new Map(prev);
+          for (const view of results) next.set(view.id, view);
+          return next;
+        });
+        try {
+          const stored = JSON.parse(localStorage.getItem(SCORED_STORAGE_KEY) ?? '[]') as string[];
+          const updated = [...new Set([...stored, departmentCode])];
+          localStorage.setItem(SCORED_STORAGE_KEY, JSON.stringify(updated));
+        } catch {
+          /* ignore */
+        }
+      } catch {
+        setNetworkError(true);
+      } finally {
+        setRefreshingDept(null);
+      }
+    },
+    [scrapedSpots],
+  );
 
   useEffect(() => {
-    refresh();
-  }, [refresh]);
+    let cancelled = false;
+    (async () => {
+      setLoadingCatalog(true);
+      setNetworkError(false);
+      try {
+        const [cat, scraped] = await Promise.all([loadCatalog(), loadSpots()]);
+        if (cancelled) return;
+        setCatalog(cat);
+        setScrapedSpots(scraped);
 
-  return { spots, loading, networkError, refresh };
+        let toRefresh = DEFAULT_DEPARTMENT;
+        try {
+          const stored = JSON.parse(localStorage.getItem(SCORED_STORAGE_KEY) ?? '[]') as string[];
+          if (stored.includes(DEFAULT_DEPARTMENT)) toRefresh = DEFAULT_DEPARTMENT;
+          else if (stored.length > 0) toRefresh = stored[stored.length - 1]!;
+        } catch {
+          /* ignore */
+        }
+
+        const deptSpots = scraped.filter((s) => s.department === toRefresh);
+        if (deptSpots.length === 0) return;
+
+        setRefreshingDept(toRefresh);
+        const results = await Promise.all(
+          deptSpots.map(async (spot) => {
+            try {
+              return await buildSpotView(spot);
+            } catch (e) {
+              return emptyScoredView(spot, String(e));
+            }
+          }),
+        );
+        if (cancelled) return;
+        setScoredViews((prev) => {
+          const next = new Map(prev);
+          for (const view of results) next.set(view.id, view);
+          return next;
+        });
+        try {
+          const stored = JSON.parse(localStorage.getItem(SCORED_STORAGE_KEY) ?? '[]') as string[];
+          localStorage.setItem(SCORED_STORAGE_KEY, JSON.stringify([...new Set([...stored, toRefresh])]));
+        } catch {
+          /* ignore */
+        }
+      } catch {
+        if (!cancelled) setNetworkError(true);
+      } finally {
+        if (!cancelled) {
+          setLoadingCatalog(false);
+          setRefreshingDept(null);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const loading = loadingCatalog || refreshingDept !== null;
+
+  return {
+    mapSpots,
+    weeklySpots,
+    departments,
+    loading,
+    loadingCatalog,
+    refreshingDept,
+    networkError,
+    weeklyDepartment,
+    setWeeklyDepartment,
+    refreshDepartment,
+  };
 }
 
 export function spotForDay(spot: SpotView, dayIndex: number): SpotView {

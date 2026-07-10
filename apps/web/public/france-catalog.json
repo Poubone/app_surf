@@ -1,0 +1,3701 @@
+[
+  {
+    "surfForecastSlug": "Aber-Wrac-h-Point",
+    "name": "Aber Wrac'h Point",
+    "latitude": 48.58,
+    "longitude": -4.63,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Agosta",
+    "name": "Agosta",
+    "latitude": 41.85,
+    "longitude": 8.79,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Algajola",
+    "name": "Algajola",
+    "latitude": 42.61,
+    "longitude": 8.84,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Almanarre",
+    "name": "Almanarre",
+    "latitude": 43.07,
+    "longitude": 6.13,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Almanarre-Le-Petit-Port",
+    "name": "Almanarre - Le Petit Port",
+    "latitude": 43.08,
+    "longitude": 6.12,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Anael",
+    "name": "Anael",
+    "latitude": 48.58,
+    "longitude": -4.68,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Anglet-Chambre-d-Amour",
+    "name": "Anglet - Chambre d'Amour",
+    "latitude": 43.5,
+    "longitude": -1.55,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Corsaires",
+    "name": "Anglet - Corsaires",
+    "latitude": 43.51,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-L-Ocean",
+    "name": "Anglet - L'Ocean",
+    "latitude": 43.52,
+    "longitude": -1.53,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-La-Barre",
+    "name": "Anglet - La Barre",
+    "latitude": 43.53,
+    "longitude": -1.52,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Madrague",
+    "name": "Anglet - La Madrague",
+    "latitude": 43.52,
+    "longitude": -1.53,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "La-Barre",
+    "name": "Anglet - La Petite Barre",
+    "latitude": 43.53,
+    "longitude": -1.52,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Petite-Madrague",
+    "name": "Anglet - La Petite Madrague",
+    "latitude": 43.51,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-La-Piscine",
+    "name": "Anglet - La Piscine",
+    "latitude": 43.5,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Le-Club",
+    "name": "Anglet - Le Club",
+    "latitude": 43.5,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Le-Furoncle-La-Barre",
+    "name": "Anglet - Le Furoncle",
+    "latitude": 43.53,
+    "longitude": -1.53,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Les-Cavaliers",
+    "name": "Anglet - Les Cavaliers",
+    "latitude": 43.53,
+    "longitude": -1.53,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Les-Dunes",
+    "name": "Anglet - Les Dunes",
+    "latitude": 43.52,
+    "longitude": -1.53,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Les-Sables-d-Or",
+    "name": "Anglet - Les Sables d'Or",
+    "latitude": 43.51,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Anglet-Marinella",
+    "name": "Anglet - Marinella",
+    "latitude": 43.51,
+    "longitude": -1.54,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "V-V-F",
+    "name": "Anglet - VVF",
+    "latitude": 43.5,
+    "longitude": -1.55,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Ansede-Cabestan",
+    "name": "Anse de Cabestan",
+    "latitude": 48.01,
+    "longitude": -4.6,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Ansede-Lesconil",
+    "name": "Anse de Lesconil",
+    "latitude": 47.79,
+    "longitude": -4.27,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Anse-de-Pen-hat",
+    "name": "Anse de Pen-Hat",
+    "latitude": 48.27,
+    "longitude": -4.62,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Ansede-Vauville",
+    "name": "Anse de Vauville",
+    "latitude": 49.64,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "L-Ansedu-Brick",
+    "name": "Anse du Brick",
+    "latitude": 49.67,
+    "longitude": -1.49,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Anse-st-Martin",
+    "name": "Anse St Martin",
+    "latitude": 49.71,
+    "longitude": -1.89,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Fort-Carre",
+    "name": "Antibes - Fort Carre",
+    "latitude": 43.6,
+    "longitude": 7.13,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Keller-Antibes",
+    "name": "Antibes - Plage Keller",
+    "latitude": 43.55,
+    "longitude": 7.14,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Argeles-Sur-Mer",
+    "name": "Argelès-Sur-Mer",
+    "latitude": 42.57,
+    "longitude": 3.05,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Arna-Plage",
+    "name": "Arna Plage",
+    "latitude": 43.91,
+    "longitude": -1.38,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Arone",
+    "name": "Arone",
+    "latitude": 42.21,
+    "longitude": 8.58,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Audierne",
+    "name": "Audierne",
+    "latitude": 48.01,
+    "longitude": -4.55,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Audreselles",
+    "name": "Audreselles",
+    "latitude": 50.82,
+    "longitude": 1.59,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Aytre-Lopette-Beach",
+    "name": "Aytre Lopette",
+    "latitude": 46.13,
+    "longitude": -1.15,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Baiede-Dournenez",
+    "name": "Baie de Douarnenez",
+    "latitude": 48.11,
+    "longitude": -4.29,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Baiedes-Trepasses",
+    "name": "Baie des Trepasses",
+    "latitude": 48.05,
+    "longitude": -4.71,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Menton-Baie-du-Soleil",
+    "name": "Baie du Soleil",
+    "latitude": 43.78,
+    "longitude": 7.51,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Bandol",
+    "name": "Bandol - Les Nervis",
+    "latitude": 43.14,
+    "longitude": 5.74,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Banyuls-Sur-Mer",
+    "name": "Banyuls",
+    "latitude": 42.48,
+    "longitude": 3.13,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Baubigny",
+    "name": "Baubigny",
+    "latitude": 49.43,
+    "longitude": -1.82,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Beaulieu-sur-Mer",
+    "name": "Beaulieu sur Mer",
+    "latitude": 43.7,
+    "longitude": 7.33,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Cigale",
+    "name": "Beauvallon - La Cigale",
+    "latitude": 43.29,
+    "longitude": 6.61,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Beg-An-Tour",
+    "name": "Beg An Tour",
+    "latitude": 47.78,
+    "longitude": -3.64,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Beg-Leguer",
+    "name": "Beg Leguer",
+    "latitude": 48.74,
+    "longitude": -3.55,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Belharra",
+    "name": "Belharra",
+    "latitude": 43.4,
+    "longitude": -1.75,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Belle-Ile",
+    "name": "Belle Ile",
+    "latitude": 47.32,
+    "longitude": -3.25,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Donnants_Belle-Ile",
+    "name": "Belle Ile - Les Donnants",
+    "latitude": 47.32,
+    "longitude": -3.24,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Berck-Sur-Mer",
+    "name": "Berck Sur Mer",
+    "latitude": 50.41,
+    "longitude": 1.56,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Berneval",
+    "name": "Berneval",
+    "latitude": 49.97,
+    "longitude": 1.2,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Cotedes-Basques",
+    "name": "Biarritz - Cote des Basques",
+    "latitude": 43.48,
+    "longitude": -1.57,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Grande-Plage",
+    "name": "Biarritz - Grande Plage",
+    "latitude": 43.49,
+    "longitude": -1.56,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Bidart",
+    "name": "Bidart",
+    "latitude": 43.44,
+    "longitude": -1.59,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Biscarosse-Plage",
+    "name": "Biscarosse Plage",
+    "latitude": 44.46,
+    "longitude": -1.25,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Biville",
+    "name": "Biville",
+    "latitude": 49.61,
+    "longitude": -1.84,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Blancs-Sablons",
+    "name": "Blancs Sablons",
+    "latitude": 48.37,
+    "longitude": -4.77,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Bobby-s",
+    "name": "Bobby's",
+    "latitude": 44.5,
+    "longitude": -1.25,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Boucau",
+    "name": "Boucau",
+    "latitude": 43.53,
+    "longitude": -1.52,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Bretteville",
+    "name": "Bretteville",
+    "latitude": 49.66,
+    "longitude": -1.52,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Six-Fours",
+    "name": "Brutal Beach - Six Fours",
+    "latitude": 43.11,
+    "longitude": 5.81,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Bud-Bud",
+    "name": "Bud Bud",
+    "latitude": 46.39,
+    "longitude": -1.49,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Campo-del-Oro",
+    "name": "Campo dell Oro",
+    "latitude": 41.91,
+    "longitude": 8.79,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Canet-Plage",
+    "name": "Canet Plage - Pont des Basses",
+    "latitude": 42.7,
+    "longitude": 3.04,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Cannes",
+    "name": "Cannes",
+    "latitude": 43.55,
+    "longitude": 7.03,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Cap-3000",
+    "name": "Cap 3000",
+    "latitude": 43.66,
+    "longitude": 7.2,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Cap-Blanc-Nez",
+    "name": "Cap Blanc Nez",
+    "latitude": 50.93,
+    "longitude": 1.72,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Cap-de-l-Homy",
+    "name": "Cap de l'Homy",
+    "latitude": 44.04,
+    "longitude": -1.34,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Capdela-Chevre",
+    "name": "Cap de la Chevre",
+    "latitude": 48.17,
+    "longitude": -4.56,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Cap-Ferret",
+    "name": "Cap Ferret",
+    "latitude": 44.63,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Cap-Frehel",
+    "name": "Cap Frehel",
+    "latitude": 48.69,
+    "longitude": -2.32,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Cap-Griz-Nez",
+    "name": "Cap Gris Nez",
+    "latitude": 50.87,
+    "longitude": 1.59,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Cap-Rousset",
+    "name": "Cap Rousset",
+    "latitude": 43.15,
+    "longitude": 5.68,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Cap-Saint-Louis",
+    "name": "Cap St Louis",
+    "latitude": 43.18,
+    "longitude": 5.68,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Piste",
+    "name": "Capbreton - La Piste",
+    "latitude": 43.64,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Capbreton-La-Pointe",
+    "name": "Capbreton - La Pointe",
+    "latitude": 43.63,
+    "longitude": -1.46,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Capbreton-Le-Prevent",
+    "name": "Capbreton - Le Prevent",
+    "latitude": 43.65,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Le-Santocha",
+    "name": "Capbreton - Le Santocha",
+    "latitude": 43.65,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Capodi-Feno",
+    "name": "Capo di Feno",
+    "latitude": 41.96,
+    "longitude": 8.59,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Carcans-Plage",
+    "name": "Carcans Plage",
+    "latitude": 45.08,
+    "longitude": -1.2,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Cargese",
+    "name": "Cargese",
+    "latitude": 42.13,
+    "longitude": 8.6,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Carolles",
+    "name": "Carolles",
+    "latitude": 48.76,
+    "longitude": -1.57,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Carro",
+    "name": "Carro",
+    "latitude": 43.33,
+    "longitude": 5.04,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Carteret",
+    "name": "Carteret",
+    "latitude": 49.37,
+    "longitude": -1.81,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "L-Arene",
+    "name": "Cassis - Plage de l'Arène",
+    "latitude": 43.21,
+    "longitude": 5.55,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Ciotel",
+    "name": "Ciotel",
+    "latitude": 43.18,
+    "longitude": 5.66,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Collignon",
+    "name": "Collignon",
+    "latitude": 49.66,
+    "longitude": -1.57,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Collioure-Bay",
+    "name": "Collioure",
+    "latitude": 42.53,
+    "longitude": 3.09,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Contis-Plage",
+    "name": "Contis plage",
+    "latitude": 44.09,
+    "longitude": -1.33,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Courseulles-Sur-Mer",
+    "name": "Courseulles Sur Mer",
+    "latitude": 49.34,
+    "longitude": -0.45,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Talbosse",
+    "name": "Dalbosc'h",
+    "latitude": 48.34,
+    "longitude": -4.63,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Dame-Jouanne",
+    "name": "Dame Jouanne",
+    "latitude": 48.64,
+    "longitude": -2.14,
+    "department": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionSlug": "Ile-et-Vilaine-Brittany"
+  },
+  {
+    "surfForecastSlug": "Dead-Zone",
+    "name": "Dead Zone",
+    "latitude": 44.52,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Deauville",
+    "name": "Deauville",
+    "latitude": 49.36,
+    "longitude": 0.07,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Deolen",
+    "name": "Deolen",
+    "latitude": 48.35,
+    "longitude": -4.66,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Dielette-Harbour",
+    "name": "Dielette Harbour",
+    "latitude": 49.55,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Dielette-Left",
+    "name": "Dielette Left",
+    "latitude": 49.56,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Dielette-Shore-Break",
+    "name": "Dielette Shore Break",
+    "latitude": 49.56,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Dunkerque",
+    "name": "Dunkerque",
+    "latitude": 51.06,
+    "longitude": 2.36,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Ecalgrain",
+    "name": "Ecalgrain",
+    "latitude": 49.69,
+    "longitude": -1.94,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Erromardie",
+    "name": "Erromardie",
+    "latitude": 43.41,
+    "longitude": -1.64,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Etang-de-l-Ovu-Santu",
+    "name": "Etang de l'Ovu Santu",
+    "latitude": 41.72,
+    "longitude": 9.4,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Etel",
+    "name": "Etel",
+    "latitude": 47.64,
+    "longitude": -3.22,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Etretat",
+    "name": "Etretat",
+    "latitude": 49.71,
+    "longitude": 0.19,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Fabregas",
+    "name": "Fabregas",
+    "latitude": 43.07,
+    "longitude": 5.87,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Fecamp",
+    "name": "Fecamp",
+    "latitude": 49.76,
+    "longitude": 0.36,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Figari",
+    "name": "Figari",
+    "latitude": 41.44,
+    "longitude": 9.07,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Fort-de-Saint-Germain-Des-Vaux",
+    "name": "Fort de St Germain Des Vaux",
+    "latitude": 49.72,
+    "longitude": -1.9,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Fremur",
+    "name": "Fremur",
+    "latitude": 48.63,
+    "longitude": -2.15,
+    "department": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionSlug": "Ile-et-Vilaine-Brittany"
+  },
+  {
+    "surfForecastSlug": "Galiote",
+    "name": "Galiote",
+    "latitude": 43.27,
+    "longitude": 6.58,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Gigaro",
+    "name": "Gigaro",
+    "latitude": 43.19,
+    "longitude": 6.6,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Goulien",
+    "name": "Goulien",
+    "latitude": 48.24,
+    "longitude": -4.54,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Grande-Trait",
+    "name": "Grande Trait",
+    "latitude": 47.24,
+    "longitude": -2.31,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Gruissan-Plage",
+    "name": "Gruissan Plage",
+    "latitude": 43.1,
+    "longitude": 3.11,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Cenitz",
+    "name": "Guethary - Cenitz",
+    "latitude": 43.42,
+    "longitude": -1.62,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Les-Alcyons-Avalanche",
+    "name": "Guethary - Les Alcyons/Avalanche",
+    "latitude": 43.43,
+    "longitude": -1.62,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Parlementia",
+    "name": "Guethary - Parlementia",
+    "latitude": 43.43,
+    "longitude": -1.61,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Guidel-Plages",
+    "name": "Guidel Plages",
+    "latitude": 47.76,
+    "longitude": -3.52,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Gwendrez",
+    "name": "Gwendrez Left",
+    "latitude": 47.99,
+    "longitude": -4.48,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Hendaye-Plage",
+    "name": "Hendaye Plage",
+    "latitude": 43.38,
+    "longitude": -1.77,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "La-Centrale",
+    "name": "Hossegor - La Centrale",
+    "latitude": 43.66,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "La-Graviere",
+    "name": "Hossegor - La Graviere",
+    "latitude": 43.68,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "La-Nord",
+    "name": "Hossegor - La Nord",
+    "latitude": 43.67,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "La-Sud",
+    "name": "Hossegor - La Sud",
+    "latitude": 43.66,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Les-Culs-Nuls",
+    "name": "Hossegor - Les Culs Nuls",
+    "latitude": 43.67,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Hourtin-Plage",
+    "name": "Hourtin Plage",
+    "latitude": 45.25,
+    "longitude": -1.17,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "I-Ibarritz",
+    "name": "IIbarritz",
+    "latitude": 43.46,
+    "longitude": -1.59,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Ilbaritz-Bora-Bora",
+    "name": "Ilbaritz - Bora Bora",
+    "latitude": 43.47,
+    "longitude": -1.57,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Ilbaritz-Edouard-V-I-I",
+    "name": "Ilbaritz - Edouard VII",
+    "latitude": 43.47,
+    "longitude": -1.57,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Ilbaritz-Marbella",
+    "name": "Ilbaritz - Marbella",
+    "latitude": 43.47,
+    "longitude": -1.57,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Chassiron_Ile-D-Oleron",
+    "name": "Ile d'Oleron - Chassiron",
+    "latitude": 46.04,
+    "longitude": -1.41,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Oleron-Grand-Village",
+    "name": "Ile d'Oleron - Grand Village",
+    "latitude": 45.85,
+    "longitude": -1.26,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "La-Cotiniere_Ile-D-Oleron",
+    "name": "Ile d'Oleron - La Cotiniere",
+    "latitude": 45.92,
+    "longitude": -1.33,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Oleron-Les-Boulassiers",
+    "name": "Ile d'Oleron - Les Boulassiers",
+    "latitude": 46.01,
+    "longitude": -1.33,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Les-Huttes",
+    "name": "Ile d'Oleron - Les Huttes",
+    "latitude": 46.01,
+    "longitude": -1.39,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Los-Trois-Pierres_Les-Huttes",
+    "name": "Ile d'Oleron - Les Trois Pierres",
+    "latitude": 46.01,
+    "longitude": -1.4,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Passe-du-Trillou",
+    "name": "Ile d'Oleron - Passe du Trillou",
+    "latitude": 45.87,
+    "longitude": -1.26,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Saint-Denis_Ile-D-Oleron",
+    "name": "Ile d'Oléron - St Denis",
+    "latitude": 46.04,
+    "longitude": -1.37,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Saint-Trojan_Ile-D-Oleron",
+    "name": "Ile d'Oleron - St Trojan",
+    "latitude": 45.83,
+    "longitude": -1.25,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Oleron-Vert-Bois-Les-Allassins",
+    "name": "Ile d'Oleron - Vert Bois/Les Allassins",
+    "latitude": 45.88,
+    "longitude": -1.27,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ilede-Noirmoutier",
+    "name": "Ile de Noirmoutier",
+    "latitude": 47.01,
+    "longitude": -2.29,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Ile-de-Noirmoutier-Barbatre",
+    "name": "Ile de Noirmoutier - Barbatre",
+    "latitude": 46.94,
+    "longitude": -2.19,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "La-Couarde-Mer_Ilede-Re",
+    "name": "Ile de Re - La Couarde/Mer",
+    "latitude": 46.2,
+    "longitude": -1.45,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ile-de-Re-Le-Gouyot",
+    "name": "Ile de Re - Le Gouyot",
+    "latitude": 46.17,
+    "longitude": -1.39,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ile-de-Re-Le-Lizay",
+    "name": "Ile de Re - Le lizay",
+    "latitude": 46.26,
+    "longitude": -1.52,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ile-de-Re-Les-Grenettes",
+    "name": "Ile de Re - Les Grenettes",
+    "latitude": 46.16,
+    "longitude": -1.36,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ile-de-Re-Petit-Bec",
+    "name": "Ile de Re - Petit Bec",
+    "latitude": 46.26,
+    "longitude": -1.52,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Ile-de-re-Rivedoux",
+    "name": "Ile de Re - Rivedoux",
+    "latitude": 46.16,
+    "longitude": -1.25,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Embiez-Le-Phare",
+    "name": "Ile des Embiez - Le Phare",
+    "latitude": 43.08,
+    "longitude": 5.78,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Ile-St-Honorat",
+    "name": "Ile St Honorat",
+    "latitude": 43.51,
+    "longitude": 7.05,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Ile-Ste-Marguerite",
+    "name": "Ile Ste Marguerite",
+    "latitude": 43.52,
+    "longitude": 7.03,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Kaolin",
+    "name": "Kaolins",
+    "latitude": 47.73,
+    "longitude": -3.5,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Kerhillio",
+    "name": "Kerhillio",
+    "latitude": 47.61,
+    "longitude": -3.16,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Kerloch",
+    "name": "Kerloch",
+    "latitude": 48.26,
+    "longitude": -4.56,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Kerlouan",
+    "name": "Kerlouan",
+    "latitude": 48.66,
+    "longitude": -4.4,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Kersiguenno",
+    "name": "Kersiguenno",
+    "latitude": 48.25,
+    "longitude": -4.55,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Kirminhy",
+    "name": "Kirminhy",
+    "latitude": 47.64,
+    "longitude": -3.21,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "L-Amelie",
+    "name": "L'Amelie",
+    "latitude": 45.47,
+    "longitude": -1.16,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "L-Arene-Cros",
+    "name": "L'Arene Cros",
+    "latitude": 43.19,
+    "longitude": 5.65,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Arquet",
+    "name": "L'Arquet",
+    "latitude": 43.33,
+    "longitude": 5.06,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Aubraie",
+    "name": "L'Aubraie",
+    "latitude": 46.51,
+    "longitude": -1.82,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "L-Epi-Nord",
+    "name": "L'Epi Nord",
+    "latitude": 43.66,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "L-Escale-Borely",
+    "name": "L'Escale Borely",
+    "latitude": 43.25,
+    "longitude": 5.37,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Hermitage",
+    "name": "L'Hermitage",
+    "latitude": 43.33,
+    "longitude": 5.11,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Hippodrome",
+    "name": "L'Hippodrome",
+    "latitude": 43.64,
+    "longitude": 7.15,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Ile-Aux-Vaches-Lervily",
+    "name": "L'Ile Aux Vaches – Lervily",
+    "latitude": 48,
+    "longitude": -4.56,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "L-Olivette",
+    "name": "L'Olivette",
+    "latitude": 43.55,
+    "longitude": 7.12,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "L-Ostriconi",
+    "name": "L'Ostriconi",
+    "latitude": 42.66,
+    "longitude": 9.06,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "La-Baie-Des-Sables",
+    "name": "La Baie Des Sables",
+    "latitude": 46.49,
+    "longitude": -1.79,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "La-Chambrette",
+    "name": "La Chambrette",
+    "latitude": 45.55,
+    "longitude": -1.06,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Chapelle",
+    "name": "La Chapelle",
+    "latitude": 48.54,
+    "longitude": -4.75,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "La-Chapelle-1",
+    "name": "La Chapelle",
+    "latitude": 43.39,
+    "longitude": 3.67,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "La-Ciotat",
+    "name": "La Ciotat",
+    "latitude": 43.19,
+    "longitude": 5.62,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Cote-Sauvage",
+    "name": "La Cote Sauvage",
+    "latitude": 45.74,
+    "longitude": -1.25,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-la-Pointe-Espagnole",
+    "name": "La Cote Sauvage - La Pointe Espagnole",
+    "latitude": 45.79,
+    "longitude": -1.24,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-Le-27",
+    "name": "La Cote Sauvage - Le 27",
+    "latitude": 45.74,
+    "longitude": -1.25,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-Le-43",
+    "name": "La Cote Sauvage - Le 43",
+    "latitude": 45.71,
+    "longitude": -1.24,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-Le-46",
+    "name": "La Cote Sauvage - Le 46",
+    "latitude": 45.71,
+    "longitude": -1.24,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-Le-47",
+    "name": "La Cote Sauvage - Le 47",
+    "latitude": 45.71,
+    "longitude": -1.24,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Cote-Sauvage-Phare-de-la-Coubre-Lighthouse",
+    "name": "La Cote Sauvage - Le Sémaphore",
+    "latitude": 45.69,
+    "longitude": -1.24,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "La-Courance",
+    "name": "La Courance",
+    "latitude": 47.24,
+    "longitude": -2.28,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "La-Couronne",
+    "name": "La Couronne",
+    "latitude": 43.33,
+    "longitude": 5.06,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Crecque",
+    "name": "La Crecque",
+    "latitude": 49.64,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "La-Faviere",
+    "name": "La Faviere",
+    "latitude": 43.12,
+    "longitude": 6.36,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Garde-Guerin",
+    "name": "La Garde Guerin",
+    "latitude": 48.64,
+    "longitude": -2.12,
+    "department": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionSlug": "Ile-et-Vilaine-Brittany"
+  },
+  {
+    "surfForecastSlug": "La-Garonne",
+    "name": "La Garonne",
+    "latitude": 43.1,
+    "longitude": 6.02,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Garonne-1",
+    "name": "La Garonne",
+    "latitude": 44.7,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Govelle",
+    "name": "La Govelle",
+    "latitude": 47.27,
+    "longitude": -2.49,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "La-Grande-Motte",
+    "name": "La Grande Motte",
+    "latitude": 43.56,
+    "longitude": 4.08,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "La-Guillotine",
+    "name": "La Guillotine",
+    "latitude": 43.28,
+    "longitude": 3.45,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "La-Jenny",
+    "name": "La Jenny",
+    "latitude": 44.85,
+    "longitude": -1.23,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Lagune",
+    "name": "La Lagune",
+    "latitude": 44.58,
+    "longitude": -1.23,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Lette-Blanche",
+    "name": "La Lette Blanche (Vieille Saint Girons)",
+    "latitude": 43.9,
+    "longitude": -1.38,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "La-Marina-1",
+    "name": "La Marina",
+    "latitude": 43.63,
+    "longitude": 7.14,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Mondree",
+    "name": "La Mondree",
+    "latitude": 49.69,
+    "longitude": -1.46,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "La-Nartelle",
+    "name": "La Nartelle",
+    "latitude": 43.32,
+    "longitude": 6.67,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Paillotte",
+    "name": "La Paillotte",
+    "latitude": 43.42,
+    "longitude": 6.84,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Palue",
+    "name": "La Palue",
+    "latitude": 48.2,
+    "longitude": -4.55,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Sables-Blancs-La-Plate",
+    "name": "La Plate",
+    "latitude": 48.7,
+    "longitude": -3.66,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "La-Salie",
+    "name": "La Salie",
+    "latitude": 44.53,
+    "longitude": -1.25,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Sauzaie",
+    "name": "La Sauzaie",
+    "latitude": 46.65,
+    "longitude": -1.91,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "La-Terriere",
+    "name": "La Terriere",
+    "latitude": 46.36,
+    "longitude": -1.48,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Pointdela-Torche",
+    "name": "La Torche",
+    "latitude": 47.84,
+    "longitude": -4.35,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "La-Torchere_1",
+    "name": "La Torchere",
+    "latitude": 44.68,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "La-Tranchesur-Mer",
+    "name": "La Tranche sur Mer",
+    "latitude": 46.34,
+    "longitude": -1.47,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Labenne-Ocean",
+    "name": "Labenne Ocean",
+    "latitude": 43.59,
+    "longitude": -1.48,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Lacanau-Supersud",
+    "name": "Lacanau - Supersud",
+    "latitude": 44.99,
+    "longitude": -1.21,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Lacanau-Ocean",
+    "name": "Lacanau Ocean",
+    "latitude": 45,
+    "longitude": -1.21,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Lafitenia",
+    "name": "Lafitenia",
+    "latitude": 43.41,
+    "longitude": -1.65,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Lampaul-Plouarzel",
+    "name": "Lampaul Plouarzel",
+    "latitude": 48.46,
+    "longitude": -4.77,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Lampaul-Ploudalmezeau",
+    "name": "Lampaul Ploudalmezeau",
+    "latitude": 48.57,
+    "longitude": -4.68,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Larmor-Plage",
+    "name": "Larmor Plage",
+    "latitude": 47.7,
+    "longitude": -3.39,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Cimetiere-1",
+    "name": "Le Cimetiere",
+    "latitude": 44.69,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Club",
+    "name": "Le Club",
+    "latitude": 46.72,
+    "longitude": -1.99,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Le-Dossen",
+    "name": "Le Dossen",
+    "latitude": 48.7,
+    "longitude": -4.06,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Fort-Bloque",
+    "name": "Le Fort Bloque",
+    "latitude": 47.73,
+    "longitude": -3.5,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Fozo",
+    "name": "Le Fozo",
+    "latitude": 47.59,
+    "longitude": -3.15,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Goudoul",
+    "name": "Le Goudoul",
+    "latitude": 47.79,
+    "longitude": -4.23,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Gouerou_1",
+    "name": "Le Gouerou",
+    "latitude": 48.46,
+    "longitude": -4.77,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Grand-Crohot",
+    "name": "Le Grand Crohot",
+    "latitude": 44.79,
+    "longitude": -1.24,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Grand-Large",
+    "name": "Le Grand Large",
+    "latitude": 49.49,
+    "longitude": -1.85,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "le-Guet",
+    "name": "Le Guet",
+    "latitude": 48.1,
+    "longitude": -4.34,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Gurp",
+    "name": "Le Gurp",
+    "latitude": 45.43,
+    "longitude": -1.16,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Havre-Beach",
+    "name": "Le Havre Beach",
+    "latitude": 49.5,
+    "longitude": 0.09,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Lekerou",
+    "name": "Le Kerou",
+    "latitude": 47.77,
+    "longitude": -3.56,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Lavandou",
+    "name": "Le Lavandou",
+    "latitude": 43.13,
+    "longitude": 6.37,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Letty",
+    "name": "Le Letty",
+    "latitude": 47.86,
+    "longitude": -4.09,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Lido",
+    "name": "Le Lido",
+    "latitude": 43.14,
+    "longitude": 5.78,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Liouquet",
+    "name": "Le Liouquet",
+    "latitude": 43.18,
+    "longitude": 5.67,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Mail",
+    "name": "Le Mail",
+    "latitude": 43.27,
+    "longitude": 3.48,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Le-Manege",
+    "name": "Le Manege",
+    "latitude": 43.1,
+    "longitude": 5.81,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Niel-Giens",
+    "name": "Le Niel Giens",
+    "latitude": 43.04,
+    "longitude": 6.14,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Pain-de-Sucre",
+    "name": "Le Pain de Sucre",
+    "latitude": 42.57,
+    "longitude": 8.8,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Le-Petit-Minou",
+    "name": "Le Petit Minou",
+    "latitude": 48.34,
+    "longitude": -4.62,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Lepetit-Train",
+    "name": "Le Petit Train",
+    "latitude": 44.72,
+    "longitude": -1.25,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Les-Petits-Dalles",
+    "name": "Le Petits Dalles",
+    "latitude": 49.79,
+    "longitude": 0.44,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Le-Phare-du-Groin-du-Cou",
+    "name": "Le Phare du Groin du Cou",
+    "latitude": 46.34,
+    "longitude": -1.46,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Le-Pin-Sec",
+    "name": "Le Pin Sec",
+    "latitude": 45.29,
+    "longitude": -1.17,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Porge",
+    "name": "Le Porge",
+    "latitude": 44.9,
+    "longitude": -1.22,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Port-2",
+    "name": "Le Port",
+    "latitude": 43.78,
+    "longitude": 7.51,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Port-1",
+    "name": "Le Port",
+    "latitude": 43.39,
+    "longitude": -1.67,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Le-Poux",
+    "name": "Le Poux",
+    "latitude": 49.47,
+    "longitude": -1.84,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Le-Racou",
+    "name": "Le Racou",
+    "latitude": 42.54,
+    "longitude": 3.06,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Le-Riz",
+    "name": "Le Ris",
+    "latitude": 48.09,
+    "longitude": -4.31,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Rozel",
+    "name": "Le Rozel",
+    "latitude": 49.48,
+    "longitude": -1.85,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Ruppione",
+    "name": "Le Ruppione",
+    "latitude": 41.8,
+    "longitude": 8.71,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Le-Sail-Fish",
+    "name": "Le Sail Fish",
+    "latitude": 44.64,
+    "longitude": -1.26,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Sillon",
+    "name": "Le Sillon",
+    "latitude": 48.67,
+    "longitude": -1.99,
+    "department": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionSlug": "Ile-et-Vilaine-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Triangle",
+    "name": "Le Triangle",
+    "latitude": 48.54,
+    "longitude": -4.75,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Le-Truc-Vert",
+    "name": "Le Truc Vert",
+    "latitude": 44.72,
+    "longitude": -1.25,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Verdon",
+    "name": "Le Verdon",
+    "latitude": 45.57,
+    "longitude": -1.09,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Le-Veryac-h",
+    "name": "Le Veryac'h",
+    "latitude": 48.26,
+    "longitude": -4.61,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Ayguades",
+    "name": "Les Ayguades",
+    "latitude": 43.14,
+    "longitude": 3.15,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Les-Bormettes",
+    "name": "Les Bormettes",
+    "latitude": 43.12,
+    "longitude": 6.25,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Les-Conches",
+    "name": "Les Conches",
+    "latitude": 46.37,
+    "longitude": -1.48,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Les-Cous-Cous",
+    "name": "Les Cous Cous",
+    "latitude": 49.56,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Les-Crevettes-Ste-Barbe",
+    "name": "Les Crevettes Ste Barbe",
+    "latitude": 47.6,
+    "longitude": -3.15,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Douaniers",
+    "name": "Les Douaniers",
+    "latitude": 43.72,
+    "longitude": 7.41,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Les-Dunes",
+    "name": "Les Dunes",
+    "latitude": 46.56,
+    "longitude": -1.84,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Les-Laurons-Centrale-Edf",
+    "name": "Les Laurons",
+    "latitude": 43.36,
+    "longitude": 5.03,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Grande-Plage-des-Lecques",
+    "name": "Les Lecques",
+    "latitude": 43.17,
+    "longitude": 5.69,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Les-Moules",
+    "name": "Les Moules",
+    "latitude": 47.73,
+    "longitude": -3.5,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Roches-Blanches-le-Leyde",
+    "name": "Les Roches Blanches",
+    "latitude": 48.11,
+    "longitude": -4.36,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Roquilles",
+    "name": "Les Roquilles",
+    "latitude": 43.54,
+    "longitude": 3.97,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Les-Sables-Blancs",
+    "name": "Les Sables Blancs",
+    "latitude": 48.69,
+    "longitude": -3.66,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Sablesd-Or",
+    "name": "Les Sables d'Or",
+    "latitude": 48.65,
+    "longitude": -2.39,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Les-Sablettes-2",
+    "name": "Les Sablettes",
+    "latitude": 43.08,
+    "longitude": 5.9,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Lesconil",
+    "name": "Lesconil",
+    "latitude": 47.79,
+    "longitude": -4.22,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Locquirec",
+    "name": "Locquirec",
+    "latitude": 48.7,
+    "longitude": -3.65,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Longchamps",
+    "name": "Longchamps",
+    "latitude": 48.64,
+    "longitude": -2.12,
+    "department": "35",
+    "departmentName": "Ille-et-Vilaine",
+    "regionSlug": "Ile-et-Vilaine-Brittany"
+  },
+  {
+    "surfForecastSlug": "Lostmarc-h",
+    "name": "Lostmarc'h",
+    "latitude": 48.21,
+    "longitude": -4.56,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Lozari-Beach",
+    "name": "Lozari Beach",
+    "latitude": 42.64,
+    "longitude": 9.02,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Luc-Sur-Mer",
+    "name": "Luc Sur Mer",
+    "latitude": 49.32,
+    "longitude": -0.35,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Lumio-26-Aout",
+    "name": "Lumio",
+    "latitude": 42.58,
+    "longitude": 8.8,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Maguelone",
+    "name": "Maguelone",
+    "latitude": 43.52,
+    "longitude": 3.91,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Cannes-l-arospatiale",
+    "name": "Mandelieu l'Aerospatiale",
+    "latitude": 43.55,
+    "longitude": 6.98,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Boutofolle",
+    "name": "Marseille - Boutofolle",
+    "latitude": 43.24,
+    "longitude": 5.36,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Colombet",
+    "name": "Marseille - Colombet",
+    "latitude": 43.24,
+    "longitude": 5.36,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "La-Verrerie",
+    "name": "Marseille - La Verrerie",
+    "latitude": 43.24,
+    "longitude": 5.36,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Le-Prado",
+    "name": "Marseille - Le Prado",
+    "latitude": 43.26,
+    "longitude": 5.37,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Mauvaise-Greve",
+    "name": "Mauvaise Greve",
+    "latitude": 48.69,
+    "longitude": -4.09,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Mers-Les-Bains",
+    "name": "Mers-les-Bains",
+    "latitude": 50.07,
+    "longitude": 1.39,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Messanges",
+    "name": "Messanges",
+    "latitude": 43.91,
+    "longitude": -1.38,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Mimizan",
+    "name": "Mimizan",
+    "latitude": 44.22,
+    "longitude": -1.3,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Moliets-Plage",
+    "name": "Moliets Plage",
+    "latitude": 43.94,
+    "longitude": -1.37,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Mongrels",
+    "name": "Mongrels",
+    "latitude": 43.64,
+    "longitude": -1.45,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Montalivetles-Bains",
+    "name": "Montalivet-les-Bains",
+    "latitude": 45.39,
+    "longitude": -1.16,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "Moulin-La-Rive",
+    "name": "Moulin La Rive",
+    "latitude": 48.69,
+    "longitude": -3.68,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Narbonne-Plage",
+    "name": "Narbonne Plage",
+    "latitude": 43.15,
+    "longitude": 3.16,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Nauzan",
+    "name": "Nauzan",
+    "latitude": 45.64,
+    "longitude": -1.09,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Naval-Jetties",
+    "name": "Naval Jetties",
+    "latitude": 38.78,
+    "longitude": -75.09,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Nez-Bayard",
+    "name": "Nez Bayard",
+    "latitude": 49.73,
+    "longitude": -1.94,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Nice",
+    "name": "Nice",
+    "latitude": 43.69,
+    "longitude": 7.27,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Nouveau-Cimetiere-Corsica",
+    "name": "Nouveau Cimetière",
+    "latitude": 41.91,
+    "longitude": 8.71,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Ondres-Plage",
+    "name": "Ondres Plage",
+    "latitude": 43.58,
+    "longitude": -1.49,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Oye-Plage-Escardines",
+    "name": "Oye Plage Escardines",
+    "latitude": 51,
+    "longitude": 2.04,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Palavas-Le-Prevost",
+    "name": "Palavas - La Mairie",
+    "latitude": 43.53,
+    "longitude": 3.94,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Palavasles-Flots",
+    "name": "Palavas les Flots",
+    "latitude": 43.52,
+    "longitude": 3.93,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "Palm-Beach-2",
+    "name": "Palm Beach",
+    "latitude": 43.54,
+    "longitude": 7.04,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Parata-Point",
+    "name": "Parata Point",
+    "latitude": 41.89,
+    "longitude": 8.61,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Pen-had",
+    "name": "Pen-Hat",
+    "latitude": 48.28,
+    "longitude": -4.62,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Penfoul",
+    "name": "Penfoul",
+    "latitude": 48.54,
+    "longitude": -4.75,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Penhors",
+    "name": "Penhors",
+    "latitude": 47.94,
+    "longitude": -4.41,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Penthievre",
+    "name": "Penthievre",
+    "latitude": 47.57,
+    "longitude": -3.14,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pentrez-Plage",
+    "name": "Pentrez Plage",
+    "latitude": 48.2,
+    "longitude": -4.31,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pic-Kipu",
+    "name": "Pic Kipu",
+    "latitude": 47.71,
+    "longitude": -3.38,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pinarellu",
+    "name": "Pinarellu",
+    "latitude": 41.68,
+    "longitude": 9.37,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Plagede-Guendrez",
+    "name": "Plage de Gwendrez",
+    "latitude": 47.99,
+    "longitude": -4.48,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plage-de-Mayarco",
+    "name": "Plage de Mayarco",
+    "latitude": 43.42,
+    "longitude": -1.63,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Plage-de-Mesperleuc",
+    "name": "Plage de Mesperleuc (Le Grand)",
+    "latitude": 48,
+    "longitude": -4.5,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Peron",
+    "name": "Plage de Pors Peron",
+    "latitude": 48.09,
+    "longitude": -4.49,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plage-Des-Granges",
+    "name": "Plage Des Granges",
+    "latitude": 46.59,
+    "longitude": -1.85,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Plagedu-Loch",
+    "name": "Plage du Loch",
+    "latitude": 47.74,
+    "longitude": -3.51,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plage-du-Verdon",
+    "name": "Plage du Verdon",
+    "latitude": 43.33,
+    "longitude": 5.05,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Plage-L-Aber",
+    "name": "Plage L'Aber",
+    "latitude": 48.23,
+    "longitude": -4.44,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plage-Valentin",
+    "name": "Plage Valentin",
+    "latitude": 47.28,
+    "longitude": -2.5,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Pleherel",
+    "name": "Pleherel",
+    "latitude": 48.66,
+    "longitude": -2.36,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plouharnel-La-Guerite-Tata-Beach",
+    "name": "Plouharnel La Guerite Tata Beach",
+    "latitude": 47.59,
+    "longitude": -3.14,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Plovan",
+    "name": "Plovan",
+    "latitude": 47.92,
+    "longitude": -4.38,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Point-eaux-Oies",
+    "name": "Pointe aux Oies",
+    "latitude": 50.79,
+    "longitude": 1.61,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Pointe-De-Dinan",
+    "name": "Pointe De Dinan",
+    "latitude": 48.23,
+    "longitude": -4.57,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pointede-Lervily",
+    "name": "Pointe de Lervily",
+    "latitude": 48,
+    "longitude": -4.57,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pointde-Leyde",
+    "name": "Pointe de Leyde",
+    "latitude": 48.11,
+    "longitude": -4.38,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pointedu-Couregan",
+    "name": "Pointe du Couregan",
+    "latitude": 47.72,
+    "longitude": -3.48,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pointe-du-Milier",
+    "name": "Pointe du Milier",
+    "latitude": 48.1,
+    "longitude": -4.47,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pointdu-Toulinget",
+    "name": "Pointe du Toulinguet",
+    "latitude": 48.28,
+    "longitude": -4.63,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pontaillac",
+    "name": "Pontaillac",
+    "latitude": 45.62,
+    "longitude": -1.04,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Pornichet",
+    "name": "Pornichet",
+    "latitude": 47.26,
+    "longitude": -2.35,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Pors-Ar-Vag",
+    "name": "Pors Ar Vag",
+    "latitude": 48.17,
+    "longitude": -4.3,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Ar-Ville",
+    "name": "Pors Ar Ville",
+    "latitude": 48.7,
+    "longitude": -3.66,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Carn",
+    "name": "Pors Carn",
+    "latitude": 47.83,
+    "longitude": -4.36,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Porz-Naye",
+    "name": "Pors Naye",
+    "latitude": 48.28,
+    "longitude": -4.61,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Nevez",
+    "name": "Pors Nevez",
+    "latitude": 48.82,
+    "longitude": -3.45,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Poulhan",
+    "name": "Pors Poulhan",
+    "latitude": 47.99,
+    "longitude": -4.47,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pors-Theolen",
+    "name": "Pors Theolen",
+    "latitude": 48.06,
+    "longitude": -4.67,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Porsmilin",
+    "name": "Porsmilin",
+    "latitude": 48.36,
+    "longitude": -4.68,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Port-Bara",
+    "name": "Port Bara",
+    "latitude": 47.49,
+    "longitude": -3.15,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Port-Blanc",
+    "name": "Port Blanc",
+    "latitude": 47.51,
+    "longitude": -3.15,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Portd-Albret",
+    "name": "Port d'Albret",
+    "latitude": 43.88,
+    "longitude": -1.38,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Port-Goret-Treveneuc",
+    "name": "Port Goret Treveneuc",
+    "latitude": 48.67,
+    "longitude": -2.87,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Port-Rhu",
+    "name": "Port Rhu",
+    "latitude": 47.5,
+    "longitude": -3.15,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Portigliolo",
+    "name": "Portigliolo",
+    "latitude": 41.67,
+    "longitude": 8.88,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Portissol",
+    "name": "Portissol",
+    "latitude": 43.12,
+    "longitude": 5.79,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Postollonec",
+    "name": "Postollonec",
+    "latitude": 48.24,
+    "longitude": -4.47,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Poul-Rodou",
+    "name": "Poul Rodou",
+    "latitude": 48.7,
+    "longitude": -3.66,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Pourville-1",
+    "name": "Pourville",
+    "latitude": 49.92,
+    "longitude": 1.03,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Prefaille",
+    "name": "Prefailles",
+    "latitude": 47.12,
+    "longitude": -2.21,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Prima-Tregastel",
+    "name": "Prima Tregastel",
+    "latitude": 48.71,
+    "longitude": -3.81,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Punta-di-Testa",
+    "name": "Punta di Testa",
+    "latitude": 41.69,
+    "longitude": 9.39,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Radede-Croisic",
+    "name": "Rade de Croisic",
+    "latitude": 47.3,
+    "longitude": -2.55,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Rocher-de-Coulinec",
+    "name": "Rocher de Coulinec",
+    "latitude": 48.11,
+    "longitude": -4.35,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Sagone",
+    "name": "Sagone",
+    "latitude": 42.11,
+    "longitude": 8.69,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Saint-Girons",
+    "name": "Saint Girons Plage",
+    "latitude": 44.01,
+    "longitude": -1.35,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Saint-Nicholas",
+    "name": "Saint Nicolas",
+    "latitude": 46.42,
+    "longitude": -1.65,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Sainte-Adresse",
+    "name": "Sainte Adresse",
+    "latitude": 49.51,
+    "longitude": 0.07,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Sainte-Restitude",
+    "name": "Sainte Restitude",
+    "latitude": 42.57,
+    "longitude": 8.8,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Saintes-Maries",
+    "name": "Saintes Maries",
+    "latitude": 43.45,
+    "longitude": 4.42,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Sangatte",
+    "name": "Sangatte",
+    "latitude": 50.94,
+    "longitude": 1.74,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Sausset-Les-Pins",
+    "name": "Sausset les Pins",
+    "latitude": 43.33,
+    "longitude": 5.1,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Sauveterre",
+    "name": "Sauveterre",
+    "latitude": 46.54,
+    "longitude": -1.83,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Sciotot",
+    "name": "Sciotot",
+    "latitude": 49.5,
+    "longitude": -1.85,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Le-Penon",
+    "name": "Seignosse - Le Penon",
+    "latitude": 43.71,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Les-Bourdaines",
+    "name": "Seignosse - Les Bourdaines",
+    "latitude": 43.7,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Plage-Des-Casernes",
+    "name": "Seignosse - Les Casernes",
+    "latitude": 43.72,
+    "longitude": -1.43,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Les-Casernes",
+    "name": "Seignosse - Les Casernes",
+    "latitude": 43.72,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Les-Estagnots",
+    "name": "Seignosse - Les Estagnots",
+    "latitude": 43.69,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Sion",
+    "name": "Sion sur l'Ocean",
+    "latitude": 46.71,
+    "longitude": -1.98,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Siouville",
+    "name": "Siouville",
+    "latitude": 49.56,
+    "longitude": -1.86,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Soulacsur-Mer",
+    "name": "Soulac-sur-Mer",
+    "latitude": 45.51,
+    "longitude": -1.14,
+    "department": "33",
+    "departmentName": "Gironde",
+    "regionSlug": "Gironde"
+  },
+  {
+    "surfForecastSlug": "St-Brevin-l-Ermitage",
+    "name": "St Brevin l'Ermitage",
+    "latitude": 47.21,
+    "longitude": -2.16,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "St-Cyprien",
+    "name": "St Cyprien",
+    "latitude": 42.63,
+    "longitude": 3.04,
+    "department": "34",
+    "departmentName": "Hérault",
+    "regionSlug": "Languedoc-Roussillon"
+  },
+  {
+    "surfForecastSlug": "St-Georges-de-Didonne-la-Jetee",
+    "name": "St Georges de Didonne",
+    "latitude": 45.6,
+    "longitude": -1,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Saint-Gilles-Croixde-Vie",
+    "name": "St Gilles Croix de Vie",
+    "latitude": 46.7,
+    "longitude": -1.97,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "St-Jean-1",
+    "name": "St Jean",
+    "latitude": 43.19,
+    "longitude": 5.63,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Saint-Jeande-Doigt",
+    "name": "St Jean de Doigt",
+    "latitude": 48.71,
+    "longitude": -3.77,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Ciboure",
+    "name": "St Jean de Luz - Ciboure",
+    "latitude": 43.39,
+    "longitude": -1.67,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "La-Bougie",
+    "name": "St Jean de Luz - La Bougie",
+    "latitude": 43.4,
+    "longitude": -1.68,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Sainte-Barbe-Biarritz",
+    "name": "St Jean de Luz - Sainte Barbe",
+    "latitude": 43.4,
+    "longitude": -1.66,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Socoa",
+    "name": "St Jean de Luz - Socoa",
+    "latitude": 43.39,
+    "longitude": -1.68,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "St-Jean-de-Monts",
+    "name": "St Jean de Monts",
+    "latitude": 46.77,
+    "longitude": -2.06,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "St-Laurentdu-Var",
+    "name": "St Laurent du Var",
+    "latitude": 43.66,
+    "longitude": 7.2,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Saint-Tugen",
+    "name": "St Tugen",
+    "latitude": 48.01,
+    "longitude": -4.6,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Ste-Anne-La-Palud",
+    "name": "Ste Anne La Palud",
+    "latitude": 48.14,
+    "longitude": -4.28,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Sainte-Barbe",
+    "name": "Ste Barbe",
+    "latitude": 47.6,
+    "longitude": -3.16,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Saint-Marguerite",
+    "name": "Ste Marguerite",
+    "latitude": 47.24,
+    "longitude": -2.32,
+    "department": "44",
+    "departmentName": "Loire-Atlantique",
+    "regionSlug": "Loire-Atlantique"
+  },
+  {
+    "surfForecastSlug": "Suzac",
+    "name": "Suzac",
+    "latitude": 45.58,
+    "longitude": -0.99,
+    "department": "17",
+    "departmentName": "Charente-Maritime",
+    "regionSlug": "Charente-Maritime"
+  },
+  {
+    "surfForecastSlug": "Tamaris",
+    "name": "Tamaris",
+    "latitude": 43.33,
+    "longitude": 5.08,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Tanchet",
+    "name": "Tanchet",
+    "latitude": 46.48,
+    "longitude": -1.76,
+    "department": "85",
+    "departmentName": "Vendée",
+    "regionSlug": "Vendee"
+  },
+  {
+    "surfForecastSlug": "Tardinghen",
+    "name": "Tardinghen",
+    "latitude": 50.88,
+    "longitude": 1.63,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Tarnos",
+    "name": "Tarnos - La Digue",
+    "latitude": 43.54,
+    "longitude": -1.52,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Terminus-Berck",
+    "name": "Terminus Berck",
+    "latitude": 50.42,
+    "longitude": 1.57,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Thoulars",
+    "name": "Thoulars",
+    "latitude": 47.71,
+    "longitude": -3.38,
+    "department": "56",
+    "departmentName": "Morbihan",
+    "regionSlug": "Morbihan-Brittany"
+  },
+  {
+    "surfForecastSlug": "Toulon",
+    "name": "Toulon",
+    "latitude": 43.11,
+    "longitude": 5.96,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "Tregana",
+    "name": "Tregana",
+    "latitude": 48.35,
+    "longitude": -4.67,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Tregastel-Plage",
+    "name": "Tregastel Plage",
+    "latitude": 48.83,
+    "longitude": -3.52,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Trestraou",
+    "name": "Trestraou",
+    "latitude": 48.82,
+    "longitude": -3.46,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Trestrignel",
+    "name": "Trestrignel",
+    "latitude": 48.82,
+    "longitude": -3.43,
+    "department": "22",
+    "departmentName": "Côtes-d'Armor",
+    "regionSlug": "Cote-d-Armor-Brittany"
+  },
+  {
+    "surfForecastSlug": "Treustel",
+    "name": "Treustel",
+    "latitude": 47.86,
+    "longitude": -4.14,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Trez-Bellec-Plage",
+    "name": "Trez Bellec Plage",
+    "latitude": 48.22,
+    "longitude": -4.38,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Trez-Hir",
+    "name": "Trez Hir",
+    "latitude": 48.35,
+    "longitude": -4.7,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Tronoen",
+    "name": "Tronoen",
+    "latitude": 47.85,
+    "longitude": -4.35,
+    "department": "29",
+    "departmentName": "Finistère",
+    "regionSlug": "Finistere-Brittany"
+  },
+  {
+    "surfForecastSlug": "Trouville",
+    "name": "Trouville",
+    "latitude": 49.38,
+    "longitude": 0.09,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Vanthrax",
+    "name": "Vanthrax",
+    "latitude": 43.39,
+    "longitude": -1.75,
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "regionSlug": "La-Cote-Basque"
+  },
+  {
+    "surfForecastSlug": "Vardiolla",
+    "name": "Vardiolla",
+    "latitude": 41.69,
+    "longitude": 9.39,
+    "department": "2A",
+    "departmentName": "Corse-du-Sud",
+    "regionSlug": "Corsica"
+  },
+  {
+    "surfForecastSlug": "Vaucottes",
+    "name": "Vaucottes",
+    "latitude": 49.72,
+    "longitude": 0.23,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Veules-Les-Roses",
+    "name": "Veules Les Roses",
+    "latitude": 49.88,
+    "longitude": 0.8,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  },
+  {
+    "surfForecastSlug": "Vieux-Boucau",
+    "name": "Vieux Boucau",
+    "latitude": 43.79,
+    "longitude": -1.43,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Villefranche-Sur-Mer",
+    "name": "Villefranche sur Mer",
+    "latitude": 43.7,
+    "longitude": 7.32,
+    "department": "83",
+    "departmentName": "Var",
+    "regionSlug": "Cote-d-Azur"
+  },
+  {
+    "surfForecastSlug": "West-Peak",
+    "name": "West Peak",
+    "latitude": 43.69,
+    "longitude": -1.44,
+    "department": "40",
+    "departmentName": "Landes",
+    "regionSlug": "Landes"
+  },
+  {
+    "surfForecastSlug": "Wimereux-1",
+    "name": "Wimereux",
+    "latitude": 50.77,
+    "longitude": 1.61,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Wissant",
+    "name": "Wissant",
+    "latitude": 50.9,
+    "longitude": 1.68,
+    "department": "59",
+    "departmentName": "Nord",
+    "regionSlug": "Nord-Pas-de-Calais"
+  },
+  {
+    "surfForecastSlug": "Yport",
+    "name": "Yport",
+    "latitude": 49.74,
+    "longitude": 0.3,
+    "department": "14",
+    "departmentName": "Calvados",
+    "regionSlug": "Normandy"
+  }
+]
