@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
 import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
-import { getScoreRowForDay, spotForDay } from '../hooks/useSurfConditions';
+import { getBestHourForDay, getScoreRowForDay, spotForDay } from '../hooks/useSurfConditions';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import type { SpotView } from '../types';
 import { HourlyBar } from './HourlyBar';
 import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 import { ScoreRing } from './ScoreRing';
+import { SpotInfoPanel } from './SpotInfoPanel';
 import { StatCard } from './StatCard';
 
 export function DetailView({
@@ -21,6 +22,7 @@ export function DetailView({
   const [showScoreDetail, setShowScoreDetail] = useState(false);
   const view = useMemo(() => spotForDay(spot, dayIndex), [spot, dayIndex]);
   const scoreRow = useMemo(() => getScoreRowForDay(spot, dayIndex), [spot, dayIndex]);
+  const bestHour = useMemo(() => getBestHourForDay(spot, dayIndex), [spot, dayIndex]);
   const maxH = Math.max(...view.hourly.map((h) => h.height), 0.1);
   const color = getScoreColor(view.score);
 
@@ -95,6 +97,24 @@ export function DetailView({
             {view.tide}
           </div>
         </div>
+
+        {bestHour && (
+          <div
+            className="mt-4 flex items-center gap-2 px-4 py-2.5 rounded-xl w-fit"
+            style={{
+              backgroundColor: 'rgba(0,212,168,0.1)',
+              border: '1px solid rgba(0,212,168,0.25)',
+            }}
+          >
+            <Clock size={14} style={{ color: '#00d4a8' }} />
+            <span className="text-sm font-semibold text-foreground" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              Meilleur créneau : {bestHour.hour}
+            </span>
+            <span className="text-sm font-bold" style={{ color: getScoreColor(bestHour.score), fontFamily: "'Space Mono', monospace" }}>
+              {bestHour.score}/100
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="px-6 py-5 flex flex-col gap-4">
@@ -147,6 +167,10 @@ export function DetailView({
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="px-6 pb-5">
+        <SpotInfoPanel spot={spot} />
       </div>
 
       <div className="px-6 pb-8 flex flex-col gap-4">

@@ -9,12 +9,13 @@ interface Props {
   name: string;
   score: number | null;
   hasScore: boolean;
+  loading?: boolean;
   onPress: () => void;
 }
 
-export function SpotMarker({ latitude, longitude, name, score, hasScore, onPress }: Props) {
+export function SpotMarker({ latitude, longitude, name, score, hasScore, loading, onPress }: Props) {
   const color = hasScore && score != null ? getScoreColor(score) : theme.unscored;
-  const label = hasScore && score != null ? String(score) : '·';
+  const label = loading ? '…' : hasScore && score != null ? String(score) : '·';
 
   return (
     <Marker coordinate={{ latitude, longitude }} onPress={onPress} title={name}>

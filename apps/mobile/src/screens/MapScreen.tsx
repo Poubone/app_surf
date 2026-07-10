@@ -18,6 +18,7 @@ export function MapScreen({
   onSpotClick,
   onWeekly,
   onRetry,
+  refreshingSpotSlug,
 }: {
   mapSpots: SpotView[];
   departments: DepartmentOption[];
@@ -28,6 +29,7 @@ export function MapScreen({
   onSpotClick: (spot: SpotView) => void;
   onWeekly: () => void;
   onRetry: () => void;
+  refreshingSpotSlug: string | null;
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const scoredCount = mapSpots.filter((s) => s.hasScore && !s.error).length;
@@ -39,7 +41,10 @@ export function MapScreen({
   return (
     <View style={styles.container}>
       <OsmMap style={styles.map} initialRegion={FRANCE_REGION}>
-        {mapSpots.map((spot) => (
+        {mapSpots.map((spot) => {
+          const slug = spot.surfForecastSlug ?? spot.slug;
+          const isRefreshing = refreshingSpotSlug === slug;
+          return (
           <SpotMarker
             key={spot.id}
             latitude={spot.latitude}
@@ -47,11 +52,11 @@ export function MapScreen({
             name={spot.name}
             score={spot.hasScore ? spot.score : null}
             hasScore={spot.hasScore && !spot.error}
-            onPress={() => {
-              if (spot.hasScore && !spot.error) onSpotClick(spot);
-            }}
+            loading={isRefreshing}
+            onPress={() => onSpotClick(spot)}
           />
-        ))}
+          );
+        })}
       </OsmMap>
 
       {loadingCatalog && mapSpots.length === 0 && (
