@@ -23,9 +23,17 @@ export function App() {
   } = useSurfConditions();
 
   const [view, setView] = useState<'map' | 'detail' | 'weekly'>('map');
+  const [previousView, setPreviousView] = useState<'map' | 'weekly'>('map');
   const [selectedSpot, setSelectedSpot] = useState<SpotView | null>(null);
   const [selectedDay, setSelectedDay] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
+
+  function openDetail(spot: SpotView, day: number, from: 'map' | 'weekly') {
+    setPreviousView(from);
+    setSelectedSpot(spot);
+    setSelectedDay(day);
+    setView('detail');
+  }
 
   const scoredDepartmentCount = useMemo(() => {
     const depts = new Set(
@@ -59,26 +67,20 @@ export function App() {
     setSearchQuery('');
 
     if (slug) {
-      setSelectedSpot(spot);
-      setSelectedDay(0);
-      setView('detail');
+      openDetail(spot, 0, 'map');
       const updated = await refreshSpot(slug);
       if (updated) setSelectedSpot(updated);
       return;
     }
 
     if (spot.hasScore && !spot.error) {
-      setSelectedSpot(spot);
-      setSelectedDay(0);
-      setView('detail');
+      openDetail(spot, 0, 'map');
     }
   }
 
   function handleSpotClick(spot: SpotView, day = 0) {
     if (!spot.hasScore || spot.error) return;
-    setSelectedSpot(spot);
-    setSelectedDay(day);
-    setView('detail');
+    openDetail(spot, day, 'weekly');
     setSearchQuery('');
   }
 
@@ -116,7 +118,7 @@ export function App() {
           style={{ transform: view === 'detail' ? 'translateX(0)' : 'translateX(100%)' }}
         >
           {selectedSpot && (
-            <DetailView spot={selectedSpot} onBack={() => setView('map')} initialDay={selectedDay} />
+            <DetailView spot={selectedSpot} onBack={() => setView(previousView)} initialDay={selectedDay} />
           )}
         </div>
 

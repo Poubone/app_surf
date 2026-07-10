@@ -28,10 +28,17 @@ function AppContent() {
   } = useSurfConditions();
 
   const [view, setView] = useState<ViewName>('map');
-  const [previousView, setPreviousView] = useState<ViewName>('map');
+  const [previousView, setPreviousView] = useState<'map' | 'weekly'>('map');
   const [selectedSpot, setSelectedSpot] = useState<SpotView | null>(null);
   const [selectedDay, setSelectedDay] = useState(0);
   const [mapReady, setMapReady] = useState(false);
+
+  function openDetail(spot: SpotView, day: number, from: 'map' | 'weekly') {
+    setPreviousView(from);
+    setSelectedSpot(spot);
+    setSelectedDay(day);
+    setView('detail');
+  }
 
   useEffect(() => {
     if (loadingCatalog) {
@@ -69,27 +76,18 @@ function AppContent() {
   async function handleMapSpotClick(spot: SpotView) {
     const slug = spot.surfForecastSlug ?? spot.slug;
     if (slug) {
-      setPreviousView(view);
-      setSelectedSpot(spot);
-      setSelectedDay(0);
-      setView('detail');
+      openDetail(spot, 0, 'map');
       const updated = await refreshSpot(slug);
       if (updated) setSelectedSpot(updated);
       return;
     }
     if (spot.hasScore && !spot.error) {
-      setPreviousView(view);
-      setSelectedSpot(spot);
-      setSelectedDay(0);
-      setView('detail');
+      openDetail(spot, 0, 'map');
     }
   }
 
   function handleWeeklySpotClick(spot: SpotView, day = 0) {
-    setPreviousView(view);
-    setSelectedSpot(spot);
-    setSelectedDay(day);
-    setView('detail');
+    openDetail(spot, day, 'weekly');
   }
 
   function handleRefreshDepartment(code: string) {
@@ -99,7 +97,7 @@ function AppContent() {
 
   const goBack = useCallback(() => {
     if (view === 'detail') {
-      setView(previousView === 'detail' ? 'map' : previousView);
+      setView(previousView);
     } else if (view === 'weekly') {
       setView('map');
     }
