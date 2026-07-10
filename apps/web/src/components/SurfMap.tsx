@@ -14,7 +14,7 @@ function markerIcon(spot: SpotView, isSelected: boolean) {
       ${isSelected ? `<div style="position:absolute;width:56px;height:56px;border-radius:50%;background:${color};opacity:0.15;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>` : ''}
       <div style="
         width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-        font-weight:700;font-size:0.8rem;font-family:'Space Mono',monospace;
+        font-weight:700;font-size:0.65rem;font-family:'Space Mono',monospace;
         background:${isSelected ? color : color + '33'};
         border:2px solid ${color};
         color:${isSelected ? '#070c16' : color};

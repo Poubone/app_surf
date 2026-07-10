@@ -1,26 +1,17 @@
-const MS_TO_KNOTS = 1.944;
 const KMH_TO_KNOTS = 1 / 1.852;
 
-export function scoreToTen(total100: number): number {
-  return Math.max(1, Math.min(10, Math.round(total100 / 10)));
-}
-
 export function getScoreColor(score: number): string {
-  if (score >= 8) return '#00e5a0';
-  if (score >= 6) return '#00c4ff';
-  if (score >= 4) return '#ffb84d';
+  if (score >= 80) return '#00e5a0';
+  if (score >= 60) return '#00c4ff';
+  if (score >= 30) return '#ffb84d';
   return '#ff5252';
 }
 
 export function getScoreLabel(score: number): string {
-  if (score >= 8) return 'Excellent';
-  if (score >= 6) return 'Bon';
-  if (score >= 4) return 'Correct';
-  return 'Médiocre';
-}
-
-export function msToKnots(ms: number): number {
-  return Math.round(ms * MS_TO_KNOTS);
+  if (score >= 80) return 'Excellent';
+  if (score >= 60) return 'Bon';
+  if (score >= 30) return 'Moyen';
+  return 'Mauvais';
 }
 
 export function kmhToKnots(kmh: number): number {
@@ -46,11 +37,6 @@ export function weatherCodeToLabel(code: number): { condition: string; emoji: st
   if (code <= 86) return { condition: 'Neige', emoji: '🌨️' };
   if (code <= 99) return { condition: 'Orage', emoji: '⛈️' };
   return { condition: 'Variable', emoji: '☁️' };
-}
-
-export function formatHourLabel(isoTime: string): string {
-  const h = new Date(isoTime).getHours();
-  return `${h.toString().padStart(2, '0')}h`;
 }
 
 export function localDateKey(isoTime: string): string {
