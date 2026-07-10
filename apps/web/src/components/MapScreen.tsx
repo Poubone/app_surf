@@ -16,6 +16,7 @@ export function MapScreen({
   onWeekly,
   loading,
   refreshingDept,
+  refreshingSpotSlug,
   onRefreshDepartment,
   scoredDepartmentCount,
 }: {
@@ -28,6 +29,7 @@ export function MapScreen({
   onWeekly: () => void;
   loading: boolean;
   refreshingDept: string | null;
+  refreshingSpotSlug: string | null;
   onRefreshDepartment: (code: string) => void;
   scoredDepartmentCount: number;
 }) {
@@ -116,7 +118,12 @@ export function MapScreen({
       </div>
 
       <div className="flex-1 relative overflow-hidden min-h-0">
-        <SurfMap spots={visible} selectedId={selectedSpotId} onSelect={onSpotClick} />
+        <SurfMap
+          spots={visible}
+          selectedId={selectedSpotId}
+          onSelect={onSpotClick}
+          refreshingSpotSlug={refreshingSpotSlug}
+        />
 
         {pickerOpen && (
           <DepartmentPicker

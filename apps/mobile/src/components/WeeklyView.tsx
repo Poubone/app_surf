@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { bestSpotPerDay } from '../hooks/useSurfConditions';
 import { departmentLabel, type DepartmentOption } from '../lib/departments';
 import { getScoreColor } from '../lib/display';
 import type { SpotView } from '../types';
@@ -20,6 +21,7 @@ export function WeeklyView({
   onSpotClick: (spot: SpotView, day: number) => void;
 }) {
   const dayLabels = spots[0]?.dayLabels ?? [];
+  const bestPerDay = bestSpotPerDay(spots);
   const scoredDepts = departments.filter((d) => d.scrapedCount > 0);
 
   return (
@@ -58,7 +60,29 @@ export function WeeklyView({
         {spots.length === 0 ? (
           <Text style={styles.empty}>Actualisez un département depuis la carte.</Text>
         ) : (
-          spots.map((spot) => (
+          <>
+            <View style={styles.bestRow}>
+              <Text style={styles.bestLabel}>Meilleur spot</Text>
+              {bestPerDay.map((entry, i) => {
+                if (!entry) return <View key={i} style={styles.scoreCell} />;
+                const c = getScoreColor(entry.score);
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.scoreCell}
+                    onPress={() => onSpotClick(entry.spot, entry.dayIndex)}
+                  >
+                    <Text style={[styles.bestSpotName, { color: i === 0 ? c : theme.muted }]} numberOfLines={1}>
+                      {entry.spot.name.split(' ')[0]}
+                    </Text>
+                    <View style={[styles.scoreBubble, { borderColor: c, backgroundColor: `${c}22` }]}>
+                      <Text style={[styles.scoreText, { color: c }]}>{entry.score}</Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+            {spots.map((spot) => (
             <View key={spot.id} style={styles.spotRow}>
               <TouchableOpacity style={styles.nameCol} onPress={() => onSpotClick(spot, 0)}>
                 <Text style={styles.spotName} numberOfLines={1}>
@@ -77,6 +101,7 @@ export function WeeklyView({
               })}
             </View>
           ))
+          </>
         )}
       </ScrollView>
     </View>
@@ -112,4 +137,15 @@ const styles = StyleSheet.create({
   scoreCell: { flex: 1, alignItems: 'center' },
   scoreBubble: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
   scoreText: { fontSize: 10, fontWeight: '700' },
+  bestRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,212,168,0.2)',
+    backgroundColor: 'rgba(0,212,168,0.06)',
+  },
+  bestLabel: { width: 88, color: theme.accent, fontSize: 11, fontWeight: '700' },
+  bestSpotName: { fontSize: 9, fontWeight: '600', marginBottom: 4, maxWidth: 48, textAlign: 'center' },
 });

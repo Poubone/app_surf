@@ -1,4 +1,5 @@
 import { ArrowLeft, TrendingUp } from 'lucide-react';
+import { bestSpotPerDay } from '../hooks/useSurfConditions';
 import { departmentLabel } from '../lib/departments';
 import { getScoreColor } from '../lib/display';
 import type { DepartmentOption } from '../lib/departments';
@@ -21,6 +22,8 @@ export function WeeklyView({
 }) {
   const dayLabels = spots[0]?.dayLabels ?? [];
   const deptName = departments.find((d) => d.code === department)?.name ?? department;
+
+  const bestPerDay = bestSpotPerDay(spots);
 
   const best = spots.reduce<{ spot: SpotView; score: number; day: number } | null>((acc, spot) => {
     spot.weeklyScores.forEach((s, i) => {
@@ -103,6 +106,53 @@ export function WeeklyView({
           </div>
         ) : (
           <div className="min-w-[36rem]">
+            <div
+              className="flex items-center gap-2 px-6 py-3 sticky top-0 z-10"
+              style={{
+                borderBottom: '1px solid rgba(0,212,168,0.15)',
+                backgroundColor: 'rgba(7,12,22,0.95)',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
+              <div className="w-28 shrink-0 text-xs font-semibold" style={{ color: '#00d4a8', fontFamily: "'Outfit', sans-serif" }}>
+                Meilleur spot
+              </div>
+              {bestPerDay.map((entry, i) => {
+                if (!entry) {
+                  return <div key={i} className="flex-1 min-w-8" />;
+                }
+                const c = getScoreColor(entry.score);
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => onSpotClick(entry.spot, entry.dayIndex)}
+                    className="flex-1 min-w-8 flex flex-col items-center gap-1"
+                    title={`${entry.spot.name} — ${entry.score}/100`}
+                  >
+                    <span
+                      className="text-[0.55rem] font-bold truncate max-w-full px-0.5"
+                      style={{ color: i === 0 ? c : 'rgba(232,237,245,0.55)', fontFamily: "'Outfit', sans-serif" }}
+                    >
+                      {entry.spot.name.split(' ')[0]}
+                    </span>
+                    <div
+                      className="min-w-7 h-7 px-1 rounded-full flex items-center justify-center text-xs font-bold border"
+                      style={{
+                        backgroundColor: `${c}22`,
+                        borderColor: c,
+                        color: c,
+                        fontFamily: "'Space Mono', monospace",
+                        fontSize: '0.55rem',
+                      }}
+                    >
+                      {entry.score}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
             {spots.map((spot) => (
               <div
                 key={spot.id}

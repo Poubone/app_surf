@@ -8,10 +8,10 @@ const FRANCE_CENTER: [number, number] = [46.5, 2.5];
 const DARK_TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 const UNSCORED_COLOR = 'rgba(232,237,245,0.35)';
 
-function markerIcon(spot: SpotView, isSelected: boolean) {
+function markerIcon(spot: SpotView, isSelected: boolean, isRefreshing: boolean) {
   const hasScore = spot.hasScore && !spot.error;
   const color = hasScore ? getScoreColor(spot.score) : UNSCORED_COLOR;
-  const label = hasScore ? String(spot.score) : '·';
+  const label = isRefreshing ? '…' : hasScore ? String(spot.score) : '·';
 
   const html = `
     <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
@@ -45,11 +45,13 @@ export function SurfMap({
   spots,
   selectedId,
   onSelect,
+  refreshingSpotSlug,
   fitFrance = true,
 }: {
   spots: SpotView[];
   selectedId: string | null;
   onSelect: (spot: SpotView) => void;
+  refreshingSpotSlug?: string | null;
   fitFrance?: boolean;
 }) {
   const markers = useMemo(() => spots, [spots]);
@@ -67,7 +69,11 @@ export function SurfMap({
           <Marker
             key={spot.id}
             position={[spot.latitude, spot.longitude]}
-            icon={markerIcon(spot, selectedId === spot.id)}
+            icon={markerIcon(
+              spot,
+              selectedId === spot.id,
+              refreshingSpotSlug === (spot.surfForecastSlug ?? spot.slug),
+            )}
             eventHandlers={{ click: () => onSelect(spot) }}
           />
         ))}

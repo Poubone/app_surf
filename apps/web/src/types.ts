@@ -17,6 +17,7 @@ export interface SpotScoringConfig {
 export interface SpotView {
   id: string;
   slug?: string;
+  surfForecastSlug?: string;
   name: string;
   region: string;
   department: string;
@@ -27,6 +28,9 @@ export interface SpotView {
   hasScore: boolean;
   /** Score sur 100 (0 si pas de score) */
   score: number;
+  descriptionFr?: string;
+  bottomType?: string;
+  level?: string;
   waves: { height: number; period: number; direction: string };
   wind: { speed: number; direction: string; gust: number };
   water: { temp: number };

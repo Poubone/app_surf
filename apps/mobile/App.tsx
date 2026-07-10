@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, StatusBar } from 'react-native';
 import { MapScreen } from './src/screens/MapScreen';
 import { WeeklyView } from './src/components/WeeklyView';
@@ -20,6 +20,8 @@ export default function App() {
     weeklyDepartment,
     setWeeklyDepartment,
     refreshDepartment,
+    refreshSpot,
+    refreshingSpotSlug,
   } = useSurfConditions();
 
   const [view, setView] = useState<ViewName>('map');
@@ -27,7 +29,38 @@ export default function App() {
   const [selectedSpot, setSelectedSpot] = useState<SpotView | null>(null);
   const [selectedDay, setSelectedDay] = useState(0);
 
+  useEffect(() => {
+    if (!selectedSpot) return;
+    const updated = mapSpots.find(
+      (s) =>
+        s.id === selectedSpot.id ||
+        (!!selectedSpot.surfForecastSlug && s.surfForecastSlug === selectedSpot.surfForecastSlug) ||
+        (!!selectedSpot.slug && s.slug === selectedSpot.slug),
+    );
+    if (updated) setSelectedSpot(updated);
+  }, [mapSpots, selectedSpot?.id, selectedSpot?.surfForecastSlug, selectedSpot?.slug]);
+
+  async function handleMapSpotClick(spot: SpotView) {
+    const slug = spot.surfForecastSlug ?? spot.slug;
+    if (slug) {
+      setPreviousView(view);
+      setSelectedSpot(spot);
+      setSelectedDay(0);
+      setView('detail');
+      const updated = await refreshSpot(slug);
+      if (updated) setSelectedSpot(updated);
+      return;
+    }
+    if (spot.hasScore && !spot.error) {
+      setPreviousView(view);
+      setSelectedSpot(spot);
+      setSelectedDay(0);
+      setView('detail');
+    }
+  }
+
   function handleSpotClick(spot: SpotView, day = 0) {
+    if (!spot.hasScore || spot.error) return;
     setPreviousView(view);
     setSelectedSpot(spot);
     setSelectedDay(day);
@@ -51,8 +84,9 @@ export default function App() {
           networkError={networkError}
           onRefreshDepartment={handleRefreshDepartment}
           onRetry={() => refreshDepartment('64')}
-          onSpotClick={(s) => handleSpotClick(s)}
+          onSpotClick={handleMapSpotClick}
           onWeekly={() => setView('weekly')}
+          refreshingSpotSlug={refreshingSpotSlug}
         />
       )}
       {view === 'weekly' && (

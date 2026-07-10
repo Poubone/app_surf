@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSurfConditions } from './hooks/useSurfConditions';
 import { DetailView } from './components/DetailView';
 import { MapScreen } from './components/MapScreen';
@@ -18,6 +18,8 @@ export function App() {
     weeklyDepartment,
     setWeeklyDepartment,
     refreshDepartment,
+    refreshSpot,
+    refreshingSpotSlug,
   } = useSurfConditions();
 
   const [view, setView] = useState<'map' | 'detail' | 'weekly'>('map');
@@ -41,8 +43,39 @@ export function App() {
     return <NetworkError onRetry={() => refreshDepartment('64')} />;
   }
 
+  useEffect(() => {
+    if (!selectedSpot) return;
+    const updated = mapSpots.find(
+      (s) =>
+        s.id === selectedSpot.id ||
+        (!!selectedSpot.surfForecastSlug && s.surfForecastSlug === selectedSpot.surfForecastSlug) ||
+        (!!selectedSpot.slug && s.slug === selectedSpot.slug),
+    );
+    if (updated) setSelectedSpot(updated);
+  }, [mapSpots, selectedSpot?.id, selectedSpot?.surfForecastSlug, selectedSpot?.slug]);
+
+  async function handleMapSpotClick(spot: SpotView) {
+    const slug = spot.surfForecastSlug ?? spot.slug;
+    setSearchQuery('');
+
+    if (slug) {
+      setSelectedSpot(spot);
+      setSelectedDay(0);
+      setView('detail');
+      const updated = await refreshSpot(slug);
+      if (updated) setSelectedSpot(updated);
+      return;
+    }
+
+    if (spot.hasScore && !spot.error) {
+      setSelectedSpot(spot);
+      setSelectedDay(0);
+      setView('detail');
+    }
+  }
+
   function handleSpotClick(spot: SpotView, day = 0) {
-    if (!spot.hasScore) return;
+    if (!spot.hasScore || spot.error) return;
     setSelectedSpot(spot);
     setSelectedDay(day);
     setView('detail');
@@ -67,11 +100,12 @@ export function App() {
             departments={departments}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            onSpotClick={(s) => handleSpotClick(s)}
+            onSpotClick={handleMapSpotClick}
             selectedSpotId={selectedSpot?.id ?? null}
             onWeekly={() => setView('weekly')}
             loading={loading}
             refreshingDept={refreshingDept}
+            refreshingSpotSlug={refreshingSpotSlug}
             onRefreshDepartment={handleRefreshDepartment}
             scoredDepartmentCount={scoredDepartmentCount}
           />
