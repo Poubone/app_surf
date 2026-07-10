@@ -49,6 +49,9 @@ jobs:
         working-directory: apps/mobile
         run: npx expo prebuild --platform android --no-install
 
+      - name: Disable New Architecture (react-native-maps stability)
+        run: sed -i 's/newArchEnabled=true/newArchEnabled=false/' apps/mobile/android/gradle.properties
+
       - name: Prefetch Gradle wrapper (retry on 504)
         working-directory: apps/mobile/android
         run: |
