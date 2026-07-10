@@ -31,8 +31,6 @@ export interface SpotView {
   descriptionFr?: string;
   bottomType?: string;
   level?: string;
-  webcamUrl?: string;
-  webcamProvider?: string;
   waves: { height: number; period: number; direction: string };
   wind: { speed: number; direction: string; gust: number };
   water: { temp: number };

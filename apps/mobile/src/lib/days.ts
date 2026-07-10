@@ -17,6 +17,7 @@ export function hourFromIso(isoTime: string): number {
 
 const DETAIL_DISPLAY_HOURS = [6, 8, 10, 12, 14, 16, 18, 20] as const;
 
+/** Créneau affiché contenant l'heure actuelle (ex. 13h30 → 12h jusqu'à 14h). */
 export function displayHourForNow(now = new Date()): number {
   const h = now.getHours();
   let chosen: number = DETAIL_DISPLAY_HOURS[0];

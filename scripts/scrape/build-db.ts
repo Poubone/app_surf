@@ -116,8 +116,6 @@ interface ScrapedRow {
   bottom_type: string | null;
   level: string | null;
   description_fr: string | null;
-  webcam_url: string | null;
-  webcam_provider: string | null;
   department: string;
   department_name: string;
   surf_forecast_slug: string;
@@ -163,8 +161,6 @@ async function scrapeSeed(seed: SeedSpot): Promise<ScrapedRow> {
     bottom_type: ws.bottomType,
     level: ws.level,
     description_fr: sr.descriptionFr || defaultDescription(seed),
-    webcam_url: sr.webcamUrl ?? null,
-    webcam_provider: sr.webcamProvider ?? null,
     department: seed.department,
     department_name: seed.departmentName,
     surf_forecast_slug: sfSlug,
@@ -232,8 +228,6 @@ async function main() {
       bottom_type TEXT,
       level TEXT,
       description_fr TEXT,
-      webcam_url TEXT,
-      webcam_provider TEXT,
       department TEXT NOT NULL,
       department_name TEXT NOT NULL,
       surf_forecast_slug TEXT
@@ -247,7 +241,6 @@ async function main() {
       @wind_offshore_min, @wind_offshore_max,
       @ideal_swell_height_min, @ideal_swell_height_max,
       @tide_optimal_stage, @bottom_type, @level, @description_fr,
-      @webcam_url, @webcam_provider,
       @department, @department_name, @surf_forecast_slug
     )
   `);
@@ -278,9 +271,6 @@ async function main() {
       bottomType: row.bottom_type ?? undefined,
       level: row.level ?? undefined,
       descriptionFr: row.description_fr ?? undefined,
-      ...(row.webcam_url
-        ? { webcamUrl: row.webcam_url, webcamProvider: row.webcam_provider ?? undefined }
-        : {}),
     }))
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 

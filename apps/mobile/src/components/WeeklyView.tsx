@@ -58,7 +58,7 @@ export function WeeklyView({
       </View>
       <ScrollView style={styles.body}>
         {spots.length === 0 ? (
-          <Text style={styles.empty}>Actualisez un département depuis la carte.</Text>
+          <Text style={styles.empty}>Aucun spot scoré — l'actualisation est peut-être en cours.</Text>
         ) : (
           <>
             <View style={styles.bestRow}>
