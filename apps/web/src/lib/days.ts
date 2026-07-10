@@ -28,5 +28,6 @@ export function displayHourForNow(now = new Date()): number {
 }
 
 export function defaultDetailHour(dayIndex: number, now = new Date()): number {
-  return dayIndex === 0 ? displayHourForNow(now) : 12;
+  if (dayIndex === 0) return displayHourForNow(now);
+  return DETAIL_DISPLAY_HOURS[0];
 }

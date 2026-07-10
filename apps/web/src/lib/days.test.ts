@@ -11,8 +11,8 @@ describe('displayHourForNow', () => {
     expect(displayHourForNow(new Date(2026, 6, 10, 15, 45))).toBe(14);
   });
 
-  it('defaults future days to noon', () => {
-    expect(defaultDetailHour(1)).toBe(12);
+  it('defaults future days to first display slot (6h)', () => {
+    expect(defaultDetailHour(1)).toBe(6);
     expect(defaultDetailHour(0, new Date(2026, 6, 10, 13, 30))).toBe(12);
   });
 });
