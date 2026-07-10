@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { v4 as uuid } from 'uuid';
 import type { TideStage } from '@app-surf/scoring';
 import { parseSurfForecast, type SurfForecastData } from './parsers/surf-forecast.js';
-import { parseWannasurf, type WannasurfData } from './parsers/wannasurf.js';
+import type { WannasurfData } from './parsers/wannasurf.js';
 import { parseSurfReport, type SurfReportData } from './parsers/surf-report.js';
 import { deriveBeachOrientation, deriveIdealHeight, pickTideStage } from './derive.js';
 
@@ -36,6 +36,25 @@ const SURF_FORECAST_SLUG: Record<string, string> = {
   'les-corsaires': 'Anglet-Corsaires',
   belharra: 'Belharra',
   ondres: 'Ondres-Plage',
+  'lacanau-ocean': 'Lacanau-Ocean',
+  'hourtin-plage': 'Hourtin-Plage',
+  'cap-ferret': 'Cap-Ferret',
+  'carcans-plage': 'Carcans-Plage',
+  'la-graviere': 'La-Graviere',
+  'la-centrale': 'La-Centrale',
+  'le-penon': 'Le-Penon',
+  'capbreton-la-piste': 'La-Piste',
+  'biscarrosse-plage': 'Biscarosse-Plage',
+  'les-estagnots': 'Les-Estagnots',
+  'la-torche': 'Pointdela-Torche',
+  'baie-des-trepasses': 'Baiedes-Trepasses',
+  'anse-de-lesconil': 'Ansede-Lesconil',
+  'pen-hat': 'Anse-de-Pen-hat',
+  'blancs-sablons': 'Blancs-Sablons',
+  'guidel-plages': 'Guidel-Plages',
+  etel: 'Etel',
+  'les-donnants': 'Les-Donnants_Belle-Ile',
+  'larmor-plage': 'Larmor-Plage',
 };
 
 const SURF_REPORT_SLUG: Record<string, string> = {
@@ -78,8 +97,12 @@ function surfForecastSlug(slug: string): string {
   return SURF_FORECAST_SLUG[slug] ?? slug;
 }
 
-function surfReportSlug(slug: string): string {
-  return SURF_REPORT_SLUG[slug] ?? slug;
+function surfReportSlug(slug: string): string | null {
+  return SURF_REPORT_SLUG[slug] ?? null;
+}
+
+function defaultDescription(seed: SeedSpot): string {
+  return `${seed.name} — spot de surf en ${seed.departmentName}.`;
 }
 
 async function fetchText(url: string, label: string): Promise<string | null> {
@@ -159,14 +182,12 @@ for (const seed of seeds) {
   console.log(`Scraping ${seed.name}...`);
 
   const sfUrl = `https://www.surf-forecast.com/breaks/${sfSlug}`;
-  const wsUrl = `https://www.wannasurf.com/spot/Europe/France/Pays_Basque/${seed.slug}`;
   const srSlug = surfReportSlug(seed.slug);
-  const srUrl = `https://www.surf-report.com/surf-info/${srSlug}.html`;
+  const srUrl = srSlug ? `https://www.surf-report.com/surf-info/${srSlug}.html` : null;
 
-  const [sfHtml, wsHtml, srHtml] = await Promise.all([
+  const [sfHtml, srHtml] = await Promise.all([
     fetchText(sfUrl, `${seed.slug}/surf-forecast`),
-    fetchText(wsUrl, `${seed.slug}/wannasurf`),
-    fetchText(srUrl, `${seed.slug}/surf-report`),
+    srUrl ? fetchText(srUrl, `${seed.slug}/surf-report`) : Promise.resolve(null),
   ]);
 
   const sf = parseOrFallback(
@@ -175,17 +196,12 @@ for (const seed of seeds) {
     parseSurfForecast,
     DEFAULT_SF,
   );
-  const ws = parseOrFallback(
-    `${seed.slug}/wannasurf`,
-    wsHtml,
-    parseWannasurf,
-    DEFAULT_WS,
-  );
+  const ws = DEFAULT_WS;
   const sr = parseOrFallback(
     `${seed.slug}/surf-report`,
     srHtml,
     parseSurfReport,
-    { ...DEFAULT_SR, descriptionFr: `${seed.name} — spot de surf du Pays Basque.` },
+    { ...DEFAULT_SR, descriptionFr: defaultDescription(seed) },
   );
 
   const heights = deriveIdealHeight(ws.level);
@@ -207,7 +223,7 @@ for (const seed of seeds) {
     tide_optimal_stage: tideOptimalStage,
     bottom_type: ws.bottomType,
     level: ws.level,
-    description_fr: sr.descriptionFr || `${seed.name} — spot de surf du Pays Basque.`,
+    description_fr: sr.descriptionFr || defaultDescription(seed),
     department: seed.department,
     department_name: seed.departmentName,
     surf_forecast_slug: sfSlug,
