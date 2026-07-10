@@ -1,20 +1,39 @@
 import { useMemo } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import { scoreColor } from '../utils/score-color';
-import type { SpotConditions } from '../hooks/useSurfConditions';
+import { getScoreColor } from '../lib/display';
+import type { SpotView } from '../types';
 
 const PAY_BASQUE_CENTER: [number, number] = [43.45, -1.62];
-const OSM_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const DARK_TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
 
-function pinIcon(score: number | null) {
-  const color = scoreColor(score);
-  const label = score ?? '—';
+function markerIcon(spot: SpotView, isSelected: boolean) {
+  const color = getScoreColor(spot.score);
+  const html = `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      ${isSelected ? `<div style="position:absolute;width:56px;height:56px;border-radius:50%;background:${color};opacity:0.15;animation:ping 1.5s cubic-bezier(0,0,0.2,1) infinite;"></div>` : ''}
+      <div style="
+        width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+        font-weight:700;font-size:0.8rem;font-family:'Space Mono',monospace;
+        background:${isSelected ? color : color + '33'};
+        border:2px solid ${color};
+        color:${isSelected ? '#070c16' : color};
+        box-shadow:0 0 16px ${color}66;
+        transform:scale(${isSelected ? 1.15 : 1});
+        transition:transform 0.2s;
+      ">${spot.score}</div>
+      <span style="
+        font-size:10px;font-weight:600;padding:2px 6px;border-radius:6px;white-space:nowrap;
+        background:rgba(7,12,22,0.85);color:${isSelected ? color : 'rgba(232,237,245,0.8)'};
+        font-family:'Outfit',sans-serif;border:1px solid ${isSelected ? color : 'rgba(255,255,255,0.1)'};
+      ">${spot.name}</span>
+    </div>`;
+
   return L.divIcon({
     className: '',
-    html: `<div class="spot-pin" style="background:${color}">${label}</div>`,
-    iconSize: [48, 28],
-    iconAnchor: [24, 14],
+    html,
+    iconSize: [80, 56],
+    iconAnchor: [40, 28],
   });
 }
 
@@ -23,40 +42,28 @@ export function SurfMap({
   selectedId,
   onSelect,
 }: {
-  spots: SpotConditions[];
+  spots: SpotView[];
   selectedId: string | null;
-  onSelect: (spot: SpotConditions) => void;
+  onSelect: (spot: SpotView) => void;
 }) {
-  const markers = useMemo(
-    () =>
-      spots.map((s) => ({
-        id: s.spot.spotId,
-        lat: s.spot.latitude,
-        lng: s.spot.longitude,
-        score: s.error ? null : s.currentScore.total,
-        data: s,
-      })),
-    [spots],
-  );
+  const markers = useMemo(() => spots.filter((s) => !s.error), [spots]);
 
   return (
-    <div className="map-wrap">
-      <MapContainer center={PAY_BASQUE_CENTER} zoom={10} className="map">
-        <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url={OSM_TILE_URL} />
-        {markers.map((m) => (
+    <div className="absolute inset-0 z-0">
+      <MapContainer center={PAY_BASQUE_CENTER} zoom={10} className="h-full w-full" zoomControl={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>'
+          url={DARK_TILE_URL}
+        />
+        {markers.map((spot) => (
           <Marker
-            key={m.id}
-            position={[m.lat, m.lng]}
-            icon={pinIcon(m.score)}
-            eventHandlers={{ click: () => onSelect(m.data) }}
-            opacity={selectedId && selectedId !== m.id ? 0.75 : 1}
+            key={spot.id}
+            position={[spot.latitude, spot.longitude]}
+            icon={markerIcon(spot, selectedId === spot.id)}
+            eventHandlers={{ click: () => onSelect(spot) }}
           />
         ))}
       </MapContainer>
-      <style>{`
-        .map-wrap { flex: 1; min-width: 0; position: relative; }
-        .map { width: 100%; height: 100%; }
-      `}</style>
     </div>
   );
 }
