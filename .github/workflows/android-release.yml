@@ -42,8 +42,8 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Build spots database
-        run: npm run scrape && npm run copy-db
+      - name: Copy versioned spot data
+        run: npm run copy-data
 
       - name: Generate Android native project
         working-directory: apps/mobile

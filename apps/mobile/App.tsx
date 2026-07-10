@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { InteractionManager, View, StyleSheet, StatusBar } from 'react-native';
 import { MapScreen } from './src/screens/MapScreen';
 import { WeeklyView } from './src/components/WeeklyView';
 import { DetailView } from './src/components/DetailView';
+import { SplashScreen } from './src/components/SplashScreen';
+import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { useSurfConditions } from './src/hooks/useSurfConditions';
 import type { SpotView } from './src/types';
 import { theme } from './src/theme';
 
 type ViewName = 'map' | 'weekly' | 'detail';
 
-export default function App() {
+function AppContent() {
   const {
     mapSpots,
     weeklySpots,
@@ -29,6 +31,22 @@ export default function App() {
   const [previousView, setPreviousView] = useState<ViewName>('map');
   const [selectedSpot, setSelectedSpot] = useState<SpotView | null>(null);
   const [selectedDay, setSelectedDay] = useState(0);
+  const [mapReady, setMapReady] = useState(false);
+
+  useEffect(() => {
+    if (loadingCatalog) {
+      setMapReady(false);
+      return;
+    }
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const task = InteractionManager.runAfterInteractions(() => {
+      timer = setTimeout(() => setMapReady(true), 600);
+    });
+    return () => {
+      task.cancel();
+      if (timer) clearTimeout(timer);
+    };
+  }, [loadingCatalog]);
 
   useEffect(() => {
     if (!selectedSpot) return;
@@ -74,6 +92,10 @@ export default function App() {
     refreshDepartment(code);
   }
 
+  if (loadingCatalog) {
+    return <SplashScreen message="Chargement de la carte…" />;
+  }
+
   return (
     <View style={styles.root}>
       <StatusBar barStyle="light-content" />
@@ -89,6 +111,7 @@ export default function App() {
           onSpotClick={handleMapSpotClick}
           onWeekly={() => setView('weekly')}
           refreshingSpotSlug={refreshingSpotSlug}
+          mapReady={mapReady}
         />
       )}
       {view === 'weekly' && (
@@ -109,6 +132,14 @@ export default function App() {
         />
       )}
     </View>
+  );
+}
+
+export default function App() {
+  return (
+    <ErrorBoundary>
+      <AppContent />
+    </ErrorBoundary>
   );
 }
 

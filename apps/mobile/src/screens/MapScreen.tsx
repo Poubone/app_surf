@@ -21,6 +21,7 @@ export function MapScreen({
   onWeekly,
   onRetry,
   refreshingSpotSlug,
+  mapReady,
 }: {
   mapSpots: SpotView[];
   departments: DepartmentOption[];
@@ -32,6 +33,7 @@ export function MapScreen({
   onWeekly: () => void;
   onRetry: () => void;
   refreshingSpotSlug: string | null;
+  mapReady: boolean;
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [region, setRegion] = useState<Region>(FRANCE_REGION);
@@ -42,11 +44,13 @@ export function MapScreen({
   const spotById = useMemo(() => new Map(mapSpots.map((s) => [s.id, s])), [mapSpots]);
 
   const zoomHint =
-    region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
-      ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
-      : region.latitudeDelta > 3 && allPins.length > scoredCount
-        ? 'Spots non scorés visibles en zoomant'
-        : null;
+    scoredCount === 0 && mapReady
+      ? 'Appuyez sur Actualiser pour scorer un département'
+      : region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
+        ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
+        : region.latitudeDelta > 3 && allPins.length > scoredCount
+          ? 'Spots non scorés visibles en zoomant'
+          : null;
 
   if (networkError && mapSpots.length === 0) {
     return <NetworkError onRetry={onRetry} />;
@@ -59,30 +63,36 @@ export function MapScreen({
 
   return (
     <View style={styles.container}>
-      <OsmMap
-        style={styles.map}
-        initialRegion={FRANCE_REGION}
-        onRegionChangeComplete={setRegion}
-      >
-        {visiblePins.map((pin) => {
-          const slug = pin.surfForecastSlug ?? pin.slug;
-          const isRefreshing = refreshingSpotSlug === slug;
-          return (
-            <SpotMarker
-              key={pin.id}
-              latitude={pin.latitude}
-              longitude={pin.longitude}
-              name={pin.name}
-              score={pin.hasScore ? pin.score : null}
-              hasScore={pin.hasScore}
-              loading={isRefreshing}
-              onPress={() => handlePinPress(pin)}
-            />
-          );
-        })}
-      </OsmMap>
+      {mapReady ? (
+        <OsmMap
+          style={styles.map}
+          initialRegion={FRANCE_REGION}
+          onRegionChangeComplete={setRegion}
+        >
+          {visiblePins.map((pin) => {
+            const slug = pin.surfForecastSlug ?? pin.slug;
+            const isRefreshing = refreshingSpotSlug === slug;
+            return (
+              <SpotMarker
+                key={pin.id}
+                latitude={pin.latitude}
+                longitude={pin.longitude}
+                name={pin.name}
+                score={pin.hasScore ? pin.score : null}
+                hasScore={pin.hasScore}
+                loading={isRefreshing}
+                onPress={() => handlePinPress(pin)}
+              />
+            );
+          })}
+        </OsmMap>
+      ) : (
+        <View style={styles.mapPlaceholder}>
+          <ActivityIndicator size="large" color={theme.accent} />
+        </View>
+      )}
 
-      {loadingCatalog && mapSpots.length === 0 && (
+      {loadingCatalog && mapSpots.length === 0 && mapReady && (
         <View style={styles.loadingOverlay}>
           <ActivityIndicator size="large" color={theme.accent} />
           <Text style={styles.loadingText}>Chargement carte…</Text>
@@ -112,7 +122,9 @@ export function MapScreen({
 
       <View style={styles.legend}>
         <Text style={styles.legendText}>
-          {zoomHint ?? 'Excellent · Bon · Moyen · Faible · Non scoré'}
+          {!mapReady
+            ? 'Initialisation carte…'
+            : zoomHint ?? 'Excellent · Bon · Moyen · Faible · Non scoré'}
         </Text>
       </View>
 
@@ -133,6 +145,12 @@ export function MapScreen({
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: theme.bg },
   map: { flex: 1 },
+  mapPlaceholder: {
+    flex: 1,
+    backgroundColor: '#0a1018',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   loadingOverlay: {
     ...StyleSheet.absoluteFill,
     backgroundColor: 'rgba(7,12,22,0.85)',
