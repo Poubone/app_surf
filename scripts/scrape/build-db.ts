@@ -19,6 +19,8 @@ interface SeedSpot {
   name: string;
   latitude: number;
   longitude: number;
+  department: string;
+  departmentName: string;
 }
 
 const SURF_FORECAST_SLUG: Record<string, string> = {
@@ -115,8 +117,9 @@ function parseOrFallback<T>(
 const seeds: SeedSpot[] = JSON.parse(readFileSync(join(__dir, 'spots-seed.json'), 'utf-8'));
 
 const db = new Database(join(dataDir, 'spots.db'));
+db.exec('DROP TABLE IF EXISTS spots');
 db.exec(`
-  CREATE TABLE IF NOT EXISTS spots (
+  CREATE TABLE spots (
     spot_id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     slug TEXT NOT NULL UNIQUE,
@@ -132,7 +135,10 @@ db.exec(`
     tide_optimal_stage TEXT NOT NULL,
     bottom_type TEXT,
     level TEXT,
-    description_fr TEXT
+    description_fr TEXT,
+    department TEXT NOT NULL,
+    department_name TEXT NOT NULL,
+    surf_forecast_slug TEXT
   );
 `);
 db.exec('DELETE FROM spots');
@@ -143,7 +149,8 @@ const insert = db.prepare(`
     @beach_orientation, @swell_angle_min, @swell_angle_max,
     @wind_offshore_min, @wind_offshore_max,
     @ideal_swell_height_min, @ideal_swell_height_max,
-    @tide_optimal_stage, @bottom_type, @level, @description_fr
+    @tide_optimal_stage, @bottom_type, @level, @description_fr,
+    @department, @department_name, @surf_forecast_slug
   )
 `);
 
@@ -201,6 +208,9 @@ for (const seed of seeds) {
     bottom_type: ws.bottomType,
     level: ws.level,
     description_fr: sr.descriptionFr || `${seed.name} — spot de surf du Pays Basque.`,
+    department: seed.department,
+    department_name: seed.departmentName,
+    surf_forecast_slug: sfSlug,
   });
 }
 
@@ -221,12 +231,18 @@ const rows = db.prepare('SELECT * FROM spots ORDER BY name').all() as Array<{
   bottom_type: string | null;
   level: string | null;
   description_fr: string | null;
+  department: string;
+  department_name: string;
+  surf_forecast_slug: string | null;
 }>;
 
 const spots = rows.map((row) => ({
   spotId: row.spot_id,
   name: row.name,
   slug: row.slug,
+  department: row.department,
+  departmentName: row.department_name,
+  surfForecastSlug: row.surf_forecast_slug ?? undefined,
   latitude: row.latitude,
   longitude: row.longitude,
   beachOrientation: row.beach_orientation,

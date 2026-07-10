@@ -1,8 +1,11 @@
 [
   {
-    "spotId": "32580424-1982-4efc-a20c-eeedb853a988",
+    "spotId": "ba4e113f-9c7a-44db-b8a9-f4ecf2216ebf",
     "name": "Belharra",
     "slug": "belharra",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Belharra",
     "latitude": 43.408,
     "longitude": -1.682,
     "beachOrientation": 90,
@@ -18,9 +21,12 @@
     "descriptionFr": "Belharra ne déferle que rarement et surtout ne se surfe pas à l'improviste. Ce spot est inaccessible à la rame et nécessite une excellente condition physique pour être ridé. Même un niveau confirmé est loin d'être suffisant pour envisager une sortie sur Belharra. Seuls des professionnels, encadrés d'une équipe de sécurité compétente et entrainée peuvent, après un travail d'observation des conditions météo locales, envisager de se rendre sur Belharra. Du surf de gros, pour des pro... Cependant, ça reste sympa de regarder le spectacle du haut de la falaise de la Corniche Basque !"
   },
   {
-    "spotId": "97e62022-dff1-410b-872e-3bf31e8d34f7",
+    "spotId": "ad6d7949-9ae9-4a0b-8fd3-fff99bfba307",
     "name": "Bidart",
     "slug": "bidart",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Bidart",
     "latitude": 43.437,
     "longitude": -1.593,
     "beachOrientation": 90,
@@ -36,9 +42,12 @@
     "descriptionFr": "Bidart — spot de surf du Pays Basque."
   },
   {
-    "spotId": "5fac31e9-8ad9-4516-a306-5693abb1f078",
+    "spotId": "9685af04-204d-4309-b9c4-99e9d3605422",
     "name": "Côte des Basques",
     "slug": "cote-des-basques",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Cotedes-Basques",
     "latitude": 43.478,
     "longitude": -1.567,
     "beachOrientation": 90,
@@ -54,9 +63,12 @@
     "descriptionFr": "Côte des Basques — spot de surf du Pays Basque."
   },
   {
-    "spotId": "b39771fe-0c7e-4640-9f95-bd2eb8246978",
+    "spotId": "9b972f07-8cf1-4cb9-a01b-49046bc6ee9b",
     "name": "Grande Plage Biarritz",
     "slug": "grande-plage-biarritz",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Grande-Plage",
     "latitude": 43.483,
     "longitude": -1.558,
     "beachOrientation": 90,
@@ -72,9 +84,12 @@
     "descriptionFr": "Grande Plage Biarritz — spot de surf du Pays Basque."
   },
   {
-    "spotId": "9c0c2f86-ac3e-4ed1-8af6-ec9ec90e51c2",
+    "spotId": "999a8f8f-2e76-439c-b339-2b9504b1fac6",
     "name": "Guéthary",
     "slug": "guethary",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Cenitz",
     "latitude": 43.427,
     "longitude": -1.613,
     "beachOrientation": 90,
@@ -90,9 +105,12 @@
     "descriptionFr": "Guéthary — spot de surf du Pays Basque."
   },
   {
-    "spotId": "23ff0647-26cb-4006-bff0-8b5c4085d5d4",
+    "spotId": "e43cf562-caee-4625-9c0f-36e9d1817650",
     "name": "Hendaye",
     "slug": "hendaye",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Hendaye-Plage",
     "latitude": 43.3818,
     "longitude": -1.7892,
     "beachOrientation": 112.5,
@@ -108,9 +126,12 @@
     "descriptionFr": "La longue plage d'Hendaye (3.5km) est un jardin pour débutants. Les vagues y sont rarement trop grosses et cette plage très plate ralentit la houle et permet de surfer en toutes occasions sauf si la houle est vraiment faible (moins d'1m et 6-7sec de période). C'est au milieu de la baie vers le Casino que se trouvent les vagues qui déferlent le mieux. Plus c'est gros, plus on surfe sur les côtés. C'est aussi un spot de repli lorsque que les houles sont trop grosses pour les autres spots."
   },
   {
-    "spotId": "e5d8359b-2e80-4e92-b1a1-b23a4dfa5779",
+    "spotId": "8d404154-dacd-4dc3-9985-6c569d4323df",
     "name": "Lafitenia",
     "slug": "lafitenia",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Lafitenia",
     "latitude": 43.418,
     "longitude": -1.578,
     "beachOrientation": 90,
@@ -126,9 +147,12 @@
     "descriptionFr": "Si l'Aquitaine manque cruellement de pointbreaks, la baie de Lafiténia fait exception avec ces droites souvent comparées à ''Bells Beach'' en Australie. Les vagues permettent un surf tout en cut-backs avec des marches d'escalier assez difficiles à négocier notamment au take-off.  Le déferlement est rarement parfait mais ça peut être long si l'on a la chance de connecter jusqu'au bord."
   },
   {
-    "spotId": "b647c83d-9772-4a89-bdc6-376c1868a8c1",
+    "spotId": "e1b88285-2007-42f1-a799-b780d5c9b7aa",
     "name": "Les Corsaires",
     "slug": "les-corsaires",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Anglet-Corsaires",
     "latitude": 43.502,
     "longitude": -1.528,
     "beachOrientation": 90,
@@ -144,9 +168,12 @@
     "descriptionFr": "Les Corsaires — spot de surf du Pays Basque."
   },
   {
-    "spotId": "ad483c60-85ef-448f-923f-8f5deb3a53e8",
+    "spotId": "fef7b365-eb00-4793-9ab4-6df1ef7d0698",
     "name": "Marinella",
     "slug": "marinella",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Anglet-Marinella",
     "latitude": 43.495,
     "longitude": -1.535,
     "beachOrientation": 90,
@@ -162,9 +189,12 @@
     "descriptionFr": "Marinella — spot de surf du Pays Basque."
   },
   {
-    "spotId": "4a176294-334b-4fa6-9946-27889ed544b5",
+    "spotId": "da18349c-7b8d-4a2e-82eb-515ed731ac60",
     "name": "Ondres",
     "slug": "ondres",
+    "department": "40",
+    "departmentName": "Landes",
+    "surfForecastSlug": "Ondres-Plage",
     "latitude": 43.56,
     "longitude": -1.468,
     "beachOrientation": 135,
@@ -180,9 +210,12 @@
     "descriptionFr": "Ondres — spot de surf du Pays Basque."
   },
   {
-    "spotId": "b7587fa0-64df-4763-b740-a2422fb8cf9c",
+    "spotId": "52f1c691-e47e-4969-bcc0-f21a8dc82ac1",
     "name": "Parlementia",
     "slug": "parlementia",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Parlementia",
     "latitude": 43.4305,
     "longitude": -1.601,
     "beachOrientation": 90,
@@ -198,9 +231,12 @@
     "descriptionFr": "Parlementia — spot de surf du Pays Basque."
   },
   {
-    "spotId": "a1211383-aa37-4e75-83ee-3fd8c4400498",
+    "spotId": "bd21c7ed-f5e9-4da2-9a5e-4b5267c982f3",
     "name": "Sokoa",
     "slug": "sokoa",
+    "department": "64",
+    "departmentName": "Pyrénées-Atlantiques",
+    "surfForecastSlug": "Socoa",
     "latitude": 43.3765,
     "longitude": -1.771,
     "beachOrientation": 135,

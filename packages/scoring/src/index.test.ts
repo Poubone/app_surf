@@ -6,6 +6,8 @@ const hendaye: Spot = {
   spotId: 'hendaye',
   name: 'Hendaye',
   slug: 'hendaye',
+  department: '64',
+  departmentName: 'Pyrénées-Atlantiques',
   latitude: 43.38,
   longitude: -1.77,
   beachOrientation: 20,

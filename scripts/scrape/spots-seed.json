@@ -1,14 +1,14 @@
 [
-  { "slug": "hendaye", "name": "Hendaye", "latitude": 43.3818, "longitude": -1.7892 },
-  { "slug": "sokoa", "name": "Sokoa", "latitude": 43.3765, "longitude": -1.7710 },
-  { "slug": "guethary", "name": "Guéthary", "latitude": 43.4270, "longitude": -1.6130 },
-  { "slug": "parlementia", "name": "Parlementia", "latitude": 43.4305, "longitude": -1.6010 },
-  { "slug": "bidart", "name": "Bidart", "latitude": 43.4370, "longitude": -1.5930 },
-  { "slug": "lafitenia", "name": "Lafitenia", "latitude": 43.4180, "longitude": -1.5780 },
-  { "slug": "cote-des-basques", "name": "Côte des Basques", "latitude": 43.4780, "longitude": -1.5670 },
-  { "slug": "grande-plage-biarritz", "name": "Grande Plage Biarritz", "latitude": 43.4830, "longitude": -1.5580 },
-  { "slug": "marinella", "name": "Marinella", "latitude": 43.4950, "longitude": -1.5350 },
-  { "slug": "les-corsaires", "name": "Les Corsaires", "latitude": 43.5020, "longitude": -1.5280 },
-  { "slug": "belharra", "name": "Belharra", "latitude": 43.4080, "longitude": -1.6820 },
-  { "slug": "ondres", "name": "Ondres", "latitude": 43.5600, "longitude": -1.4680 }
+  { "slug": "hendaye", "name": "Hendaye", "latitude": 43.3818, "longitude": -1.7892, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "sokoa", "name": "Sokoa", "latitude": 43.3765, "longitude": -1.7710, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "guethary", "name": "Guéthary", "latitude": 43.4270, "longitude": -1.6130, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "parlementia", "name": "Parlementia", "latitude": 43.4305, "longitude": -1.6010, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "bidart", "name": "Bidart", "latitude": 43.4370, "longitude": -1.5930, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "lafitenia", "name": "Lafitenia", "latitude": 43.4180, "longitude": -1.5780, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "cote-des-basques", "name": "Côte des Basques", "latitude": 43.4780, "longitude": -1.5670, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "grande-plage-biarritz", "name": "Grande Plage Biarritz", "latitude": 43.4830, "longitude": -1.5580, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "marinella", "name": "Marinella", "latitude": 43.4950, "longitude": -1.5350, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "les-corsaires", "name": "Les Corsaires", "latitude": 43.5020, "longitude": -1.5280, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "belharra", "name": "Belharra", "latitude": 43.4080, "longitude": -1.6820, "department": "64", "departmentName": "Pyrénées-Atlantiques" },
+  { "slug": "ondres", "name": "Ondres", "latitude": 43.5600, "longitude": -1.4680, "department": "40", "departmentName": "Landes" }
 ]

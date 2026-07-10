@@ -4,6 +4,11 @@ export interface Spot {
   spotId: string;
   name: string;
   slug: string;
+  /** Code département INSEE (ex. "64") */
+  department: string;
+  departmentName: string;
+  /** Slug Surf-Forecast pour rapprochement catalogue */
+  surfForecastSlug?: string;
   latitude: number;
   longitude: number;
   beachOrientation: number;
