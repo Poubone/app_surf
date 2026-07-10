@@ -10,11 +10,13 @@ import { dayLabelsFromDates, hourFromIso } from '../lib/days';
 import { degreesToCompass, kmhToKnots, localDateKey, weatherCodeToLabel } from '../lib/display';
 import { formatTideLabel } from '../lib/tide-label';
 import { getJsonItem, setJsonItem } from '../lib/storage';
+import { stripHeavyFields } from '../lib/map-pins';
 import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotView } from '../types';
 
 const DEFAULT_DEPARTMENT = '64';
 const SCORED_STORAGE_KEY = 'surfscore-scored-departments';
-const REFRESH_CONCURRENCY = 4;
+const REFRESH_CONCURRENCY = 2;
+const INITIAL_SCORE_DELAY_MS = 2500;
 
 async function mapWithConcurrency<T, R>(
   items: T[],
@@ -147,7 +149,9 @@ function spotMetaFromSpot(spot: Spot) {
 }
 
 function catalogPin(catalog: CatalogSpot, scraped?: Spot): SpotView {
-  const meta = scraped ? { ...spotMetaFromSpot(scraped), scoringConfig: spotScoringConfig(scraped) } : {};
+  const meta = scraped
+    ? { ...spotMetaFromSpot(scraped), scoringConfig: spotScoringConfig(scraped) }
+    : null;
   return {
     id: `catalog:${catalog.surfForecastSlug}`,
     slug: catalog.surfForecastSlug,
@@ -168,7 +172,7 @@ function catalogPin(catalog: CatalogSpot, scraped?: Spot): SpotView {
     weeklyScores: [],
     dayLabels: [],
     hourly: [],
-    scoringConfig: meta.scoringConfig ?? {
+    scoringConfig: meta?.scoringConfig ?? {
       beachOrientation: 0,
       swellAngleMin: 0,
       swellAngleMax: 0,
@@ -178,9 +182,9 @@ function catalogPin(catalog: CatalogSpot, scraped?: Spot): SpotView {
       idealSwellHeightMax: 0,
       tideOptimalStage: 'mid-rising',
     },
-    descriptionFr: meta.descriptionFr,
-    bottomType: meta.bottomType,
-    level: meta.level,
+    descriptionFr: meta?.descriptionFr,
+    bottomType: meta?.bottomType,
+    level: meta?.level,
   };
 }
 
@@ -305,7 +309,7 @@ function mergeCatalogWithScores(
             Math.abs(s.longitude - entry.longitude) < 0.02,
       );
     if (scored) {
-      return {
+      return stripHeavyFields({
         ...scored,
         latitude: entry.latitude,
         longitude: entry.longitude,
@@ -313,7 +317,7 @@ function mergeCatalogWithScores(
         bottomType: scored.bottomType ?? scraped?.bottomType,
         level: scored.level ?? scraped?.level,
         surfForecastSlug: entry.surfForecastSlug,
-      };
+      });
     }
     return catalogPin(entry, scraped);
   });
@@ -380,6 +384,20 @@ export function useSurfConditions() {
         (s) => s.hasScore && s.department === weeklyDepartment && !s.error,
       ),
     [mapSpots, weeklyDepartment],
+  );
+
+  const resolveSpotDetail = useCallback(
+    (spot: SpotView): SpotView => {
+      const full =
+        scoredViews.get(spot.id) ??
+        [...scoredViews.values()].find(
+          (s) =>
+            (spot.surfForecastSlug && s.surfForecastSlug === spot.surfForecastSlug) ||
+            (spot.slug && s.slug === spot.slug),
+        );
+      return full ?? spot;
+    },
+    [scoredViews],
   );
 
   const refreshSpot = useCallback(
@@ -462,6 +480,10 @@ export function useSurfConditions() {
         const deptSpots = scraped.filter((s) => s.department === toRefresh);
         if (deptSpots.length === 0) return;
 
+        // Laisser la carte monter avant le pic mémoire (411 pins + scoring)
+        await new Promise((r) => setTimeout(r, INITIAL_SCORE_DELAY_MS));
+        if (cancelled) return;
+
         setRefreshingDept(toRefresh);
         const results = await mapWithConcurrency(deptSpots, REFRESH_CONCURRENCY, async (spot) => {
           try {
@@ -506,6 +528,7 @@ export function useSurfConditions() {
     setWeeklyDepartment,
     refreshDepartment,
     refreshSpot,
+    resolveSpotDetail,
   };
 }
 

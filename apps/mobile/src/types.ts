@@ -65,3 +65,15 @@ export interface HourlyScoreRow {
 }
 
 export const DISPLAY_HOURS = [6, 8, 10, 12, 14, 16, 18, 20];
+
+/** Données légères pour le rendu carte (évite OOM avec 411 marqueurs). */
+export interface MapPin {
+  id: string;
+  slug?: string;
+  surfForecastSlug?: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  hasScore: boolean;
+  score: number;
+}
