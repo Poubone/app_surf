@@ -22,6 +22,7 @@ export default function App() {
     refreshDepartment,
     refreshSpot,
     refreshingSpotSlug,
+    resolveSpotDetail,
   } = useSurfConditions();
 
   const [view, setView] = useState<ViewName>('map');
@@ -39,6 +40,8 @@ export default function App() {
     );
     if (updated) setSelectedSpot(updated);
   }, [mapSpots, selectedSpot?.id, selectedSpot?.surfForecastSlug, selectedSpot?.slug]);
+
+  const detailSpot = selectedSpot ? resolveSpotDetail(selectedSpot) : null;
 
   async function handleMapSpotClick(spot: SpotView) {
     const slug = spot.surfForecastSlug ?? spot.slug;
@@ -59,8 +62,7 @@ export default function App() {
     }
   }
 
-  function handleSpotClick(spot: SpotView, day = 0) {
-    if (!spot.hasScore || spot.error) return;
+  function handleWeeklySpotClick(spot: SpotView, day = 0) {
     setPreviousView(view);
     setSelectedSpot(spot);
     setSelectedDay(day);
@@ -96,12 +98,12 @@ export default function App() {
           department={weeklyDepartment}
           onDepartmentChange={setWeeklyDepartment}
           onBack={() => setView('map')}
-          onSpotClick={handleSpotClick}
+          onSpotClick={handleWeeklySpotClick}
         />
       )}
-      {view === 'detail' && selectedSpot && (
+      {view === 'detail' && detailSpot && (
         <DetailView
-          spot={selectedSpot}
+          spot={detailSpot}
           initialDay={selectedDay}
           onBack={() => setView(previousView === 'detail' ? 'map' : previousView)}
         />

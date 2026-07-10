@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Marker } from 'react-native-maps';
 import { getScoreColor } from '../lib/display';
@@ -14,36 +15,71 @@ interface Props {
 }
 
 export function SpotMarker({ latitude, longitude, name, score, hasScore, loading, onPress }: Props) {
+  const [tracks, setTracks] = useState(loading ?? false);
   const color = hasScore && score != null ? getScoreColor(score) : theme.unscored;
-  const label = loading ? '…' : hasScore && score != null ? String(score) : '·';
+  const label = loading ? '…' : hasScore && score != null ? String(score) : '';
+
+  useEffect(() => {
+    if (loading) {
+      setTracks(true);
+      return;
+    }
+    const t = setTimeout(() => setTracks(false), 300);
+    return () => clearTimeout(t);
+  }, [loading, score, hasScore]);
+
+  // Spot non scoré : point minimal (pas de Text → bitmap plus léger)
+  if (!hasScore) {
+    return (
+      <Marker
+        coordinate={{ latitude, longitude }}
+        onPress={onPress}
+        tracksViewChanges={false}
+        anchor={{ x: 0.5, y: 0.5 }}
+      >
+        <View style={styles.dot} />
+      </Marker>
+    );
+  }
 
   return (
-    <Marker coordinate={{ latitude, longitude }} onPress={onPress} title={name}>
+    <Marker
+      coordinate={{ latitude, longitude }}
+      onPress={onPress}
+      tracksViewChanges={tracks}
+      anchor={{ x: 0.5, y: 0.5 }}
+    >
       <View
         style={[
           styles.pin,
           {
-            backgroundColor: hasScore ? `${color}33` : 'rgba(255,255,255,0.08)',
+            backgroundColor: `${color}33`,
             borderColor: color,
-            minWidth: hasScore ? 36 : 24,
-            minHeight: hasScore ? 36 : 24,
           },
         ]}
       >
-        <Text style={[styles.score, { color: hasScore ? color : theme.unscored }]}>{label}</Text>
+        <Text style={[styles.score, { color }]}>{label}</Text>
       </View>
     </Marker>
   );
 }
 
 const styles = StyleSheet.create({
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(232,237,245,0.45)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.25)',
+  },
   pin: {
-    borderRadius: 20,
-    paddingHorizontal: 6,
-    paddingVertical: 4,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
   },
-  score: { fontWeight: '700', fontSize: 11 },
+  score: { fontWeight: '700', fontSize: 10 },
 });

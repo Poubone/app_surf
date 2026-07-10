@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import type { Region } from 'react-native-maps';
 import { OsmMap } from '../components/OsmMap';
 import { SpotMarker } from '../components/SpotMarker';
 import { DepartmentPicker } from '../components/DepartmentPicker';
 import { NetworkError } from '../components/NetworkError';
 import type { DepartmentOption } from '../lib/departments';
-import type { SpotView } from '../types';
+import { selectMapPins, toMapPin } from '../lib/map-pins';
+import type { MapPin, SpotView } from '../types';
 import { theme, FRANCE_REGION } from '../theme';
 
 export function MapScreen({
@@ -32,29 +34,50 @@ export function MapScreen({
   refreshingSpotSlug: string | null;
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [region, setRegion] = useState<Region>(FRANCE_REGION);
   const scoredCount = mapSpots.filter((s) => s.hasScore && !s.error).length;
+
+  const allPins = useMemo(() => mapSpots.map(toMapPin), [mapSpots]);
+  const visiblePins = useMemo(() => selectMapPins(allPins, region), [allPins, region]);
+  const spotById = useMemo(() => new Map(mapSpots.map((s) => [s.id, s])), [mapSpots]);
+
+  const zoomHint =
+    region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
+      ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
+      : region.latitudeDelta > 3 && allPins.length > scoredCount
+        ? 'Spots non scorés visibles en zoomant'
+        : null;
 
   if (networkError && mapSpots.length === 0) {
     return <NetworkError onRetry={onRetry} />;
   }
 
+  function handlePinPress(pin: MapPin) {
+    const spot = spotById.get(pin.id);
+    if (spot) onSpotClick(spot);
+  }
+
   return (
     <View style={styles.container}>
-      <OsmMap style={styles.map} initialRegion={FRANCE_REGION}>
-        {mapSpots.map((spot) => {
-          const slug = spot.surfForecastSlug ?? spot.slug;
+      <OsmMap
+        style={styles.map}
+        initialRegion={FRANCE_REGION}
+        onRegionChangeComplete={setRegion}
+      >
+        {visiblePins.map((pin) => {
+          const slug = pin.surfForecastSlug ?? pin.slug;
           const isRefreshing = refreshingSpotSlug === slug;
           return (
-          <SpotMarker
-            key={spot.id}
-            latitude={spot.latitude}
-            longitude={spot.longitude}
-            name={spot.name}
-            score={spot.hasScore ? spot.score : null}
-            hasScore={spot.hasScore && !spot.error}
-            loading={isRefreshing}
-            onPress={() => onSpotClick(spot)}
-          />
+            <SpotMarker
+              key={pin.id}
+              latitude={pin.latitude}
+              longitude={pin.longitude}
+              name={pin.name}
+              score={pin.hasScore ? pin.score : null}
+              hasScore={pin.hasScore}
+              loading={isRefreshing}
+              onPress={() => handlePinPress(pin)}
+            />
           );
         })}
       </OsmMap>
@@ -88,7 +111,9 @@ export function MapScreen({
       </View>
 
       <View style={styles.legend}>
-        <Text style={styles.legendText}>Excellent · Bon · Moyen · Faible · Non scoré</Text>
+        <Text style={styles.legendText}>
+          {zoomHint ?? 'Excellent · Bon · Moyen · Faible · Non scoré'}
+        </Text>
       </View>
 
       <DepartmentPicker
@@ -147,6 +172,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 8,
+    maxWidth: '90%',
   },
-  legendText: { color: theme.muted, fontSize: 10 },
+  legendText: { color: theme.muted, fontSize: 10, textAlign: 'center' },
 });
