@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { computeSurfScore, type Spot, type ScoreBreakdown, type TideStage } from '@app-surf/scoring';
+import { computeSurfScore, isSurfDaylightHour, isSurfDaylightTime, NIGHT_SCORE, pickCurrentDaylightIndex, type Spot, type ScoreBreakdown, type TideStage } from '@app-surf/scoring';
 import { fetchMarineForecast, toMarineWaveConditions, type MarineForecast } from '../api/open-meteo';
 import { fetchWeatherForecast, type WeatherForecast } from '../api/weather';
 import { hasSeaLevelData, tideStageFromSeaLevel } from '../api/tide';
@@ -215,18 +215,22 @@ async function buildSpotView(spot: Spot): Promise<SpotView> {
       windDirection: wind.windDirection,
       tideStage,
     };
-    const score = computeSurfScore(spot, conditions);
-    if (tideUnavailable) {
-      score.tideScore = 0;
-      score.total = Math.round((score.swellScore + score.windScore) * score.windMalus);
-    }
+    const score = isSurfDaylightHour(hourFromIso(time))
+      ? (() => {
+          const s = computeSurfScore(spot, conditions);
+          if (tideUnavailable) {
+            s.tideScore = 0;
+            s.total = Math.round((s.swellScore + s.windScore) * s.windMalus);
+          }
+          return s;
+        })()
+      : { ...NIGHT_SCORE };
     return { time, score, conditions };
   });
 
   const rows = hourly.time.map((_, i) => rowFromIndex(marine, weather, hourlyScores, i));
 
-  const currentIdx = hourlyScores.findIndex((h) => new Date(h.time) >= now);
-  const idx = Math.max(0, currentIdx);
+  const idx = pickCurrentDaylightIndex(hourly.time, now);
   const current = rows[idx];
   const wx = weatherCodeToLabel(current.weatherCode);
 
@@ -515,7 +519,9 @@ export function spotForDay(spot: SpotView, dayIndex: number): SpotView {
 function dayScoresFor(spot: SpotView, dayIndex: number): HourlyScoreRow[] {
   const dayStr = spot.dailyKeys?.[dayIndex];
   if (!dayStr || !spot.hourlyScoresFull?.length) return [];
-  return spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
+  return spot.hourlyScoresFull.filter(
+    (h) => localDateKey(h.time) === dayStr && isSurfDaylightTime(h.time),
+  );
 }
 
 /** Ligne horaire pour un jour (heure explicite ou défaut : maintenant / midi). */
@@ -538,7 +544,9 @@ export function getScoreRowForHour(
   if (dayIndex === 0) {
     const dayStr = spot.dailyKeys?.[dayIndex];
     const now = new Date();
-    const current = spot.hourlyScoresFull!.find((h) => new Date(h.time) >= now);
+    const current = spot.hourlyScoresFull!.find(
+      (h) => new Date(h.time) >= now && isSurfDaylightTime(h.time),
+    );
     if (current && dayStr && localDateKey(current.time) === dayStr) return current;
   }
 
@@ -601,7 +609,9 @@ export function getBestHourForDay(
   const dayStr = spot.dailyKeys?.[dayIndex];
   if (!dayStr || !spot.hourlyScoresFull?.length) return null;
 
-  const dayScores = spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
+  const dayScores = spot.hourlyScoresFull.filter(
+    (h) => localDateKey(h.time) === dayStr && isSurfDaylightTime(h.time),
+  );
   if (dayScores.length === 0) return null;
 
   const best = dayScores.reduce((a, b) => (b.scoreTotal > a.scoreTotal ? b : a));

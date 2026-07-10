@@ -59,7 +59,7 @@ export function DetailView({
       </TouchableOpacity>
 
       <Text style={styles.region}>
-        {view.departmentName}
+        📍 {view.departmentName}
         {hourLabel ? ` · ${hourLabel}` : ''}
       </Text>
       <Text style={styles.name}>{view.name}</Text>
@@ -69,10 +69,22 @@ export function DetailView({
         <Text style={styles.scoreMeta}>/100 · {getScoreLabel(view.score)}</Text>
       </View>
 
+      <View style={styles.weatherRow}>
+        <Text style={styles.weatherEmoji}>{view.weather.emoji}</Text>
+        <View style={styles.weatherMeta}>
+          <Text style={styles.weatherTemp}>{view.weather.temp}°C</Text>
+          <Text style={styles.weatherCond}>{view.weather.condition}</Text>
+        </View>
+        <Text style={styles.tideChip}>⏰ {view.tide}</Text>
+      </View>
+
       {bestHour && (
         <View style={styles.bestHour}>
           <Text style={styles.bestHourText}>
-            Meilleur créneau : <Text style={{ color: getScoreColor(bestHour.score), fontWeight: '700' }}>{bestHour.hour} · {bestHour.score}/100</Text>
+            ⏰ Meilleur créneau :{' '}
+            <Text style={{ color: getScoreColor(bestHour.score), fontWeight: '700' }}>
+              {bestHour.hour} · {bestHour.score}/100
+            </Text>
           </Text>
         </View>
       )}
@@ -90,7 +102,7 @@ export function DetailView({
       </ScrollView>
 
       <View style={styles.hourly}>
-        <Text style={styles.breakdownTitle}>Prévisions horaires</Text>
+        <Text style={styles.breakdownTitle}>🕐 Prévisions horaires</Text>
         <Text style={styles.hourlyHint}>Touchez un créneau pour voir les conditions</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.hourlyRow}>
@@ -116,25 +128,26 @@ export function DetailView({
         {hourLabel ? `Conditions à ${hourLabel}` : 'Conditions du jour'}
       </Text>
       <View style={styles.stats}>
-        <Stat label="Houle" value={`${view.waves.height}m · ${view.waves.period}s`} sub={view.waves.direction} />
-        <Stat label="Vent" value={`${view.wind.speed} nds ${view.wind.direction}`} sub={`Raf. ${view.wind.gust}`} />
-        <Stat label="Eau" value={`${view.water.temp}°C`} />
-        <Stat label="Air" value={`${view.weather.emoji} ${view.weather.temp}°C`} sub={view.weather.condition} />
-        <Stat label="Marée" value={view.tide} />
+        <Stat emoji="🌊" label="Houle" value={`${view.waves.height} m`} sub={`Période ${view.waves.period}s`} />
+        <Stat emoji="💨" label="Vent" value={`${view.wind.speed} nds`} sub={`${view.wind.direction} · Raf. ${view.wind.gust} nds`} />
+        <Stat emoji="🧭" label="Direction" value={view.waves.direction} sub={`Vent ${view.wind.direction}`} />
+        <Stat emoji="🌡️" label="Eau" value={`${view.water.temp}°C`} sub="Température surf" />
+        <Stat emoji={view.weather.emoji} label="Météo" value={`${view.weather.temp}°C`} sub={view.weather.condition} />
+        <Stat emoji="🌊" label="Marée" value={view.tide} />
       </View>
 
-      {scoreRow && (
+      {scoreRow && scoreRow.scoreTotal > 0 && (
         <View style={styles.breakdown}>
-          <Text style={styles.breakdownTitle}>Détail scoring</Text>
-          <Text style={styles.breakdownLine}>Houle {scoreRow.scoreBreakdown.swellScore}/50</Text>
-          <Text style={styles.breakdownLine}>Vent {scoreRow.scoreBreakdown.windScore}/30 · {scoreRow.scoreBreakdown.windLabel}</Text>
-          <Text style={styles.breakdownLine}>Marée {scoreRow.scoreBreakdown.tideScore}/20</Text>
+          <Text style={styles.breakdownTitle}>📊 Détail scoring</Text>
+          <Text style={styles.breakdownLine}>🌊 Houle {scoreRow.scoreBreakdown.swellScore}/50</Text>
+          <Text style={styles.breakdownLine}>💨 Vent {scoreRow.scoreBreakdown.windScore}/30 · {scoreRow.scoreBreakdown.windLabel}</Text>
+          <Text style={styles.breakdownLine}>🌙 Marée {scoreRow.scoreBreakdown.tideScore}/20</Text>
         </View>
       )}
 
       {(showDescription || spot.level || spot.bottomType || warnings.length > 0) && (
         <View style={styles.spotInfo}>
-          <Text style={styles.breakdownTitle}>À propos du spot</Text>
+          <Text style={styles.breakdownTitle}>ℹ️ À propos du spot</Text>
           {(spot.level || spot.bottomType) && (
             <View style={styles.badges}>
               {spot.level ? <Text style={styles.badgeLevel}>{levelLabel(spot.level)}</Text> : null}
@@ -142,7 +155,7 @@ export function DetailView({
             </View>
           )}
           {warnings.map((w) => (
-            <Text key={w} style={styles.warning}>⚠ {w}</Text>
+            <Text key={w} style={styles.warning}>⚠️ {w}</Text>
           ))}
           {showDescription ? <Text style={styles.description}>{spot.descriptionFr}</Text> : null}
         </View>
@@ -152,10 +165,12 @@ export function DetailView({
   );
 }
 
-function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
+function Stat({ emoji, label, value, sub }: { emoji: string; label: string; value: string; sub?: string }) {
   return (
     <View style={styles.stat}>
-      <Text style={styles.statLabel}>{label}</Text>
+      <Text style={styles.statLabel}>
+        {emoji} {label}
+      </Text>
       <Text style={styles.statValue}>{value}</Text>
       {sub ? <Text style={styles.statSub}>{sub}</Text> : null}
     </View>
@@ -171,6 +186,22 @@ const styles = StyleSheet.create({
   scoreBlock: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginVertical: 16 },
   score: { fontSize: 56, fontWeight: '800' },
   scoreMeta: { color: theme.muted, fontSize: 14 },
+  weatherRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 16,
+    padding: 12,
+    borderRadius: 12,
+    backgroundColor: theme.card,
+    borderWidth: 1,
+    borderColor: theme.border,
+  },
+  weatherEmoji: { fontSize: 28 },
+  weatherMeta: { flex: 1 },
+  weatherTemp: { color: theme.text, fontSize: 18, fontWeight: '700' },
+  weatherCond: { color: theme.muted, fontSize: 13, marginTop: 2 },
+  tideChip: { color: theme.muted, fontSize: 11, maxWidth: 100, textAlign: 'right' },
   days: { marginBottom: 16 },
   dayChip: {
     paddingHorizontal: 12,

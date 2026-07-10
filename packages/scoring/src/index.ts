@@ -4,6 +4,15 @@ import { computeTideScore } from './tide';
 import type { Spot, HourlyConditions, ScoreBreakdown } from './types';
 
 export { computeTideStage } from './tide';
+export {
+  hourFromIso,
+  isSurfDaylightHour,
+  isSurfDaylightTime,
+  NIGHT_SCORE,
+  pickCurrentDaylightIndex,
+  SURF_DAYLIGHT_HOUR_MAX,
+  SURF_DAYLIGHT_HOUR_MIN,
+} from './daylight';
 export type { Spot, HourlyConditions, ScoreBreakdown, TideStage } from './types';
 export type { TideEvent } from './tide';
 
