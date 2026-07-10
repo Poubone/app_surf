@@ -533,38 +533,64 @@ export function useSurfConditions() {
 }
 
 export function spotForDay(spot: SpotView, dayIndex: number): SpotView {
+  return spotForHour(spot, dayIndex, null);
+}
+
+function dayScoresFor(spot: SpotView, dayIndex: number): HourlyScoreRow[] {
   const dayStr = spot.dailyKeys?.[dayIndex];
-  if (!dayStr || !spot.hourlyScoresFull?.length) {
-    return { ...spot, score: spot.weeklyScores[dayIndex] ?? spot.score };
+  if (!dayStr || !spot.hourlyScoresFull?.length) return [];
+  return spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
+}
+
+export function getScoreRowForHour(
+  spot: SpotView,
+  dayIndex: number,
+  hour?: number | null,
+): HourlyScoreRow | null {
+  const dayScores = dayScoresFor(spot, dayIndex);
+  if (dayScores.length === 0) return null;
+
+  if (hour != null) {
+    const exact = dayScores.find((h) => hourFromIso(h.time) === hour);
+    if (exact) return exact;
+    return dayScores.reduce((best, h) =>
+      Math.abs(hourFromIso(h.time) - hour) < Math.abs(hourFromIso(best.time) - hour) ? h : best,
+    );
   }
 
-  const dayScores = spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
-  if (dayScores.length === 0) {
-    return { ...spot, score: spot.weeklyScores[dayIndex] ?? spot.score };
+  if (dayIndex === 0) {
+    const dayStr = spot.dailyKeys?.[dayIndex];
+    const now = new Date();
+    const current = spot.hourlyScoresFull!.find((h) => new Date(h.time) >= now);
+    if (current && dayStr && localDateKey(current.time) === dayStr) return current;
   }
 
-  const noon =
+  return (
     dayScores.find((h) => hourFromIso(h.time) === 12) ??
-    dayScores[Math.floor(dayScores.length / 2)];
-  const wx = weatherCodeToLabel(noon.weatherCode);
-  const at = new Date(noon.time);
+    dayScores[Math.floor(dayScores.length / 2)]
+  );
+}
 
+function viewFromRow(spot: SpotView, dayIndex: number, row: HourlyScoreRow): SpotView {
+  const dayStr = spot.dailyKeys?.[dayIndex] ?? localDateKey(row.time);
+  const wx = weatherCodeToLabel(row.weatherCode);
+  const at = new Date(row.time);
   return {
     ...spot,
-    score: spot.weeklyScores[dayIndex] ?? noon.scoreTotal,
-    hourly: buildHourlyBars(spot.hourlyScoresFull, dayStr),
+    score: row.scoreTotal,
+    hourly: buildHourlyBars(spot.hourlyScoresFull!, dayStr),
     waves: {
-      height: Math.round(noon.waveHeight * 10) / 10,
-      period: Math.round(noon.wavePeriod),
-      direction: degreesToCompass(noon.waveDirection),
+      height: Math.round(row.waveHeight * 10) / 10,
+      period: Math.round(row.wavePeriod),
+      direction: degreesToCompass(row.waveDirection),
     },
     wind: {
-      speed: Math.round(noon.windSpeedKnots),
-      direction: degreesToCompass(noon.windDirection),
-      gust: noon.windGustKnots,
+      speed: Math.round(row.windSpeedKnots),
+      direction: degreesToCompass(row.windDirection),
+      gust: row.windGustKnots,
     },
-    water: { temp: Math.round(noon.waterTemp ?? spot.water.temp) },
-    weather: { temp: noon.airTemp, condition: wx.condition, emoji: wx.emoji },
+    water: { temp: Math.round(row.waterTemp ?? spot.water.temp) },
+    weather: { temp: row.airTemp, condition: wx.condition, emoji: wx.emoji },
     tide:
       spot.tideUnavailable || !spot.tideTimes || !spot.tideHeights
         ? spot.tide
@@ -572,26 +598,21 @@ export function spotForDay(spot: SpotView, dayIndex: number): SpotView {
   };
 }
 
+export function spotForHour(spot: SpotView, dayIndex: number, hour?: number | null): SpotView {
+  const dayStr = spot.dailyKeys?.[dayIndex];
+  if (!dayStr || !spot.hourlyScoresFull?.length) {
+    return { ...spot, score: spot.weeklyScores[dayIndex] ?? spot.score };
+  }
+  const row = getScoreRowForHour(spot, dayIndex, hour);
+  if (!row) {
+    return { ...spot, score: spot.weeklyScores[dayIndex] ?? spot.score };
+  }
+  return viewFromRow(spot, dayIndex, row);
+}
+
 /** Score row used for display (current hour today, noon on other days). */
 export function getScoreRowForDay(spot: SpotView, dayIndex: number): HourlyScoreRow | null {
-  if (!spot.hourlyScoresFull?.length) return null;
-
-  const dayStr = spot.dailyKeys?.[dayIndex];
-  if (!dayStr) return spot.hourlyScoresFull[0] ?? null;
-
-  const dayScores = spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
-  if (dayScores.length === 0) return null;
-
-  if (dayIndex === 0) {
-    const now = new Date();
-    const current = spot.hourlyScoresFull.find((h) => new Date(h.time) >= now);
-    if (current && localDateKey(current.time) === dayStr) return current;
-  }
-
-  return (
-    dayScores.find((h) => hourFromIso(h.time) === 12) ??
-    dayScores[Math.floor(dayScores.length / 2)]
-  );
+  return getScoreRowForHour(spot, dayIndex, null);
 }
 
 /** Meilleur créneau horaire (score max) pour un jour donné. */
