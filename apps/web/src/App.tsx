@@ -1,93 +1,68 @@
 import { useState } from 'react';
 import { useSurfConditions } from './hooks/useSurfConditions';
-import { SurfMap } from './components/SurfMap';
-import { SpotDetailPanel } from './components/SpotDetailPanel';
+import { DetailView } from './components/DetailView';
+import { MapScreen } from './components/MapScreen';
 import { NetworkError } from './components/NetworkError';
+import { WeeklyView } from './components/WeeklyView';
+import type { SpotView } from './types';
 
 export function App() {
   const { spots, loading, networkError, refresh } = useSurfConditions();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const selected = spots.find((s) => s.spot.spotId === selectedId) ?? null;
+  const [view, setView] = useState<'map' | 'detail' | 'weekly'>('map');
+  const [selectedSpot, setSelectedSpot] = useState<SpotView | null>(null);
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
   if (networkError) return <NetworkError onRetry={refresh} />;
 
+  function handleSpotClick(spot: SpotView, day = 0) {
+    setSelectedSpot(spot);
+    setSelectedDay(day);
+    setView('detail');
+    setSearchQuery('');
+  }
+
   return (
-    <div className="app">
-      <header className="header">
-        <h1>Surf Pays Basque</h1>
-        <button type="button" onClick={refresh} disabled={loading}>
-          {loading ? 'Chargement…' : 'Actualiser'}
-        </button>
-      </header>
-      <main className="main">
-        {loading && spots.length === 0 ? (
-          <div className="loader">Chargement des conditions…</div>
-        ) : (
-          <>
-            <SurfMap
-              spots={spots}
-              selectedId={selectedId}
-              onSelect={(s) => setSelectedId(s.spot.spotId)}
-            />
-            {selected && (
-              <SpotDetailPanel data={selected} onClose={() => setSelectedId(null)} />
-            )}
-          </>
+    <div className="h-full w-full flex justify-center bg-background" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      <div className="relative w-full max-w-6xl h-full overflow-hidden" style={{ backgroundColor: '#070c16' }}>
+        {loading && spots.length === 0 && (
+          <div className="absolute inset-0 z-50 flex items-center justify-center text-muted-foreground bg-background/80">
+            Chargement des conditions…
+          </div>
         )}
-      </main>
-      <footer className="legend">
-        ≥60 Bon · 30–59 Moyen · &lt;30 Mauvais · © OpenStreetMap · Open-Meteo
-      </footer>
-      <style>{`
-        .app {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-        }
-        .header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 12px 20px;
-          background: #fff;
-          border-bottom: 1px solid #e5e7eb;
-        }
-        .header h1 {
-          margin: 0;
-          font-size: 1.25rem;
-        }
-        .header button {
-          background: #fff;
-          border: 1px solid #d1d5db;
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-weight: 600;
-        }
-        .header button:disabled {
-          opacity: 0.6;
-          cursor: wait;
-        }
-        .main {
-          flex: 1;
-          display: flex;
-          min-height: 0;
-          height: calc(100vh - 96px);
-        }
-        .loader {
-          flex: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #666;
-        }
-        .legend {
-          padding: 8px 20px;
-          font-size: 0.8rem;
-          color: #666;
-          background: #fff;
-          border-top: 1px solid #e5e7eb;
-        }
-      `}</style>
+
+        <div
+          className="absolute inset-0 transition-transform duration-300 ease-in-out"
+          style={{ transform: view === 'map' ? 'translateX(0)' : 'translateX(-100%)' }}
+        >
+          <MapScreen
+            spots={spots}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onSpotClick={(s) => handleSpotClick(s)}
+            selectedSpotId={selectedSpot?.id ?? null}
+            onWeekly={() => setView('weekly')}
+            loading={loading}
+            onRefresh={refresh}
+          />
+        </div>
+
+        <div
+          className="absolute inset-0 transition-transform duration-300 ease-in-out"
+          style={{ transform: view === 'detail' ? 'translateX(0)' : 'translateX(100%)' }}
+        >
+          {selectedSpot && (
+            <DetailView spot={selectedSpot} onBack={() => setView('map')} initialDay={selectedDay} />
+          )}
+        </div>
+
+        <div
+          className="absolute inset-0 transition-transform duration-300 ease-in-out"
+          style={{ transform: view === 'weekly' ? 'translateX(0)' : 'translateX(100%)' }}
+        >
+          <WeeklyView spots={spots} onBack={() => setView('map')} onSpotClick={handleSpotClick} />
+        </div>
+      </div>
     </div>
   );
 }

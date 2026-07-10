@@ -1,31 +1,20 @@
 export function NetworkError({ onRetry }: { onRetry: () => void }) {
   return (
-    <div className="network-error">
-      <h1>Pas de connexion</h1>
-      <p>Connecte-toi pour voir les conditions</p>
-      <button type="button" onClick={onRetry}>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-3 bg-background text-foreground">
+      <h1 className="text-2xl font-bold m-0" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        Pas de connexion
+      </h1>
+      <p className="text-muted-foreground m-0 mb-4" style={{ fontFamily: "'Outfit', sans-serif" }}>
+        Connecte-toi pour voir les conditions
+      </p>
+      <button
+        type="button"
+        onClick={onRetry}
+        className="px-6 py-3 rounded-lg font-semibold border-0"
+        style={{ background: '#00d4a8', color: '#070c16', fontFamily: "'Outfit', sans-serif" }}
+      >
         Réessayer
       </button>
-      <style>{`
-        .network-error {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-        }
-        .network-error h1 { margin: 0; font-size: 1.5rem; }
-        .network-error p { color: #666; margin: 0 0 16px; }
-        .network-error button {
-          background: #2563eb;
-          color: #fff;
-          border: none;
-          padding: 12px 24px;
-          border-radius: 8px;
-          font-weight: 600;
-        }
-      `}</style>
     </div>
   );
 }

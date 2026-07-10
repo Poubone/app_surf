@@ -35,7 +35,12 @@ npm run dev:web                       # http://localhost:5173/app_surf/
 
 > Activer GitHub Pages une fois : *Settings → Pages → Build and deployment → Source: GitHub Actions*.
 
-Layout desktop : carte Leaflet à gauche, panneau détail à droite au clic sur un spot.
+Layout desktop : carte **Leaflet** (tuiles sombres CARTO/OSM) avec pins style Figma, panneau détail au clic.
+
+**Données live :**
+- Open-Meteo **Marine** — houle, vent, marée, température eau (7 jours)
+- Open-Meteo **Forecast** — air, rafales, code météo (7 jours)
+- `@app-surf/scoring` — score /10 affiché sur la carte
 
 ## APK Android (en pause)
 
