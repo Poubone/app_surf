@@ -23,8 +23,8 @@ export function App() {
   }
 
   return (
-    <div className="h-full w-full flex justify-center bg-background" style={{ fontFamily: "'Outfit', sans-serif" }}>
-      <div className="relative w-full max-w-6xl h-full overflow-hidden" style={{ backgroundColor: '#070c16' }}>
+    <div className="h-screen w-full flex justify-center bg-background" style={{ fontFamily: "'Outfit', sans-serif" }}>
+      <div className="relative w-full max-w-6xl h-full min-h-0 overflow-hidden" style={{ backgroundColor: '#070c16' }}>
         {loading && spots.length === 0 && (
           <div className="absolute inset-0 z-50 flex items-center justify-center text-muted-foreground bg-background/80">
             Chargement des conditions…
