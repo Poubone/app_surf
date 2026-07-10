@@ -102,7 +102,7 @@ export function WeeklyView({
         {spots.length === 0 ? (
           <div className="px-6 py-12 text-center text-muted-foreground" style={{ fontFamily: "'Outfit', sans-serif" }}>
             <p className="text-sm">Aucun spot scoré pour ce département.</p>
-            <p className="text-xs mt-2">Actualisez le département depuis la carte (bouton Actualiser).</p>
+            <p className="text-xs mt-2">Choisissez un autre département ou attendez la fin de l'actualisation.</p>
           </div>
         ) : (
           <div className="min-w-[36rem]">

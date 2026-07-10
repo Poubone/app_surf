@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import { getBestHourForDay, getScoreRowForHour, spotForHour } from '../hooks/useSurfConditions';
-import { hourFromIso } from '../lib/days';
+import { defaultDetailHour, hourFromIso } from '../lib/days';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import type { SpotView } from '../types';
 import { HourlyBar } from './HourlyBar';
 import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 import { ScoreRing } from './ScoreRing';
 import { SpotInfoPanel } from './SpotInfoPanel';
-import { WebcamPanel } from './WebcamPanel';
 import { StatCard } from './StatCard';
 
 function parseHourLabel(label: string): number {
@@ -25,11 +24,11 @@ export function DetailView({
   initialDay?: number;
 }) {
   const [dayIndex, setDayIndex] = useState(initialDay);
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [selectedHour, setSelectedHour] = useState<number>(() => defaultDetailHour(initialDay));
   const [showScoreDetail, setShowScoreDetail] = useState(false);
 
   useEffect(() => {
-    setSelectedHour(null);
+    setSelectedHour(defaultDetailHour(dayIndex));
   }, [dayIndex]);
 
   const view = useMemo(() => spotForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
@@ -208,8 +207,7 @@ export function DetailView({
         )}
       </div>
 
-      <div className="px-6 pb-5 flex flex-col gap-5">
-        <WebcamPanel spot={spot} />
+      <div className="px-6 pb-5">
         <SpotInfoPanel spot={spot} />
       </div>
 

@@ -128,7 +128,7 @@ export function App() {
             spots={weeklySpots}
             departments={departments}
             department={weeklyDepartment}
-            onDepartmentChange={setWeeklyDepartment}
+            onDepartmentChange={handleRefreshDepartment}
             onBack={() => setView('map')}
             onSpotClick={handleSpotClick}
           />

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Linking } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { getBestHourForDay, getScoreRowForHour, spotForHour } from '../hooks/useSurfConditions';
-import { hourFromIso } from '../lib/days';
+import { defaultDetailHour, hourFromIso } from '../lib/days';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import {
   bottomTypeLabel,
@@ -26,10 +26,10 @@ export function DetailView({
   initialDay?: number;
 }) {
   const [dayIndex, setDayIndex] = useState(initialDay);
-  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+  const [selectedHour, setSelectedHour] = useState<number>(() => defaultDetailHour(initialDay));
 
   useEffect(() => {
-    setSelectedHour(null);
+    setSelectedHour(defaultDetailHour(dayIndex));
   }, [dayIndex]);
 
   const view = useMemo(() => spotForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
@@ -148,14 +148,6 @@ export function DetailView({
         </View>
       )}
 
-      {spot.webcamUrl ? (
-        <View style={styles.webcam}>
-          <Text style={styles.breakdownTitle}>Webcam</Text>
-          <TouchableOpacity style={styles.webcamButton} onPress={() => Linking.openURL(spot.webcamUrl!)}>
-            <Text style={styles.webcamButtonText}>Voir la webcam</Text>
-          </TouchableOpacity>
-        </View>
-      ) : null}
     </ScrollView>
   );
 }
@@ -244,15 +236,4 @@ const styles = StyleSheet.create({
   },
   warning: { color: '#ffb84d', fontSize: 13, marginBottom: 4 },
   description: { color: theme.muted, fontSize: 14, lineHeight: 20 },
-  webcam: { marginBottom: 20, gap: 8 },
-  webcamButton: {
-    alignSelf: 'flex-start',
-    backgroundColor: 'rgba(0,170,255,0.12)',
-    borderWidth: 1,
-    borderColor: 'rgba(0,170,255,0.3)',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  webcamButtonText: { color: '#00aaff', fontSize: 14, fontWeight: '600' },
 });
