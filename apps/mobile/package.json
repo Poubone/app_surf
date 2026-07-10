@@ -4,6 +4,7 @@
   "main": "index.ts",
   "dependencies": {
     "@app-surf/scoring": "*",
+    "@react-native-async-storage/async-storage": "^3.1.1",
     "expo": "~57.0.4",
     "expo-sqlite": "~57.0.0",
     "expo-status-bar": "~57.0.0",
