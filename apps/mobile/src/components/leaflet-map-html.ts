@@ -40,7 +40,7 @@ export const LEAFLET_MAP_HTML = `<!DOCTYPE html>
 
     function visiblePins() {
       var zoom = map.getZoom();
-      if (zoom <= 6) return allPins.filter(function(p) { return p.hasScore; });
+      if (zoom <= 6) return allPins;
       var bounds = map.getBounds();
       var inView = allPins.filter(function(p) {
         return bounds.contains([p.latitude, p.longitude]);

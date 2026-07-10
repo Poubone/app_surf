@@ -17,7 +17,6 @@ import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotVi
 const DEFAULT_DEPARTMENT = '64';
 const SCORED_STORAGE_KEY = 'surfscore-scored-departments';
 const REFRESH_CONCURRENCY = 2;
-const SPOTS_LOAD_DELAY_MS = 4000;
 
 async function mapWithConcurrency<T, R>(
   items: T[],
@@ -483,13 +482,52 @@ export function useSurfConditions() {
 
   useEffect(() => {
     let cancelled = false;
+
     (async () => {
       setLoadingCatalog(true);
       setNetworkError(false);
       try {
-        const cat = await loadCatalog();
+        const cached = await loadScoredViewsFromStorage();
+        if (!cancelled && cached.size > 0) setScoredViews(cached);
+
+        const [cat, scraped] = await Promise.all([loadCatalog(), loadSpots()]);
         if (cancelled) return;
         setCatalog(cat);
+        setScrapedSpots(scraped);
+
+        let toRefresh = DEFAULT_DEPARTMENT;
+        const stored = await getJsonItem<string[]>(SCORED_STORAGE_KEY, []);
+        if (stored.includes(DEFAULT_DEPARTMENT)) toRefresh = DEFAULT_DEPARTMENT;
+        else if (stored.length > 0) toRefresh = stored[stored.length - 1]!;
+        if (!cancelled) setWeeklyDepartment(toRefresh);
+
+        setCatalog(cat);
+        setScrapedSpots(scraped);
+        setLoadingCatalog(false);
+
+        const deptSpots = scraped.filter((s) => s.department === toRefresh);
+        if (deptSpots.length > 0 && !cancelled) {
+          setRefreshingDept(toRefresh);
+          try {
+            const results = await mapWithConcurrency(deptSpots, REFRESH_CONCURRENCY, async (spot) => {
+              try {
+                return await buildSpotView(spot);
+              } catch (e) {
+                return emptyScoredView(spot, String(e));
+              }
+            });
+            if (cancelled) return;
+            setScoredViews((prev) => {
+              const next = new Map(prev);
+              for (const view of results) next.set(view.id, view);
+              void saveScoredViewsToStorage(next);
+              return next;
+            });
+            await setJsonItem(SCORED_STORAGE_KEY, [...new Set([...stored, toRefresh])]);
+          } finally {
+            if (!cancelled) setRefreshingDept(null);
+          }
+        }
       } catch {
         if (!cancelled) setNetworkError(true);
       } finally {
@@ -497,23 +535,8 @@ export function useSurfConditions() {
       }
     })();
 
-    const spotsTimer = setTimeout(() => {
-      void (async () => {
-        try {
-          const scraped = await loadSpots();
-          if (cancelled) return;
-          setScrapedSpots(scraped);
-          const cached = await loadScoredViewsFromStorage();
-          if (!cancelled && cached.size > 0) setScoredViews(cached);
-        } catch {
-          /* spots.json optionnel au démarrage — Actualiser le chargera */
-        }
-      })();
-    }, SPOTS_LOAD_DELAY_MS);
-
     return () => {
       cancelled = true;
-      clearTimeout(spotsTimer);
     };
   }, []);
 

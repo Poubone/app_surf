@@ -51,14 +51,14 @@ export function MapScreen({
   const spotById = useMemo(() => new Map(mapSpots.map((s) => [s.id, s])), [mapSpots]);
 
   const zoomHint =
-    scoredCount === 0 && mapReady
-      ? 'Appuyez sur Actualiser pour scorer un département'
-      : !USE_LEAFLET_MAP && region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
-        ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
-        : !USE_LEAFLET_MAP && region.latitudeDelta > 3 && allPins.length > scoredCount
-          ? 'Spots non scorés visibles en zoomant'
-          : USE_LEAFLET_MAP && scoredCount === 0
-            ? 'Zoomez pour explorer · Actualiser pour scorer'
+    scoredCount === 0 && mapReady && allPins.length === 0
+      ? 'Chargement des spots…'
+      : scoredCount === 0 && mapReady
+        ? 'Points gris = catalogue · Actualiser pour scorer'
+        : !USE_LEAFLET_MAP && region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
+          ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
+          : !USE_LEAFLET_MAP && region.latitudeDelta > 3 && allPins.length > scoredCount
+            ? 'Spots non scorés visibles en zoomant'
             : null;
 
   if (networkError && mapSpots.length === 0) {
