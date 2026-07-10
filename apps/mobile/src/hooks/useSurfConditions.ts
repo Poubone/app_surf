@@ -16,7 +16,7 @@ import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotVi
 const DEFAULT_DEPARTMENT = '64';
 const SCORED_STORAGE_KEY = 'surfscore-scored-departments';
 const REFRESH_CONCURRENCY = 2;
-const INITIAL_SCORE_DELAY_MS = 2500;
+const SPOTS_LOAD_DELAY_MS = 4000;
 
 async function mapWithConcurrency<T, R>(
   items: T[],
@@ -402,7 +402,12 @@ export function useSurfConditions() {
 
   const refreshSpot = useCallback(
     async (surfForecastSlug: string): Promise<SpotView | null> => {
-      const spot = scrapedBySfSlug.get(surfForecastSlug);
+      let spots = scrapedSpots;
+      if (spots.length === 0) {
+        spots = await loadSpots();
+        setScrapedSpots(spots);
+      }
+      const spot = spots.find((s) => s.surfForecastSlug === surfForecastSlug);
       if (!spot) return null;
 
       setRefreshingSpotSlug(surfForecastSlug);
@@ -427,12 +432,18 @@ export function useSurfConditions() {
         setRefreshingSpotSlug(null);
       }
     },
-    [scrapedBySfSlug],
+    [scrapedSpots],
   );
 
   const refreshDepartment = useCallback(
     async (departmentCode: string) => {
-      const deptSpots = scrapedSpots.filter((s) => s.department === departmentCode);
+      let spots = scrapedSpots;
+      if (spots.length === 0) {
+        spots = await loadSpots();
+        setScrapedSpots(spots);
+      }
+
+      const deptSpots = spots.filter((s) => s.department === departmentCode);
       if (deptSpots.length === 0) return;
 
       setRefreshingDept(departmentCode);
@@ -467,49 +478,30 @@ export function useSurfConditions() {
       setLoadingCatalog(true);
       setNetworkError(false);
       try {
-        const [cat, scraped] = await Promise.all([loadCatalog(), loadSpots()]);
+        const cat = await loadCatalog();
         if (cancelled) return;
         setCatalog(cat);
-        setScrapedSpots(scraped);
-
-        let toRefresh = DEFAULT_DEPARTMENT;
-        const stored = await getJsonItem<string[]>(SCORED_STORAGE_KEY, []);
-        if (stored.includes(DEFAULT_DEPARTMENT)) toRefresh = DEFAULT_DEPARTMENT;
-        else if (stored.length > 0) toRefresh = stored[stored.length - 1]!;
-
-        const deptSpots = scraped.filter((s) => s.department === toRefresh);
-        if (deptSpots.length === 0) return;
-
-        // Laisser la carte monter avant le pic mémoire (411 pins + scoring)
-        await new Promise((r) => setTimeout(r, INITIAL_SCORE_DELAY_MS));
-        if (cancelled) return;
-
-        setRefreshingDept(toRefresh);
-        const results = await mapWithConcurrency(deptSpots, REFRESH_CONCURRENCY, async (spot) => {
-          try {
-            return await buildSpotView(spot);
-          } catch (e) {
-            return emptyScoredView(spot, String(e));
-          }
-        });
-        if (cancelled) return;
-        setScoredViews((prev) => {
-          const next = new Map(prev);
-          for (const view of results) next.set(view.id, view);
-          return next;
-        });
-        await setJsonItem(SCORED_STORAGE_KEY, [...new Set([...stored, toRefresh])]);
       } catch {
         if (!cancelled) setNetworkError(true);
       } finally {
-        if (!cancelled) {
-          setLoadingCatalog(false);
-          setRefreshingDept(null);
-        }
+        if (!cancelled) setLoadingCatalog(false);
       }
     })();
+
+    const spotsTimer = setTimeout(() => {
+      void (async () => {
+        try {
+          const scraped = await loadSpots();
+          if (!cancelled) setScrapedSpots(scraped);
+        } catch {
+          /* spots.json optionnel au démarrage — Actualiser le chargera */
+        }
+      })();
+    }, SPOTS_LOAD_DELAY_MS);
+
     return () => {
       cancelled = true;
+      clearTimeout(spotsTimer);
     };
   }, []);
 

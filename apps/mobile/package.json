@@ -6,11 +6,9 @@
     "@app-surf/scoring": "*",
     "@react-native-async-storage/async-storage": "^3.1.1",
     "expo": "~57.0.4",
-    "expo-sqlite": "~57.0.0",
     "expo-status-bar": "~57.0.0",
     "react": "19.2.3",
     "react-native": "0.86.0",
-    "react-native-gifted-charts": "^1.4.0",
     "react-native-maps": "1.20.0",
     "react-native-svg": "15.15.4"
   },
@@ -24,7 +22,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "prebuild:android": "expo prebuild --platform android --no-install",
-    "android:apk": "npm run prebuild:android && cd android && ./gradlew assembleRelease"
+    "android:apk": "npm run prebuild:android && node -e \"const fs=require('fs');const p='android/gradle.properties';fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace('newArchEnabled=true','newArchEnabled=false'))\" && cd android && ./gradlew assembleRelease"
   },
   "private": true
 }

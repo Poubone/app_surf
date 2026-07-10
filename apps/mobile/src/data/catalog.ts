@@ -1,4 +1,4 @@
-import catalogJson from '../../assets/france-catalog.json';
+let cache: CatalogSpot[] | null = null;
 
 export interface CatalogSpot {
   surfForecastSlug: string;
@@ -10,6 +10,10 @@ export interface CatalogSpot {
   regionSlug: string;
 }
 
+/** Chargement différé du catalogue (carte affichable avant le gros spots.json). */
 export async function loadCatalog(): Promise<CatalogSpot[]> {
-  return catalogJson as CatalogSpot[];
+  if (cache) return cache;
+  const mod = await import('../../assets/france-catalog.json');
+  cache = mod.default as CatalogSpot[];
+  return cache;
 }
