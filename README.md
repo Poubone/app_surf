@@ -33,7 +33,15 @@ npm run dev:web                       # http://localhost:5173/app_surf/
 **En ligne :** à chaque push sur `main`, le workflow `Deploy Web` publie sur GitHub Pages  
 → https://poubone.github.io/app_surf/
 
-> Activer GitHub Pages une fois : *Settings → Pages → Build and deployment → Source: GitHub Actions*.
+### Activer GitHub Pages (une seule fois)
+
+Si le job `deploy` échoue avec `Failed to create deployment (status: 404)` :
+
+1. Ouvrir [Settings → Pages](https://github.com/Poubone/app_surf/settings/pages)
+2. **Build and deployment → Source** : choisir **GitHub Actions** (pas « Deploy from a branch »)
+3. Relancer le workflow *Deploy Web* (onglet Actions → Run workflow)
+
+Sans cette étape, le build réussit mais le déploiement renvoie 404 car l'environnement `github-pages` n'existe pas encore.
 
 Layout desktop : carte **Leaflet** (tuiles sombres CARTO/OSM) avec pins style Figma, panneau détail au clic.
 
