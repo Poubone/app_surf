@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
-import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin } from 'lucide-react';
-import { spotForDay } from '../hooks/useSurfConditions';
+import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import { getScoreRowForDay, spotForDay } from '../hooks/useSurfConditions';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import type { SpotView } from '../types';
 import { HourlyBar } from './HourlyBar';
+import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 import { ScoreRing } from './ScoreRing';
 import { StatCard } from './StatCard';
 
@@ -17,7 +18,9 @@ export function DetailView({
   initialDay?: number;
 }) {
   const [dayIndex, setDayIndex] = useState(initialDay);
+  const [showScoreDetail, setShowScoreDetail] = useState(false);
   const view = useMemo(() => spotForDay(spot, dayIndex), [spot, dayIndex]);
+  const scoreRow = useMemo(() => getScoreRowForDay(spot, dayIndex), [spot, dayIndex]);
   const maxH = Math.max(...view.hourly.map((h) => h.height), 0.1);
   const color = getScoreColor(view.score);
 
@@ -33,7 +36,7 @@ export function DetailView({
   }
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+    <div className="flex flex-col h-full min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'thin' }}>
       <div
         className="relative flex flex-col px-6 pt-6 pb-8"
         style={{
@@ -92,6 +95,33 @@ export function DetailView({
             {view.tide}
           </div>
         </div>
+      </div>
+
+      <div className="px-6 py-5 flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs uppercase tracking-widest text-muted-foreground m-0" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
+            Score /100
+          </h3>
+          {scoreRow && (
+            <button
+              type="button"
+              onClick={() => setShowScoreDetail((v) => !v)}
+              className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg"
+              style={{
+                backgroundColor: 'rgba(0,212,168,0.1)',
+                border: '1px solid rgba(0,212,168,0.25)',
+                color: '#00d4a8',
+                fontFamily: "'Outfit', sans-serif",
+              }}
+            >
+              {showScoreDetail ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              {showScoreDetail ? 'Masquer le détail' : 'Détail du scoring'}
+            </button>
+          )}
+        </div>
+        {showScoreDetail && scoreRow && (
+          <ScoreBreakdownPanel row={scoreRow} config={spot.scoringConfig} tideUnavailable={spot.tideUnavailable} />
+        )}
       </div>
 
       <div className="px-6 py-5 flex flex-col gap-4">

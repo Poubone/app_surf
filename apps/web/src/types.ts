@@ -1,3 +1,19 @@
+import type { TideStage } from '@app-surf/scoring';
+import type { ScoreBreakdown } from '@app-surf/scoring';
+
+export interface SpotScoringConfig {
+  beachOrientation: number;
+  swellAngleMin: number;
+  swellAngleMax: number;
+  windOffshoreMin: number;
+  windOffshoreMax: number;
+  idealSwellHeightMin: number;
+  idealSwellHeightMax: number;
+  tideOptimalStage: TideStage;
+  bottomType?: string;
+  level?: string;
+}
+
 export interface SpotView {
   id: string;
   name: string;
@@ -15,6 +31,7 @@ export interface SpotView {
   dayLabels: string[];
   hourly: { hour: string; score: number; height: number }[];
   hourlyScoresFull?: HourlyScoreRow[];
+  scoringConfig: SpotScoringConfig;
   dailyKeys?: string[];
   tideTimes?: string[];
   tideHeights?: (number | null)[];
@@ -34,6 +51,8 @@ export interface HourlyScoreRow {
   airTemp: number;
   weatherCode: number;
   waterTemp: number | null;
+  tideStage: TideStage;
+  scoreBreakdown: Pick<ScoreBreakdown, 'swellScore' | 'windScore' | 'tideScore' | 'windMalus' | 'windLabel'>;
 }
 
 export const DISPLAY_HOURS = [6, 8, 10, 12, 14, 16, 18, 20];

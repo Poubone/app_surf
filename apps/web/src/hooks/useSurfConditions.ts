@@ -7,7 +7,22 @@ import { loadSpots } from '../data/loadSpots';
 import { dayLabelsFromDates, hourFromIso } from '../lib/days';
 import { degreesToCompass, kmhToKnots, localDateKey, weatherCodeToLabel } from '../lib/display';
 import { formatTideLabel } from '../lib/tide-label';
-import { DISPLAY_HOURS, type HourlyScoreRow, type SpotView } from '../types';
+import { DISPLAY_HOURS, type HourlyScoreRow, type SpotScoringConfig, type SpotView } from '../types';
+
+function spotScoringConfig(spot: Spot): SpotScoringConfig {
+  return {
+    beachOrientation: spot.beachOrientation,
+    swellAngleMin: spot.swellAngleMin,
+    swellAngleMax: spot.swellAngleMax,
+    windOffshoreMin: spot.windOffshoreMin,
+    windOffshoreMax: spot.windOffshoreMax,
+    idealSwellHeightMin: spot.idealSwellHeightMin,
+    idealSwellHeightMax: spot.idealSwellHeightMax,
+    tideOptimalStage: spot.tideOptimalStage,
+    bottomType: spot.bottomType,
+    level: spot.level,
+  };
+}
 
 export interface HourlyScore {
   time: string;
@@ -87,6 +102,14 @@ function rowFromIndex(
     airTemp: Math.round(weather.hourly.temperature_2m[wIdx] ?? 0),
     weatherCode: weather.hourly.weather_code[wIdx] ?? 0,
     waterTemp: marine.hourly.sea_surface_temperature[i],
+    tideStage: h.conditions.tideStage,
+    scoreBreakdown: {
+      swellScore: h.score.swellScore,
+      windScore: h.score.windScore,
+      tideScore: h.score.tideScore,
+      windMalus: h.score.windMalus,
+      windLabel: h.score.windLabel,
+    },
   };
 }
 
@@ -159,6 +182,7 @@ async function buildSpotView(spot: Spot): Promise<SpotView> {
     tideTimes: hourly.time,
     tideHeights: hourly.sea_level_height_msl,
     tideUnavailable,
+    scoringConfig: spotScoringConfig(spot),
   };
 }
 
@@ -192,6 +216,7 @@ export function useSurfConditions() {
               weeklyScores: [0, 0, 0, 0, 0, 0, 0],
               dayLabels: dayLabelsFromDates([]),
               hourly: [],
+              scoringConfig: spotScoringConfig(spot),
               error: String(e),
             } satisfies SpotView;
           }
@@ -250,4 +275,26 @@ export function spotForDay(spot: SpotView, dayIndex: number): SpotView {
         ? spot.tide
         : formatTideLabel(spot.tideTimes, spot.tideHeights, at),
   };
+}
+
+/** Score row used for display (current hour today, noon on other days). */
+export function getScoreRowForDay(spot: SpotView, dayIndex: number): HourlyScoreRow | null {
+  if (!spot.hourlyScoresFull?.length) return null;
+
+  const dayStr = spot.dailyKeys?.[dayIndex];
+  if (!dayStr) return spot.hourlyScoresFull[0] ?? null;
+
+  const dayScores = spot.hourlyScoresFull.filter((h) => localDateKey(h.time) === dayStr);
+  if (dayScores.length === 0) return null;
+
+  if (dayIndex === 0) {
+    const now = new Date();
+    const current = spot.hourlyScoresFull.find((h) => new Date(h.time) >= now);
+    if (current && localDateKey(current.time) === dayStr) return current;
+  }
+
+  return (
+    dayScores.find((h) => hourFromIso(h.time) === 12) ??
+    dayScores[Math.floor(dayScores.length / 2)]
+  );
 }
