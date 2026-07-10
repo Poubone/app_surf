@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { getBestHourForDay, getScoreRowForDay, spotForDay } from '../hooks/useSurfConditions';
+import { getBestHourForDay, getScoreRowForHour, spotForHour } from '../hooks/useSurfConditions';
+import { hourFromIso } from '../lib/days';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import {
   bottomTypeLabel,
@@ -10,6 +11,10 @@ import {
 } from '../lib/spot-info';
 import type { SpotView } from '../types';
 import { theme } from '../theme';
+
+function parseHourLabel(label: string): number {
+  return Number(label.replace('h', ''));
+}
 
 export function DetailView({
   spot,
@@ -21,9 +26,17 @@ export function DetailView({
   initialDay?: number;
 }) {
   const [dayIndex, setDayIndex] = useState(initialDay);
-  const view = useMemo(() => spotForDay(spot, dayIndex), [spot, dayIndex]);
-  const scoreRow = useMemo(() => getScoreRowForDay(spot, dayIndex), [spot, dayIndex]);
+  const [selectedHour, setSelectedHour] = useState<number | null>(null);
+
+  useEffect(() => {
+    setSelectedHour(null);
+  }, [dayIndex]);
+
+  const view = useMemo(() => spotForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
+  const scoreRow = useMemo(() => getScoreRowForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
   const bestHour = useMemo(() => getBestHourForDay(spot, dayIndex), [spot, dayIndex]);
+  const activeHour = scoreRow ? hourFromIso(scoreRow.time) : null;
+  const hourLabel = activeHour != null ? `${activeHour.toString().padStart(2, '0')}h` : null;
   const color = getScoreColor(view.score);
   const warnings = spotAccessWarnings(spot.descriptionFr);
   const showDescription = spot.descriptionFr && !isGenericDescription(spot.descriptionFr);
@@ -45,7 +58,10 @@ export function DetailView({
         <Text style={styles.back}>← Retour</Text>
       </TouchableOpacity>
 
-      <Text style={styles.region}>{view.departmentName}</Text>
+      <Text style={styles.region}>
+        {view.departmentName}
+        {hourLabel ? ` · ${hourLabel}` : ''}
+      </Text>
       <Text style={styles.name}>{view.name}</Text>
 
       <View style={styles.scoreBlock}>
@@ -73,6 +89,32 @@ export function DetailView({
         ))}
       </ScrollView>
 
+      <View style={styles.hourly}>
+        <Text style={styles.breakdownTitle}>Prévisions horaires</Text>
+        <Text style={styles.hourlyHint}>Touchez un créneau pour voir les conditions</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <View style={styles.hourlyRow}>
+            {view.hourly.map((h) => {
+              const hour = parseHourLabel(h.hour);
+              const selected = activeHour === hour;
+              return (
+                <TouchableOpacity
+                  key={h.hour}
+                  style={[styles.hourCell, selected && { borderColor: getScoreColor(h.score), backgroundColor: `${getScoreColor(h.score)}18` }]}
+                  onPress={() => setSelectedHour(hour)}
+                >
+                  <Text style={styles.hourLabel}>{h.hour}</Text>
+                  <Text style={[styles.hourScore, { color: getScoreColor(h.score) }]}>{h.score}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </ScrollView>
+      </View>
+
+      <Text style={styles.conditionsTitle}>
+        {hourLabel ? `Conditions à ${hourLabel}` : 'Conditions du jour'}
+      </Text>
       <View style={styles.stats}>
         <Stat label="Houle" value={`${view.waves.height}m · ${view.waves.period}s`} sub={view.waves.direction} />
         <Stat label="Vent" value={`${view.wind.speed} nds ${view.wind.direction}`} sub={`Raf. ${view.wind.gust}`} />
@@ -105,18 +147,6 @@ export function DetailView({
           {showDescription ? <Text style={styles.description}>{spot.descriptionFr}</Text> : null}
         </View>
       )}
-
-      <View style={styles.hourly}>
-        <Text style={styles.breakdownTitle}>Aujourd'hui par heure</Text>
-        <View style={styles.hourlyRow}>
-          {view.hourly.map((h) => (
-            <View key={h.hour} style={styles.hourCell}>
-              <Text style={styles.hourLabel}>{h.hour}</Text>
-              <Text style={[styles.hourScore, { color: getScoreColor(h.score) }]}>{h.score}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
     </ScrollView>
   );
 }
@@ -150,6 +180,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   dayChipText: { color: theme.muted, fontSize: 12, fontWeight: '600' },
+  conditionsTitle: { color: theme.text, fontWeight: '700', marginBottom: 10 },
   stats: { gap: 10, marginBottom: 20 },
   stat: { backgroundColor: theme.card, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: theme.border },
   statLabel: { color: theme.muted, fontSize: 11, marginBottom: 4 },
@@ -158,9 +189,18 @@ const styles = StyleSheet.create({
   breakdown: { marginBottom: 20 },
   breakdownTitle: { color: theme.text, fontWeight: '700', marginBottom: 8 },
   breakdownLine: { color: theme.muted, fontSize: 13, marginBottom: 4 },
-  hourly: { marginTop: 8 },
-  hourlyRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  hourCell: { alignItems: 'center', minWidth: 40 },
+  hourly: { marginBottom: 20 },
+  hourlyHint: { color: theme.muted, fontSize: 12, marginBottom: 8 },
+  hourlyRow: { flexDirection: 'row', gap: 8 },
+  hourCell: {
+    alignItems: 'center',
+    minWidth: 44,
+    paddingVertical: 8,
+    paddingHorizontal: 6,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
   hourLabel: { color: theme.muted, fontSize: 10 },
   hourScore: { fontSize: 14, fontWeight: '700' },
   error: { color: '#ff5252', marginTop: 20 },

@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
-import { getBestHourForDay, getScoreRowForDay, spotForDay } from '../hooks/useSurfConditions';
+import { getBestHourForDay, getScoreRowForHour, spotForHour } from '../hooks/useSurfConditions';
+import { hourFromIso } from '../lib/days';
 import { getScoreColor, getScoreLabel } from '../lib/display';
 import type { SpotView } from '../types';
 import { HourlyBar } from './HourlyBar';
@@ -8,6 +9,10 @@ import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 import { ScoreRing } from './ScoreRing';
 import { SpotInfoPanel } from './SpotInfoPanel';
 import { StatCard } from './StatCard';
+
+function parseHourLabel(label: string): number {
+  return Number(label.replace('h', ''));
+}
 
 export function DetailView({
   spot,
@@ -19,10 +24,18 @@ export function DetailView({
   initialDay?: number;
 }) {
   const [dayIndex, setDayIndex] = useState(initialDay);
+  const [selectedHour, setSelectedHour] = useState<number | null>(null);
   const [showScoreDetail, setShowScoreDetail] = useState(false);
-  const view = useMemo(() => spotForDay(spot, dayIndex), [spot, dayIndex]);
-  const scoreRow = useMemo(() => getScoreRowForDay(spot, dayIndex), [spot, dayIndex]);
+
+  useEffect(() => {
+    setSelectedHour(null);
+  }, [dayIndex]);
+
+  const view = useMemo(() => spotForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
+  const scoreRow = useMemo(() => getScoreRowForHour(spot, dayIndex, selectedHour), [spot, dayIndex, selectedHour]);
   const bestHour = useMemo(() => getBestHourForDay(spot, dayIndex), [spot, dayIndex]);
+  const activeHour = scoreRow ? hourFromIso(scoreRow.time) : null;
+  const hourLabel = activeHour != null ? `${activeHour.toString().padStart(2, '0')}h` : null;
   const maxH = Math.max(...view.hourly.map((h) => h.height), 0.1);
   const color = getScoreColor(view.score);
 
@@ -58,7 +71,7 @@ export function DetailView({
 
         <div className="flex items-start justify-between mb-6">
           <div>
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
               <MapPin size={13} style={{ color }} />
               <span className="text-xs text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace" }}>
                 {view.region}
@@ -69,6 +82,19 @@ export function DetailView({
               >
                 {spot.dayLabels[dayIndex] ?? '—'}
               </span>
+              {hourLabel && (
+                <span
+                  className="text-xs px-2 py-0.5 rounded-full font-bold"
+                  style={{
+                    backgroundColor: 'rgba(255,255,255,0.06)',
+                    color: 'rgba(232,237,245,0.7)',
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: '0.6rem',
+                  }}
+                >
+                  {hourLabel}
+                </span>
+              )}
             </div>
             <h2 className="text-3xl font-bold text-foreground" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, letterSpacing: '-0.03em' }}>
               {view.name}
@@ -118,6 +144,43 @@ export function DetailView({
       </div>
 
       <div className="px-6 py-5 flex flex-col gap-4">
+        <h3 className="text-xs uppercase tracking-widest text-muted-foreground m-0" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
+          Prévisions horaires
+        </h3>
+        <p className="text-xs text-muted-foreground m-0 -mt-2" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          Touchez un créneau pour voir les conditions à cette heure
+        </p>
+        <div className="p-4 rounded-2xl" style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+          <div className="flex gap-1.5">
+            {view.hourly.map((h) => {
+              const hour = parseHourLabel(h.hour);
+              return (
+                <HourlyBar
+                  key={h.hour}
+                  h={h}
+                  maxH={maxH}
+                  selected={activeHour === hour}
+                  onSelect={() => setSelectedHour(hour)}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="px-6 py-5 flex flex-col gap-4">
+        <h3 className="text-xs uppercase tracking-widest text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
+          {hourLabel ? `Conditions à ${hourLabel}` : 'Conditions du jour'}
+        </h3>
+        <div className="grid grid-cols-2 gap-3">
+          <StatCard icon={<span style={{ fontSize: '1.1rem' }}>🌊</span>} label="Hauteur" value={`${view.waves.height} m`} sub={`Période ${view.waves.period}s`} color={color} />
+          <StatCard icon={<Wind size={16} />} label="Vent" value={`${view.wind.speed} kn`} sub={`Rafales ${view.wind.gust} kn`} color="#00aaff" />
+          <StatCard icon={<Compass size={16} />} label="Direction" value={view.waves.direction} sub={`Vent ${view.wind.direction}`} color="#a78bfa" />
+          <StatCard icon={<Thermometer size={16} />} label="Eau" value={`${view.water.temp}°C`} sub="Température surf" color="#ffb84d" />
+        </div>
+      </div>
+
+      <div className="px-6 py-5 flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xs uppercase tracking-widest text-muted-foreground m-0" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
             Score /100
@@ -142,31 +205,6 @@ export function DetailView({
         {showScoreDetail && scoreRow && (
           <ScoreBreakdownPanel row={scoreRow} config={spot.scoringConfig} tideUnavailable={spot.tideUnavailable} />
         )}
-      </div>
-
-      <div className="px-6 py-5 flex flex-col gap-4">
-        <h3 className="text-xs uppercase tracking-widest text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
-          Conditions du jour
-        </h3>
-        <div className="grid grid-cols-2 gap-3">
-          <StatCard icon={<span style={{ fontSize: '1.1rem' }}>🌊</span>} label="Hauteur" value={`${view.waves.height} m`} sub={`Période ${view.waves.period}s`} color={color} />
-          <StatCard icon={<Wind size={16} />} label="Vent" value={`${view.wind.speed} kn`} sub={`Rafales ${view.wind.gust} kn`} color="#00aaff" />
-          <StatCard icon={<Compass size={16} />} label="Direction" value={view.waves.direction} sub={`Vent ${view.wind.direction}`} color="#a78bfa" />
-          <StatCard icon={<Thermometer size={16} />} label="Eau" value={`${view.water.temp}°C`} sub="Température surf" color="#ffb84d" />
-        </div>
-      </div>
-
-      <div className="px-6 pb-5 flex flex-col gap-4">
-        <h3 className="text-xs uppercase tracking-widest text-muted-foreground" style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
-          Prévisions horaires
-        </h3>
-        <div className="p-4 rounded-2xl" style={{ backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-          <div className="flex gap-1.5">
-            {view.hourly.map((h) => (
-              <HourlyBar key={h.hour} h={h} maxH={maxH} />
-            ))}
-          </div>
-        </div>
       </div>
 
       <div className="px-6 pb-5">
