@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { InteractionManager, View, StyleSheet, StatusBar } from 'react-native';
+import { InteractionManager, Platform, View, StyleSheet, StatusBar } from 'react-native';
 import { MapScreen } from './src/screens/MapScreen';
 import { WeeklyView } from './src/components/WeeklyView';
 import { DetailView } from './src/components/DetailView';
@@ -36,6 +36,11 @@ function AppContent() {
   useEffect(() => {
     if (loadingCatalog) {
       setMapReady(false);
+      return;
+    }
+    // Android : carte WebView Leaflet, pas besoin d'attendre react-native-maps
+    if (Platform.OS === 'android') {
+      setMapReady(true);
       return;
     }
     let timer: ReturnType<typeof setTimeout> | undefined;

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
+import { Platform, View, StyleSheet, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import type { Region } from 'react-native-maps';
+import { LeafletMap } from '../components/LeafletMap';
 import { OsmMap } from '../components/OsmMap';
 import { SpotMarker } from '../components/SpotMarker';
 import { DepartmentPicker } from '../components/DepartmentPicker';
@@ -9,6 +10,9 @@ import type { DepartmentOption } from '../lib/departments';
 import { selectMapPins, toMapPin } from '../lib/map-pins';
 import type { MapPin, SpotView } from '../types';
 import { theme, FRANCE_REGION } from '../theme';
+
+/** Android : WebView Leaflet (react-native-maps crash à l'init). iOS : carte native. */
+const USE_LEAFLET_MAP = Platform.OS === 'android';
 
 export function MapScreen({
   mapSpots,
@@ -40,59 +44,71 @@ export function MapScreen({
   const scoredCount = mapSpots.filter((s) => s.hasScore && !s.error).length;
 
   const allPins = useMemo(() => mapSpots.map(toMapPin), [mapSpots]);
-  const visiblePins = useMemo(() => selectMapPins(allPins, region), [allPins, region]);
+  const visiblePins = useMemo(
+    () => (USE_LEAFLET_MAP ? allPins : selectMapPins(allPins, region)),
+    [allPins, region],
+  );
   const spotById = useMemo(() => new Map(mapSpots.map((s) => [s.id, s])), [mapSpots]);
 
   const zoomHint =
     scoredCount === 0 && mapReady
       ? 'Appuyez sur Actualiser pour scorer un département'
-      : region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
+      : !USE_LEAFLET_MAP && region.latitudeDelta <= 3 && allPins.length - visiblePins.length > 20
         ? `Zoomez pour voir plus de spots (${visiblePins.length} affichés)`
-        : region.latitudeDelta > 3 && allPins.length > scoredCount
+        : !USE_LEAFLET_MAP && region.latitudeDelta > 3 && allPins.length > scoredCount
           ? 'Spots non scorés visibles en zoomant'
-          : null;
+          : USE_LEAFLET_MAP && scoredCount === 0
+            ? 'Zoomez pour explorer · Actualiser pour scorer'
+            : null;
 
   if (networkError && mapSpots.length === 0) {
     return <NetworkError onRetry={onRetry} />;
   }
 
-  function handlePinPress(pin: MapPin) {
-    const spot = spotById.get(pin.id);
+  function handlePinPress(pinOrId: MapPin | string) {
+    const id = typeof pinOrId === 'string' ? pinOrId : pinOrId.id;
+    const spot = spotById.get(id);
     if (spot) onSpotClick(spot);
   }
 
+  const showMap = mapReady || USE_LEAFLET_MAP;
+
   return (
     <View style={styles.container}>
-      {mapReady ? (
-        <OsmMap
-          style={styles.map}
-          initialRegion={FRANCE_REGION}
-          onRegionChangeComplete={setRegion}
-        >
-          {visiblePins.map((pin) => {
-            const slug = pin.surfForecastSlug ?? pin.slug;
-            const isRefreshing = refreshingSpotSlug === slug;
-            return (
-              <SpotMarker
-                key={pin.id}
-                latitude={pin.latitude}
-                longitude={pin.longitude}
-                name={pin.name}
-                score={pin.hasScore ? pin.score : null}
-                hasScore={pin.hasScore}
-                loading={isRefreshing}
-                onPress={() => handlePinPress(pin)}
-              />
-            );
-          })}
-        </OsmMap>
+      {showMap ? (
+        USE_LEAFLET_MAP ? (
+          <LeafletMap pins={allPins} onPinPress={handlePinPress} />
+        ) : (
+          <OsmMap
+            style={styles.map}
+            initialRegion={FRANCE_REGION}
+            onRegionChangeComplete={setRegion}
+          >
+            {visiblePins.map((pin) => {
+              const slug = pin.surfForecastSlug ?? pin.slug;
+              const isRefreshing = refreshingSpotSlug === slug;
+              return (
+                <SpotMarker
+                  key={pin.id}
+                  latitude={pin.latitude}
+                  longitude={pin.longitude}
+                  name={pin.name}
+                  score={pin.hasScore ? pin.score : null}
+                  hasScore={pin.hasScore}
+                  loading={isRefreshing}
+                  onPress={() => handlePinPress(pin)}
+                />
+              );
+            })}
+          </OsmMap>
+        )
       ) : (
         <View style={styles.mapPlaceholder}>
           <ActivityIndicator size="large" color={theme.accent} />
         </View>
       )}
 
-      {loadingCatalog && mapSpots.length === 0 && mapReady && (
+      {loadingCatalog && mapSpots.length === 0 && showMap && (
         <View style={styles.loadingOverlay}>
           <ActivityIndicator size="large" color={theme.accent} />
           <Text style={styles.loadingText}>Chargement carte…</Text>
@@ -122,7 +138,7 @@ export function MapScreen({
 
       <View style={styles.legend}>
         <Text style={styles.legendText}>
-          {!mapReady
+          {!showMap
             ? 'Initialisation carte…'
             : zoomHint ?? 'Excellent · Bon · Moyen · Faible · Non scoré'}
         </Text>
