@@ -1,6 +1,6 @@
 import { ArrowLeft, TrendingUp } from 'lucide-react';
 import { getScoreColor } from '../lib/display';
-import { DAYS, type SpotView } from '../types';
+import type { SpotView } from '../types';
 
 export function WeeklyView({
   spots,
@@ -11,6 +11,8 @@ export function WeeklyView({
   onBack: () => void;
   onSpotClick: (spot: SpotView, day: number) => void;
 }) {
+  const dayLabels = spots[0]?.dayLabels ?? [];
+
   const best = spots.reduce<{ spot: SpotView; score: number; day: number } | null>((acc, spot) => {
     spot.weeklyScores.forEach((s, i) => {
       if (!acc || s > acc.score) acc = { spot, score: s, day: i };
@@ -39,9 +41,9 @@ export function WeeklyView({
 
         <div className="flex gap-2 mt-5">
           <div className="w-28 shrink-0" />
-          {DAYS.map((d, i) => (
+          {dayLabels.map((d, i) => (
             <div
-              key={d}
+              key={d + i}
               className="flex-1 text-center py-1 rounded-lg"
               style={{
                 fontFamily: "'Space Mono', monospace",
@@ -67,15 +69,15 @@ export function WeeklyView({
             {spot.weeklyScores.map((s, i) => {
               const c = getScoreColor(s);
               return (
-                <button key={DAYS[i]} type="button" onClick={() => onSpotClick(spot, i)} className="flex-1 flex justify-center">
+                <button key={i} type="button" onClick={() => onSpotClick(spot, i)} className="flex-1 flex justify-center">
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border"
+                    className="min-w-8 h-8 px-1 rounded-full flex items-center justify-center text-xs font-bold border"
                     style={{
                       backgroundColor: i === 0 ? `${c}22` : 'rgba(255,255,255,0.03)',
                       borderColor: i === 0 ? c : 'rgba(255,255,255,0.08)',
                       color: c,
                       fontFamily: "'Space Mono', monospace",
-                      fontSize: '0.7rem',
+                      fontSize: '0.6rem',
                       opacity: i === 0 ? 1 : 0.7,
                     }}
                   >
@@ -101,7 +103,7 @@ export function WeeklyView({
               Meilleure session de la semaine
             </div>
             <div className="text-xs text-muted-foreground mt-0.5" style={{ fontFamily: "'Space Mono', monospace" }}>
-              {DAYS[best.day]} · {best.spot.name} · Score {best.score}/10
+              {best.spot.dayLabels[best.day]} · {best.spot.name} · Score {best.score}/100
             </div>
           </div>
         </div>

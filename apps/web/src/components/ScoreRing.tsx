@@ -4,7 +4,7 @@ export function ScoreRing({ score, size = 52 }: { score: number; size?: number }
   const color = getScoreColor(score);
   const r = (size - 7) / 2;
   const circ = 2 * Math.PI * r;
-  const offset = circ - (score / 10) * circ;
+  const offset = circ - (score / 100) * circ;
 
   return (
     <div style={{ width: size, height: size }} className="relative flex items-center justify-center shrink-0">

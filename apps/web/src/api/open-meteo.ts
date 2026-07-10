@@ -3,8 +3,8 @@ export interface OpenMeteoHourly {
   wave_height: number[];
   wave_period: number[];
   wave_direction: number[];
-  wind_speed_10m: number[];
-  wind_direction_10m: number[];
+  wind_speed_10m: (number | null)[];
+  wind_direction_10m: (number | null)[];
   sea_level_height_msl: (number | null)[];
   sea_surface_temperature: (number | null)[];
 }
@@ -12,8 +12,6 @@ export interface OpenMeteoHourly {
 export interface MarineForecast {
   hourly: OpenMeteoHourly;
 }
-
-const MS_TO_KNOTS = 1.944;
 
 export async function fetchMarineForecast(
   latitude: number,
@@ -36,17 +34,11 @@ export async function fetchMarineForecast(
   return res.json();
 }
 
-export function toHourlyConditions(hourly: OpenMeteoHourly, index: number) {
+/** Wave data from marine API; wind is often null at sea cells — use weather API instead. */
+export function toMarineWaveConditions(hourly: OpenMeteoHourly, index: number) {
   return {
     waveHeight: hourly.wave_height[index] ?? 0,
     wavePeriod: hourly.wave_period[index] ?? 0,
     waveDirection: hourly.wave_direction[index] ?? 0,
-    windSpeedKnots: (hourly.wind_speed_10m[index] ?? 0) * MS_TO_KNOTS,
-    windDirection: hourly.wind_direction_10m[index] ?? 0,
   };
-}
-
-export function indexAtTime(times: string[], isoTime: string): number {
-  const idx = times.indexOf(isoTime);
-  return idx >= 0 ? idx : 0;
 }

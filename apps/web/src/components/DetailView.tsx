@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowLeft, Wind, Thermometer, Compass, Clock, MapPin } from 'lucide-react';
 import { spotForDay } from '../hooks/useSurfConditions';
 import { getScoreColor, getScoreLabel } from '../lib/display';
-import { DAYS, type SpotView } from '../types';
+import type { SpotView } from '../types';
 import { HourlyBar } from './HourlyBar';
 import { ScoreRing } from './ScoreRing';
 import { StatCard } from './StatCard';
@@ -62,7 +62,7 @@ export function DetailView({
                 className="text-xs px-2 py-0.5 rounded-full font-bold"
                 style={{ backgroundColor: `${color}18`, color, fontFamily: "'Space Mono', monospace", fontSize: '0.6rem' }}
               >
-                {DAYS[dayIndex]}
+                {spot.dayLabels[dayIndex] ?? '—'}
               </span>
             </div>
             <h2 className="text-3xl font-bold text-foreground" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, letterSpacing: '-0.03em' }}>
@@ -71,9 +71,9 @@ export function DetailView({
           </div>
           <div className="flex flex-col items-center gap-1">
             <ScoreRing score={view.score} size={72} />
-            <span className="text-xs font-bold" style={{ color, fontFamily: "'Space Mono', monospace", fontSize: '0.65rem' }}>
-              {getScoreLabel(view.score)}
-            </span>
+            <p className="text-xs text-muted-foreground mt-1 text-center" style={{ fontFamily: "'Space Mono', monospace" }}>
+              {view.score}/100 · {getScoreLabel(view.score)}
+            </p>
           </div>
         </div>
 
@@ -127,15 +127,16 @@ export function DetailView({
           {spot.weeklyScores.map((s, i) => {
             const c = getScoreColor(s);
             const isActive = i === dayIndex;
+            const label = spot.dayLabels[i] ?? '';
             return (
               <button
-                key={DAYS[i]}
+                key={label + i}
                 type="button"
                 onClick={() => setDayIndex(i)}
                 className="flex flex-col items-center gap-2 flex-1"
               >
                 <span className="text-xs font-bold" style={{ color: isActive ? c : 'rgba(232,237,245,0.35)', fontFamily: "'Space Mono', monospace", fontSize: '0.6rem' }}>
-                  {DAYS[i]}
+                  {label}
                 </span>
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border"

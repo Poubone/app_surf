@@ -143,7 +143,7 @@ export function MapScreen({
                         fontFamily: "'Space Mono', monospace",
                       }}
                     >
-                      {spot.score}/10
+                      {spot.score}/100
                     </span>
                     <ChevronRight size={14} className="text-muted-foreground" />
                   </div>
@@ -156,10 +156,10 @@ export function MapScreen({
         {!searchQuery && (
           <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-4 z-10 pointer-events-none">
             {[
-              { label: 'Excellent', score: 9 },
-              { label: 'Bon', score: 7 },
-              { label: 'Correct', score: 5 },
-              { label: 'Faible', score: 2 },
+              { label: 'Excellent', score: 85 },
+              { label: 'Bon', score: 65 },
+              { label: 'Moyen', score: 45 },
+              { label: 'Faible', score: 20 },
             ].map(({ label, score }) => (
               <div key={label} className="flex items-center gap-1.5">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: getScoreColor(score) }} />
