@@ -83,24 +83,24 @@ export function WeeklyView({
               })}
             </View>
             {spots.map((spot) => (
-            <View key={spot.id} style={styles.spotRow}>
-              <TouchableOpacity style={styles.nameCol} onPress={() => onSpotClick(spot, 0)}>
-                <Text style={styles.spotName} numberOfLines={1}>
-                  {spot.name}
-                </Text>
-              </TouchableOpacity>
-              {spot.weeklyScores.map((s, i) => {
-                const c = getScoreColor(s);
-                return (
-                  <TouchableOpacity key={i} style={styles.scoreCell} onPress={() => onSpotClick(spot, i)}>
-                    <View style={[styles.scoreBubble, { borderColor: c, backgroundColor: i === 0 ? `${c}22` : 'transparent' }]}>
-                      <Text style={[styles.scoreText, { color: c }]}>{s}</Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          ))
+              <View key={spot.id} style={styles.spotRow}>
+                <TouchableOpacity style={styles.nameCol} onPress={() => onSpotClick(spot, 0)}>
+                  <Text style={styles.spotName} numberOfLines={1}>
+                    {spot.name}
+                  </Text>
+                </TouchableOpacity>
+                {spot.weeklyScores.map((s, i) => {
+                  const c = getScoreColor(s);
+                  return (
+                    <TouchableOpacity key={i} style={styles.scoreCell} onPress={() => onSpotClick(spot, i)}>
+                      <View style={[styles.scoreBubble, { borderColor: c, backgroundColor: i === 0 ? `${c}22` : 'transparent' }]}>
+                        <Text style={[styles.scoreText, { color: c }]}>{s}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            ))}
           </>
         )}
       </ScrollView>

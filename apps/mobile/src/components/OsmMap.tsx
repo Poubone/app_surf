@@ -1,26 +1,23 @@
 import type { ReactNode } from 'react';
 import { Platform } from 'react-native';
-import MapView, { UrlTile } from 'react-native-maps';
+import MapView, { type Region, UrlTile } from 'react-native-maps';
 
 /** OpenStreetMap tiles — free, no API key (unlike Google Maps). */
 export const OSM_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 interface OsmMapProps {
   style?: object;
-  initialRegion: {
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
-  };
+  initialRegion: Region;
+  onRegionChangeComplete?: (region: Region) => void;
   children?: ReactNode;
 }
 
-export function OsmMap({ style, initialRegion, children }: OsmMapProps) {
+export function OsmMap({ style, initialRegion, onRegionChangeComplete, children }: OsmMapProps) {
   return (
     <MapView
       style={style}
       initialRegion={initialRegion}
+      onRegionChangeComplete={onRegionChangeComplete}
       mapType={Platform.OS === 'android' ? 'none' : 'standard'}
       rotateEnabled={false}
     >
