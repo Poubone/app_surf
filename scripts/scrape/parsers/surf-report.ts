@@ -1,9 +1,28 @@
 import * as cheerio from 'cheerio';
 import type { TideStage } from '@app-surf/scoring';
 
+const SURF_REPORT_ORIGIN = 'https://www.surf-report.com';
+
 export interface SurfReportData {
   descriptionFr: string;
   tideOptimalStage?: TideStage;
+  webcamUrl?: string;
+  webcamProvider?: string;
+}
+
+/** Lien webcam spot-specific dans le sous-menu (pas le menu générique /webcams/). */
+function parseWebcamLink($: cheerio.CheerioAPI): Pick<SurfReportData, 'webcamUrl' | 'webcamProvider'> {
+  const href =
+    $('.menu-spot-container a[href^="/webcams/"]')
+      .map((_, el) => $(el).attr('href') ?? '')
+      .get()
+      .find((h) => /^\/webcams\/[^/]+\.html$/.test(h)) ?? null;
+
+  if (!href) return {};
+  return {
+    webcamUrl: `${SURF_REPORT_ORIGIN}${href}`,
+    webcamProvider: 'surf-report',
+  };
 }
 
 export function parseSurfReport(html: string): SurfReportData {
@@ -20,5 +39,5 @@ export function parseSurfReport(html: string): SurfReportData {
   else if (full.includes('marée basse')) tideOptimalStage = 'low';
   else if (full.includes('marée haute')) tideOptimalStage = 'high';
 
-  return { descriptionFr, tideOptimalStage };
+  return { descriptionFr, tideOptimalStage, ...parseWebcamLink($) };
 }

@@ -22,6 +22,9 @@ export interface Spot {
   bottomType?: string;
   level?: string;
   descriptionFr?: string;
+  /** Page webcam (ex. Surf-Report) */
+  webcamUrl?: string;
+  webcamProvider?: string;
 }
 
 export interface HourlyConditions {

@@ -8,6 +8,7 @@ import { HourlyBar } from './HourlyBar';
 import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 import { ScoreRing } from './ScoreRing';
 import { SpotInfoPanel } from './SpotInfoPanel';
+import { WebcamPanel } from './WebcamPanel';
 import { StatCard } from './StatCard';
 
 function parseHourLabel(label: string): number {
@@ -207,7 +208,8 @@ export function DetailView({
         )}
       </div>
 
-      <div className="px-6 pb-5">
+      <div className="px-6 pb-5 flex flex-col gap-5">
+        <WebcamPanel spot={spot} />
         <SpotInfoPanel spot={spot} />
       </div>
 

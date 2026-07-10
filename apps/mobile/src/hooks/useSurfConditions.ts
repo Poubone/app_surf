@@ -145,6 +145,8 @@ function spotMetaFromSpot(spot: Spot) {
     descriptionFr: spot.descriptionFr,
     bottomType: spot.bottomType,
     level: spot.level,
+    webcamUrl: spot.webcamUrl,
+    webcamProvider: spot.webcamProvider,
   };
 }
 
@@ -185,6 +187,8 @@ function catalogPin(catalog: CatalogSpot, scraped?: Spot): SpotView {
     descriptionFr: meta?.descriptionFr,
     bottomType: meta?.bottomType,
     level: meta?.level,
+    webcamUrl: meta?.webcamUrl,
+    webcamProvider: meta?.webcamProvider,
   };
 }
 
